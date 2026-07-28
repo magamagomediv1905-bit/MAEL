@@ -369,6 +369,17 @@ body{
 .mh-card .m .nm{font-family:var(--sans);font-weight:500;font-size:12.5px;letter-spacing:.02em;margin:4px 0 3px;color:var(--ink)}
 .mh-card .m .pr{font-family:var(--sans);font-size:12px;letter-spacing:.03em;color:var(--ink)}
 .mh-split{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.mh-head{display:flex;justify-content:space-between;align-items:baseline;padding:0 20px;margin:44px 0 12px}
+.mh-head .l{font-family:var(--label);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
+.mh-head a{font-family:var(--label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);border-bottom:1px solid var(--taupe);padding-bottom:2px;cursor:pointer}
+.mh-cats{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.mh-feat{position:relative;min-height:72vh;overflow:hidden;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;color:var(--cream)}
+.mh-feat .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.4s cubic-bezier(.2,.75,.2,1);z-index:0}
+.mh-feat:hover .bg{transform:scale(1.05)}
+.mh-feat::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,8,6,.52),rgba(18,8,6,0) 56%);z-index:1}
+.mh-feat .cap{position:relative;z-index:2;text-align:center;padding:0 24px 42px}
+.mh-feat .cap .t{font-family:var(--head);font-weight:500;font-size:31px;letter-spacing:.02em}
+.mh-feat .cap .s{display:inline-block;margin-top:14px;font-family:var(--label);font-size:10px;letter-spacing:.28em;text-transform:uppercase;opacity:.9;border-bottom:1px solid rgba(239,234,224,.6);padding-bottom:4px}
 .mh-tile{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer}
 .mh-tile .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.2s cubic-bezier(.2,.75,.2,1)}
 .mh-tile:hover .bg{transform:scale(1.06)}
@@ -382,14 +393,17 @@ body{
 .mh-banner .cap .lb{font-family:var(--label);font-size:10px;letter-spacing:.4em;text-transform:uppercase;opacity:.85}
 .mh-banner .cap .ttl{font-family:var(--head);font-weight:500;font-size:31px;line-height:1.1;margin:12px 0 22px}
 .mh-banner .cap a{display:inline-block;font-family:var(--label);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--cream);border-bottom:1px solid rgba(239,234,224,.6);padding-bottom:5px;cursor:pointer}
-.mh-brands{padding:56px 24px 50px;text-align:center;border-top:1px solid var(--line)}
+.mh-brands{padding:14px 24px 56px;text-align:center}
 .mh-brands .row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 26px}
 .mh-brands a.bn{font-family:var(--head);font-weight:500;font-size:20px;letter-spacing:.1em;color:var(--ink);cursor:pointer;transition:color .2s ease}
 .mh-brands a.bn:hover{color:var(--wine)}
 .mh-brands .all{display:inline-block;margin-top:30px;font-family:var(--label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);border-bottom:1px solid var(--taupe);padding-bottom:3px;cursor:pointer}
 @media(min-width:900px){
   .mh-grid{grid-template-columns:repeat(4,1fr)}
+  .mh-cats{grid-template-columns:repeat(4,1fr)}
   .mh-banner{min-height:92vh}
+  .mh-feat{min-height:82vh}
+  .mh-feat .cap .t{font-size:44px}
   .mh-banner .cap .ttl{font-size:46px}
   .mh-tile .cap .t{font-size:13px}
   .mh-brands a.bn{font-size:26px}
@@ -746,6 +760,24 @@ body{
       </div>
 
 
+      <!-- ===== КАТЕГОРИИ ===== -->
+      <div class="mh-head reveal"><span class="l">Категории</span><a data-go="catalog">весь каталог</a></div>
+
+      <div class="mh-feat reveal" data-go="catalog">
+        <div class="bg" style="background-image:url('brands/sintem.jpg')"></div>
+        <div class="cap"><span class="t">Платья и абайи</span><span class="s">смотреть</span></div>
+      </div>
+
+      <div class="mh-cats reveal">
+        <div class="mh-tile" data-go="catalog"><div class="bg" style="background-image:url('brands/variso.jpg')"></div><div class="cap"><span class="t">Платки и тюрбаны</span></div></div>
+        <div class="mh-tile" data-go="catalog"><div class="bg" style="background-image:url('brands/elbe.jpg')"></div><div class="cap"><span class="t">Украшения</span></div></div>
+        <div class="mh-tile" data-go="catalog"><div class="bg" style="background-image:url('brands/maleka.jpg')"></div><div class="cap"><span class="t">Верх и костюмы</span></div></div>
+        <div class="mh-tile" data-go="catalog"><div class="bg" style="background-image:url('brands/shidaeva.jpg')"></div><div class="cap"><span class="t">Абайи</span></div></div>
+      </div>
+
+      <!-- ===== НОВИНКИ ===== -->
+      <div class="mh-head reveal"><span class="l">Новинки</span><a data-go="catalog">смотреть все</a></div>
+
       <div class="mh-grid reveal">
         <div class="mh-card" data-go="product">
           <div class="img"><div class="a" style="background-image:url('brands/sintem.jpg')"></div><div class="b" style="background-image:url('brands/maleka.jpg')"></div></div>
@@ -763,14 +795,6 @@ body{
           <div class="img"><div class="a" style="background-image:url('brands/maleka.jpg')"></div><div class="b" style="background-image:url('brands/sintem.jpg')"></div></div>
           <div class="m"><div class="br">MALÉKA</div><div class="nm">Костюм «Тень»</div><div class="pr">32 000 ₽</div></div>
         </div>
-      </div>
-
-      <div class="mh-split reveal">
-        <div class="mh-tile" data-go="catalog"><div class="bg" style="background-image:url('brands/sintem.jpg')"></div><div class="cap"><span class="t">Платья и абайи</span></div></div>
-        <div class="mh-tile" data-go="catalog"><div class="bg" style="background-image:url('brands/elbe.jpg')"></div><div class="cap"><span class="t">Украшения</span></div></div>
-      </div>
-
-      <div class="mh-grid reveal">
         <div class="mh-card" data-go="product">
           <div class="img"><div class="a" style="background-image:url('brands/variso.jpg')"></div><div class="b" style="background-image:url('brands/nani.jpg')"></div></div>
           <div class="m"><div class="br">VARISÓ</div><div class="nm">Сумка «Мила»</div><div class="pr">14 800 ₽</div></div>
@@ -778,22 +802,6 @@ body{
         <div class="mh-card" data-go="product">
           <div class="img"><div class="a" style="background-image:url('brands/shidaeva.jpg')"></div><div class="b" style="background-image:url('brands/elbe.jpg')"></div></div>
           <div class="m"><div class="br">SHIDAEVA</div><div class="nm">Платок «Дюны»</div><div class="pr">6 900 ₽</div></div>
-        </div>
-        <div class="mh-card" data-go="product">
-          <div class="img"><div class="a" style="background-image:url('brands/nani.jpg')"></div><div class="b" style="background-image:url('brands/maleka.jpg')"></div></div>
-          <div class="m"><div class="br">NANI</div><div class="nm">Платье «Ночь»</div><div class="pr">27 000 ₽</div></div>
-        </div>
-        <div class="mh-card" data-go="product">
-          <div class="img"><div class="a" style="background-image:url('brands/sintem.jpg')"></div><div class="b" style="background-image:url('brands/variso.jpg')"></div></div>
-          <div class="m"><div class="br">SINTÉM</div><div class="nm">Абайя «Лён»</div><div class="pr">21 500 ₽</div></div>
-        </div>
-        <div class="mh-card" data-go="product">
-          <div class="img"><div class="a" style="background-image:url('brands/elbe.jpg')"></div><div class="b" style="background-image:url('brands/shidaeva.jpg')"></div></div>
-          <div class="m"><div class="br">ÉLBE</div><div class="nm">Серьги «Капля»</div><div class="pr">8 400 ₽</div></div>
-        </div>
-        <div class="mh-card" data-go="product">
-          <div class="img"><div class="a" style="background-image:url('brands/maleka.jpg')"></div><div class="b" style="background-image:url('brands/nani.jpg')"></div></div>
-          <div class="m"><div class="br">MALÉKA</div><div class="nm">Жакет «Дым»</div><div class="pr">19 900 ₽</div></div>
         </div>
       </div>
 
@@ -806,6 +814,9 @@ body{
         </div>
       </div>
 
+      <!-- ===== БРЕНДЫ ===== -->
+      <div class="mh-head reveal"><span class="l">Бренды</span><a data-go="catalog">все бренды</a></div>
+
       <div class="mh-brands reveal">
         <div class="row">
           <a class="bn" data-go="catalog">SINTÉM</a>
@@ -815,7 +826,6 @@ body{
           <a class="bn" data-go="catalog">VARISÓ</a>
           <a class="bn" data-go="catalog">SHIDAEVA</a>
         </div>
-        <a class="all" data-go="catalog">все бренды</a>
       </div>
 
 
