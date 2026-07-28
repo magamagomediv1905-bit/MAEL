@@ -304,6 +304,11 @@ body{
 .lookbook .lb-head .eyebrow{font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--taupe)}
 .lookbook .lb-head h3{font-family:var(--head);font-weight:500;font-size:32px;margin-top:6px;letter-spacing:.01em}
 .lb-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 20px}
+.lookbook .railwrap{margin:0}
+.lookbook .rail{margin:0}
+.card .look-items{font-size:11px;line-height:1.45;letter-spacing:.02em;color:var(--taupe);margin-top:2px}
+.card.lookcard .name{font-family:var(--head);font-weight:500;font-size:20px;font-style:italic}
+.card.lookcard .brand{color:var(--wine)}
 .lb-cell{position:relative;border-radius:2px;overflow:hidden;aspect-ratio:3/4}
 .lb-cell.wide{grid-column:1 / -1;aspect-ratio:16/11}
 .lb-cell .ph{position:absolute;inset:0;transition:transform 1.1s cubic-bezier(.2,.75,.2,1)}
@@ -350,6 +355,45 @@ body{
 .result::before,.result::after{content:"";position:absolute;top:50%;width:22px;height:1px;background:var(--line)}
 .result::before{left:20px}.result::after{right:20px}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:8px 20px 20px}
+/* ===== minimal home (референс 2mood / monochrome) ===== */
+.mh-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:0}
+.mh-card{position:relative;cursor:pointer;background:var(--cream)}
+.mh-card .img{position:relative;aspect-ratio:2/3;overflow:hidden}
+.mh-card .img .a,.mh-card .img .b{position:absolute;inset:0;background-size:cover;background-position:center top}
+.mh-card .img .a{transition:transform 1.2s cubic-bezier(.2,.75,.2,1)}
+.mh-card .img .b{opacity:0;transition:opacity .6s ease}
+.mh-card:hover .img .b{opacity:1}
+.mh-card:hover .img .a{transform:scale(1.05)}
+.mh-card .m{padding:11px 12px 26px}
+.mh-card .m .br{font-family:var(--label);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe)}
+.mh-card .m .nm{font-family:var(--sans);font-weight:500;font-size:12.5px;letter-spacing:.02em;margin:4px 0 3px;color:var(--ink)}
+.mh-card .m .pr{font-family:var(--sans);font-size:12px;letter-spacing:.03em;color:var(--ink)}
+.mh-split{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.mh-tile{position:relative;aspect-ratio:3/4;overflow:hidden;cursor:pointer}
+.mh-tile .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.2s cubic-bezier(.2,.75,.2,1)}
+.mh-tile:hover .bg{transform:scale(1.06)}
+.mh-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,8,.5),rgba(20,10,8,0) 55%)}
+.mh-tile .cap{position:absolute;left:0;right:0;bottom:20px;z-index:2;text-align:center;color:var(--cream)}
+.mh-tile .cap .t{font-family:var(--label);font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+.mh-banner{position:relative;min-height:82vh;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;color:var(--cream);text-align:center}
+.mh-banner .bg{position:absolute;inset:0;background-size:cover;background-position:center 22%;z-index:0}
+.mh-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,8,6,.6),rgba(18,8,6,.04) 52%);z-index:1}
+.mh-banner .cap{position:relative;z-index:2;padding:0 24px 52px}
+.mh-banner .cap .lb{font-family:var(--label);font-size:10px;letter-spacing:.4em;text-transform:uppercase;opacity:.85}
+.mh-banner .cap .ttl{font-family:var(--head);font-weight:500;font-size:31px;line-height:1.1;margin:12px 0 22px}
+.mh-banner .cap a{display:inline-block;font-family:var(--label);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--cream);border-bottom:1px solid rgba(239,234,224,.6);padding-bottom:5px;cursor:pointer}
+.mh-brands{padding:56px 24px 50px;text-align:center;border-top:1px solid var(--line)}
+.mh-brands .row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px 26px}
+.mh-brands a.bn{font-family:var(--head);font-weight:500;font-size:20px;letter-spacing:.1em;color:var(--ink);cursor:pointer;transition:color .2s ease}
+.mh-brands a.bn:hover{color:var(--wine)}
+.mh-brands .all{display:inline-block;margin-top:30px;font-family:var(--label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);border-bottom:1px solid var(--taupe);padding-bottom:3px;cursor:pointer}
+@media(min-width:900px){
+  .mh-grid{grid-template-columns:repeat(4,1fr)}
+  .mh-banner{min-height:92vh}
+  .mh-banner .cap .ttl{font-size:46px}
+  .mh-tile .cap .t{font-size:13px}
+  .mh-brands a.bn{font-size:26px}
+}
 .grid .card{flex:none}
 .grid .card .meta{position:relative}
 .grid .card .prow{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px}
@@ -702,66 +746,78 @@ body{
       </div>
 
 
-      <div class="sec reveal">
-        <div class="sec-h"><h3>Новинки</h3><a data-go="catalog">всё</a></div>
-      </div>
-      <div class="railwrap reveal">
-        <div class="rail" id="railNew">
-          <div class="card" data-go="product">
-            <div class="img"><div class="ph t2"><span class="lbl">SINTÉM</span><svg class="wm"><use href="#mono"/></svg></div><div class="ph2"></div>
-              <div class="fav"><svg><use href="#heart"/></svg></div></div>
-            <div class="meta"><div class="brand">SINTÉM</div><div class="name">Платье-рубашка «Флора»</div><div class="price">18 900 ₽</div></div>
-          </div>
-          <div class="card" data-go="product">
-            <div class="img"><div class="ph t4"><span class="lbl">NANI</span><svg class="wm"><use href="#mono"/></svg></div><div class="ph2"></div>
-              <div class="fav"><svg><use href="#heart"/></svg></div></div>
-            <div class="meta"><div class="brand">NANI</div><div class="name">Абайя «Дюна»</div><div class="price">24 500 ₽</div></div>
-          </div>
-          <div class="card" data-go="product">
-            <div class="img"><div class="ph t3"><span class="lbl">ÉLBE</span><svg class="wm"><use href="#mono"/></svg></div><div class="ph2"></div>
-              <div class="fav"><svg><use href="#heart"/></svg></div></div>
-            <div class="meta"><div class="brand">ÉLBE</div><div class="name">Кольцо с цитрином</div><div class="price">9 200 ₽</div></div>
-          </div>
+      <div class="mh-grid reveal">
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/sintem.jpg')"></div><div class="b" style="background-image:url('brands/maleka.jpg')"></div></div>
+          <div class="m"><div class="br">SINTÉM</div><div class="nm">Платье-рубашка «Флора»</div><div class="pr">18 900 ₽</div></div>
         </div>
-        <div class="rail-prog"><i></i></div>
-      </div>
-
-
-      <div class="sec reveal"><div class="sec-h"><h3>Наши бренды</h3><a data-go="catalog">все</a></div>
-        <p class="sec-sub">Тщательно отобранные марки скромной моды — от вечерних платьев до трикотажа и аксессуаров.</p>
-      </div>
-      <div class="brandcards reveal">
-        <div class="bcard" data-go="catalog"><div class="ph photo" style="background-image:url('brands/sintem.jpg')"></div><svg class="bc-wm"><use href="#mono"/></svg><div class="bc-in"><div class="bc-name">SINTÉM</div></div></div>
-        <div class="bcard" data-go="catalog"><div class="ph photo" style="background-image:url('brands/nani.jpg')"></div><svg class="bc-wm"><use href="#mono"/></svg><div class="bc-in"><div class="bc-name">NANI</div></div></div>
-        <div class="bcard" data-go="catalog"><div class="ph photo" style="background-image:url('brands/elbe.jpg')"></div><svg class="bc-wm"><use href="#mono"/></svg><div class="bc-in"><div class="bc-name">ÉLBE</div></div></div>
-        <div class="bcard" data-go="catalog"><div class="ph photo" style="background-image:url('brands/maleka.jpg')"></div><svg class="bc-wm"><use href="#mono"/></svg><div class="bc-in"><div class="bc-name">MALÉKA</div></div></div>
-        <div class="bcard" data-go="catalog"><div class="ph photo" style="background-image:url('brands/variso.jpg')"></div><svg class="bc-wm"><use href="#mono"/></svg><div class="bc-in"><div class="bc-name">VARISÓ</div></div></div>
-        <div class="bcard" data-go="catalog"><div class="ph photo" style="background-image:url('brands/shidaeva.jpg')"></div><svg class="bc-wm"><use href="#mono"/></svg><div class="bc-in"><div class="bc-name">SHIDAEVA</div></div></div>
-        <div class="bcard" data-go="catalog"><div class="ph t7"></div><svg class="bc-wm"><use href="#mono"/></svg><div class="bc-in"><div class="bc-name">KNITMAN</div></div></div>
-      </div>
-
-      <div class="imgband reveal">
-        <div class="ph t8"></div>
-        <div class="inner">
-          <div class="eyebrow">о бренде</div>
-          <h3>MAEL — больше,<br>чем одежда</h3>
-          <p>Концепт-стор скромной моды: отобранные бренды, вещи с характером и вниманием к посадке, ткани и деталям.</p>
-          <div class="cta" data-go="catalog">Больше о бренде</div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/nani.jpg')"></div><div class="b" style="background-image:url('brands/shidaeva.jpg')"></div></div>
+          <div class="m"><div class="br">NANI</div><div class="nm">Абайя «Дюна»</div><div class="pr">24 500 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/elbe.jpg')"></div><div class="b" style="background-image:url('brands/variso.jpg')"></div></div>
+          <div class="m"><div class="br">ÉLBE</div><div class="nm">Кольцо с цитрином</div><div class="pr">9 200 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/maleka.jpg')"></div><div class="b" style="background-image:url('brands/sintem.jpg')"></div></div>
+          <div class="m"><div class="br">MALÉKA</div><div class="nm">Костюм «Тень»</div><div class="pr">32 000 ₽</div></div>
         </div>
       </div>
 
+      <div class="mh-split reveal">
+        <div class="mh-tile" data-go="catalog"><div class="bg" style="background-image:url('brands/sintem.jpg')"></div><div class="cap"><span class="t">Платья и абайи</span></div></div>
+        <div class="mh-tile" data-go="catalog"><div class="bg" style="background-image:url('brands/elbe.jpg')"></div><div class="cap"><span class="t">Украшения</span></div></div>
+      </div>
 
-      <div class="lookbook reveal">
-        <div class="lb-head">
-          <div class="eyebrow">лукбук · готовые образы</div>
-          <h3>Осень в оттенках<br>бордо и тауп</h3>
+      <div class="mh-grid reveal">
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/variso.jpg')"></div><div class="b" style="background-image:url('brands/nani.jpg')"></div></div>
+          <div class="m"><div class="br">VARISÓ</div><div class="nm">Сумка «Мила»</div><div class="pr">14 800 ₽</div></div>
         </div>
-        <div class="lb-grid">
-          <div class="lb-cell wide"><div class="ph t3"></div><div class="cap">Образ 01 · «Вечер в бордо»<br>платье SINTÉM · платок NANI · кольцо ÉLBE</div></div>
-          <div class="lb-cell"><div class="ph t4"></div><div class="cap">Образ 02 · «День»<br>абайя NANI · сумка VARISÓ</div></div>
-          <div class="lb-cell"><div class="ph t2"></div><div class="cap">Образ 03 · «Прогулка»<br>костюм MALÉKA · платок SHIDAEVA</div></div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/shidaeva.jpg')"></div><div class="b" style="background-image:url('brands/elbe.jpg')"></div></div>
+          <div class="m"><div class="br">SHIDAEVA</div><div class="nm">Платок «Дюны»</div><div class="pr">6 900 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/nani.jpg')"></div><div class="b" style="background-image:url('brands/maleka.jpg')"></div></div>
+          <div class="m"><div class="br">NANI</div><div class="nm">Платье «Ночь»</div><div class="pr">27 000 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/sintem.jpg')"></div><div class="b" style="background-image:url('brands/variso.jpg')"></div></div>
+          <div class="m"><div class="br">SINTÉM</div><div class="nm">Абайя «Лён»</div><div class="pr">21 500 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/elbe.jpg')"></div><div class="b" style="background-image:url('brands/shidaeva.jpg')"></div></div>
+          <div class="m"><div class="br">ÉLBE</div><div class="nm">Серьги «Капля»</div><div class="pr">8 400 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/maleka.jpg')"></div><div class="b" style="background-image:url('brands/nani.jpg')"></div></div>
+          <div class="m"><div class="br">MALÉKA</div><div class="nm">Жакет «Дым»</div><div class="pr">19 900 ₽</div></div>
         </div>
       </div>
+
+      <div class="mh-banner reveal" data-go="catalog">
+        <div class="bg" style="background-image:url('brands/nani.jpg')"></div>
+        <div class="cap">
+          <div class="lb">новая коллекция</div>
+          <div class="ttl">Осень в оттенках<br>бордо и тауп</div>
+          <a data-go="catalog">Смотреть коллекцию</a>
+        </div>
+      </div>
+
+      <div class="mh-brands reveal">
+        <div class="row">
+          <a class="bn" data-go="catalog">SINTÉM</a>
+          <a class="bn" data-go="catalog">NANI</a>
+          <a class="bn" data-go="catalog">ÉLBE</a>
+          <a class="bn" data-go="catalog">MALÉKA</a>
+          <a class="bn" data-go="catalog">VARISÓ</a>
+          <a class="bn" data-go="catalog">SHIDAEVA</a>
+        </div>
+        <a class="all" data-go="catalog">все бренды</a>
+      </div>
+
 
       <div class="footx reveal">
         <div class="cols">
