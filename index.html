@@ -398,6 +398,12 @@ body{
 .mh-brands a.bn{font-family:var(--head);font-weight:500;font-size:20px;letter-spacing:.1em;color:var(--ink);cursor:pointer;transition:color .2s ease}
 .mh-brands a.bn:hover{color:var(--wine)}
 .mh-brands .all{display:inline-block;margin-top:30px;font-family:var(--label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);border-bottom:1px solid var(--taupe);padding-bottom:3px;cursor:pointer}
+      .mh-brandgrid{display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:0}
+      .mh-brandcard{position:relative;aspect-ratio:4/5;overflow:hidden;cursor:pointer;display:flex;align-items:center;justify-content:center}
+      .mh-brandcard .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.2s cubic-bezier(.2,.75,.2,1);z-index:0}
+      .mh-brandcard:hover .bg{transform:scale(1.06)}
+      .mh-brandcard::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,8,.55),rgba(20,10,8,.12) 60%);z-index:1}
+      .mh-brandcard .nm{position:relative;z-index:2;font-family:var(--head);font-weight:500;font-size:22px;letter-spacing:.12em;color:var(--cream);text-shadow:0 1px 8px rgba(18,4,4,.5)}
 @media(min-width:900px){
   .mh-grid{grid-template-columns:repeat(4,1fr)}
   .mh-cats{grid-template-columns:repeat(4,1fr)}
@@ -407,6 +413,8 @@ body{
   .mh-banner .cap .ttl{font-size:46px}
   .mh-tile .cap .t{font-size:13px}
   .mh-brands a.bn{font-size:26px}
+  .mh-brandgrid{grid-template-columns:repeat(3,1fr)}
+  .mh-brandcard .nm{font-size:28px}
 }
 .grid .card{flex:none}
 .grid .card .meta{position:relative}
@@ -817,15 +825,13 @@ body{
       <!-- ===== БРЕНДЫ ===== -->
       <div class="mh-head reveal"><span class="l">Бренды</span><a data-go="catalog">все бренды</a></div>
 
-      <div class="mh-brands reveal">
-        <div class="row">
-          <a class="bn" data-go="catalog">SINTÉM</a>
-          <a class="bn" data-go="catalog">NANI</a>
-          <a class="bn" data-go="catalog">ÉLBE</a>
-          <a class="bn" data-go="catalog">MALÉKA</a>
-          <a class="bn" data-go="catalog">VARISÓ</a>
-          <a class="bn" data-go="catalog">SHIDAEVA</a>
-        </div>
+      <div class="mh-brandgrid reveal">
+        <div class="mh-brandcard" data-go="catalog"><div class="bg" style="background-image:url('brands/sintem.jpg')"></div><div class="nm">SINTÉM</div></div>
+        <div class="mh-brandcard" data-go="catalog"><div class="bg" style="background-image:url('brands/nani.jpg')"></div><div class="nm">NANI</div></div>
+        <div class="mh-brandcard" data-go="catalog"><div class="bg" style="background-image:url('brands/elbe.jpg')"></div><div class="nm">ÉLBE</div></div>
+        <div class="mh-brandcard" data-go="catalog"><div class="bg" style="background-image:url('brands/maleka.jpg')"></div><div class="nm">MALÉKA</div></div>
+        <div class="mh-brandcard" data-go="catalog"><div class="bg" style="background-image:url('brands/variso.jpg')"></div><div class="nm">VARISÓ</div></div>
+        <div class="mh-brandcard" data-go="catalog"><div class="bg" style="background-image:url('brands/shidaeva.jpg')"></div><div class="nm">SHIDAEVA</div></div>
       </div>
 
 
