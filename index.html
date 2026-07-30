@@ -373,13 +373,14 @@ body{
 .mh-head .l{font-family:var(--label);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink)}
 .mh-head a{font-family:var(--label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);border-bottom:1px solid var(--taupe);padding-bottom:2px;cursor:pointer}
 .mh-cats{display:grid;grid-template-columns:1fr 1fr;gap:2px}
-      .cat-row{display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0}
+      .cat-row{display:flex;gap:12px;overflow-x:auto;-webkit-overflow-scrolling:touch;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 20px 10px}
       .cat-row::-webkit-scrollbar{display:none}
-      .cat-item{flex:0 0 74%;scroll-snap-align:start;background:var(--cream);border-right:1px solid var(--line);cursor:pointer;display:flex;flex-direction:column}
-      .cat-item .ph{position:relative;aspect-ratio:3/4;overflow:hidden;background:#e9e3d8}
-      .cat-item .ph .bg{position:absolute;inset:0;background-size:cover;background-position:center top;transition:transform 1.1s cubic-bezier(.2,.75,.2,1)}
+      .cat-item{flex:0 0 67%;scroll-snap-align:center;cursor:pointer;display:flex;flex-direction:column}
+      .cat-item .ph{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:3px;background:#e9e3d8}
+      .cat-item .ph .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.3s cubic-bezier(.2,.75,.2,1)}
       .cat-item:hover .ph .bg{transform:scale(1.05)}
-      .cat-item .nm{text-align:center;font-family:var(--sans);font-weight:700;font-size:14px;letter-spacing:.02em;color:var(--ink);padding:20px 12px 30px}
+      .cat-item .nm{text-align:center;font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.03em;color:var(--ink);padding:16px 10px 5px}
+      .cat-item .ct{text-align:center;font-family:var(--label);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--taupe);padding-bottom:6px}
 .mh-feat{position:relative;min-height:72vh;overflow:hidden;cursor:pointer;display:flex;align-items:flex-end;justify-content:center;color:var(--cream)}
 .mh-feat .bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.4s cubic-bezier(.2,.75,.2,1);z-index:0}
 .mh-feat:hover .bg{transform:scale(1.05)}
@@ -414,8 +415,8 @@ body{
 @media(min-width:900px){
   .mh-grid{grid-template-columns:repeat(4,1fr)}
   .mh-cats{grid-template-columns:repeat(4,1fr)}
-  .cat-item{flex:0 0 33.333%}
-  .cat-item .nm{font-size:15px;padding:24px 12px 34px}
+  .cat-item{flex:0 0 31%}
+  .cat-item .nm{font-size:14px;padding:18px 12px 5px}
   .mh-banner{min-height:92vh}
   .mh-feat{min-height:82vh}
   .mh-feat .cap .t{font-size:38px}
@@ -820,11 +821,11 @@ body{
       <div class="mh-head reveal"><span class="l">Категории</span><a data-go="catalog">весь каталог</a></div>
 
       <div class="cat-row reveal">
-        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/sintem.jpg')"></div></div><div class="nm">Платья и абайи</div></div>
-        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/variso.jpg')"></div></div><div class="nm">Платки и тюрбаны</div></div>
-        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/elbe.jpg')"></div></div><div class="nm">Украшения</div></div>
-        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/maleka.jpg')"></div></div><div class="nm">Верх и костюмы</div></div>
-        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/shidaeva.jpg')"></div></div><div class="nm">Абайи</div></div>
+        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/sintem.jpg')"></div></div><div class="nm">Платья и абайи</div><div class="ct">смотреть</div></div>
+        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/variso.jpg')"></div></div><div class="nm">Платки и тюрбаны</div><div class="ct">смотреть</div></div>
+        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/elbe.jpg');background-position:center 74%"></div></div><div class="nm">Украшения</div><div class="ct">смотреть</div></div>
+        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/maleka.jpg')"></div></div><div class="nm">Верх и костюмы</div><div class="ct">смотреть</div></div>
+        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/shidaeva.jpg')"></div></div><div class="nm">Абайи</div><div class="ct">смотреть</div></div>
       </div>
 
       <!-- ===== БРЕНДЫ ===== -->
