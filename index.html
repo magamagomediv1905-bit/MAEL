@@ -114,7 +114,7 @@ body{
 .drawer.open .dr-nav a:nth-child(3){transition-delay:.24s}
 .drawer.open .dr-nav a:nth-child(4){transition-delay:.30s}
 .drawer.open .dr-nav a:nth-child(5){transition-delay:.36s}
-.dr-nav a .n{font-family:var(--head);font-weight:500;font-size:27px;line-height:1;
+.dr-nav a .n{font-family:var(--sans);font-weight:600;font-size:25px;line-height:1;
   letter-spacing:.01em;transition:.28s cubic-bezier(.3,.8,.24,1)}
 .dr-nav a:hover .n{transform:translateX(6px)}
 .dr-nav a .c{font-size:10px;letter-spacing:.16em;color:rgba(239,234,224,.45);margin-left:auto}
@@ -129,7 +129,7 @@ body{
 .dr-chips span:hover{background:var(--cream);color:var(--wine-deep);border-color:var(--cream)}
 .dr-foot{padding:20px 26px 34px;position:relative;z-index:2;
   border-top:1px solid rgba(239,234,224,.12);margin-top:8px}
-.dr-foot .addr{font-family:var(--sans);font-style:italic;font-size:15px;
+.dr-foot .addr{font-family:var(--sans);font-size:15px;
   color:rgba(239,234,224,.9);line-height:1.4;margin-bottom:16px}
 .dr-social{display:flex;gap:12px}
 .dr-social a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(239,234,224,.24);
@@ -394,6 +394,21 @@ body{
 .mh-tile::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,8,.5),rgba(20,10,8,0) 55%)}
 .mh-tile .cap{position:absolute;left:0;right:0;bottom:20px;z-index:2;text-align:center;color:var(--cream)}
 .mh-tile .cap .t{font-family:var(--label);font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+.mh-slideshow{position:relative;min-height:82vh;overflow:hidden;background:#e9e3d8;touch-action:pan-y}
+.mh-slide{position:absolute;inset:0;background-size:cover;background-position:center 22%;opacity:0;transition:opacity 1s ease}
+.mh-slide.is-active{opacity:1}
+.mh-dots{position:absolute;left:0;right:0;bottom:22px;z-index:3;display:flex;justify-content:center;gap:8px}
+.mh-dots button{width:7px;height:7px;border-radius:50%;border:none;padding:0;background:rgba(239,234,224,.5);cursor:pointer;transition:.3s}
+.mh-dots button.on{background:var(--cream);width:20px;border-radius:4px}
+.cat-block{margin:46px 0 8px}
+.cat-intro{padding:0 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;margin-bottom:24px}
+.cat-intro .l{font-family:var(--label);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);text-indent:.3em}
+.cat-lead{font-family:var(--serif);font-style:italic;font-size:27px;line-height:1.24;color:var(--ink);max-width:14ch}
+.cat-all{font-family:var(--label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);border:1px solid var(--line);border-radius:100px;padding:12px 28px;cursor:pointer;transition:.3s;text-indent:.24em}
+.cat-all:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.cat-nav{display:flex;justify-content:center;gap:14px;padding:22px 20px 0}
+.cat-arrow{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:22px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.3s;font-family:var(--serif)}
+.cat-arrow:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
 .mh-banner{position:relative;min-height:82vh;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;color:var(--cream);text-align:center}
 .mh-banner .bg{position:absolute;inset:0;background-size:cover;background-position:center 22%;z-index:0}
 .mh-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,8,6,.6),rgba(18,8,6,.04) 52%);z-index:1}
@@ -744,7 +759,7 @@ body{
           <a data-go="about"><span class="n">О MAEL</span></a>
         </nav>
         <div class="dr-foot">
-          <div class="addr">Москва, ул.&nbsp;Винницкая&nbsp;8к3<br>Раменки · ежедневно 11–21</div>
+          <div class="addr">Москва, ул.&nbsp;Винницкая&nbsp;8к3<br>Раменки · ежедневно 11–22</div>
           <div class="dr-social">
             <a title="Telegram"><svg><use href="#tg"/></svg></a>
             <a title="Instagram"><svg><use href="#ig"/></svg></a>
@@ -808,24 +823,33 @@ body{
         </div>
       </div>
 
-      <div class="mh-banner reveal" data-go="catalog">
-        <div class="bg" style="background-image:url('brands/nani.jpg')"></div>
-        <div class="cap">
-          <div class="lb">новая коллекция</div>
-          <div class="ttl">Осень в оттенках<br>бордо и тауп</div>
-          <a data-go="catalog">Смотреть коллекцию</a>
-        </div>
+      <div class="mh-slideshow reveal" id="mhSlideshow">
+        <div class="mh-slide is-active" style="background-image:url('brands/nani-brand.jpg')"></div>
+        <div class="mh-slide" style="background-image:url('brands/sintem.jpg')"></div>
+        <div class="mh-slide" style="background-image:url('brands/maleka.jpg')"></div>
+        <div class="mh-slide" style="background-image:url('brands/shidaeva.jpg')"></div>
+        <div class="mh-slide" style="background-image:url('brands/variso.jpg')"></div>
+        <div class="mh-dots"></div>
       </div>
 
       <!-- ===== КАТЕГОРИИ ===== -->
-      <div class="mh-head reveal"><span class="l">Категории</span><a data-go="catalog">весь каталог</a></div>
-
-      <div class="cat-row reveal">
-        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/sintem.jpg')"></div></div><div class="nm">Платья и абайи</div><div class="ct">смотреть</div></div>
-        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/variso.jpg')"></div></div><div class="nm">Платки и тюрбаны</div><div class="ct">смотреть</div></div>
-        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/elbe.jpg');background-position:center 74%"></div></div><div class="nm">Украшения</div><div class="ct">смотреть</div></div>
-        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/maleka.jpg')"></div></div><div class="nm">Верх и костюмы</div><div class="ct">смотреть</div></div>
-        <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/shidaeva.jpg')"></div></div><div class="nm">Абайи</div><div class="ct">смотреть</div></div>
+      <div class="cat-block reveal">
+        <div class="cat-intro">
+          <span class="l">Категории</span>
+          <p class="cat-lead">Найдите то, что&nbsp;ближе именно вам.</p>
+          <a class="cat-all" data-go="catalog">Смотреть все</a>
+        </div>
+        <div class="cat-row" id="catRow">
+          <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/sintem.jpg')"></div></div><div class="nm">Платья и абайи</div><div class="ct">смотреть</div></div>
+          <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/variso.jpg')"></div></div><div class="nm">Платки и тюрбаны</div><div class="ct">смотреть</div></div>
+          <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/elbe.jpg');background-position:center 74%"></div></div><div class="nm">Украшения</div><div class="ct">смотреть</div></div>
+          <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/maleka.jpg')"></div></div><div class="nm">Верх и костюмы</div><div class="ct">смотреть</div></div>
+          <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/shidaeva.jpg')"></div></div><div class="nm">Абайи</div><div class="ct">смотреть</div></div>
+        </div>
+        <div class="cat-nav">
+          <button class="cat-arrow" data-dir="-1" aria-label="Назад">&#8249;</button>
+          <button class="cat-arrow" data-dir="1" aria-label="Вперёд">&#8250;</button>
+        </div>
       </div>
 
       <!-- ===== БРЕНДЫ ===== -->
@@ -1199,7 +1223,33 @@ body{
     if(document.readyState!=='loading') bind();
     else document.addEventListener('DOMContentLoaded', bind);
   })();
-  const drawer = document.getElementById('drawer');
+  (function(){
+  var box=document.getElementById('mhSlideshow');
+  if(box){
+    var sl=[].slice.call(box.querySelectorAll('.mh-slide'));
+    var dw=box.querySelector('.mh-dots'),i=0,tm;
+    sl.forEach(function(_,k){var b=document.createElement('button');b.addEventListener('click',function(e){e.stopPropagation();go(k);rst();});dw.appendChild(b);});
+    var dots=[].slice.call(dw.children);
+    function go(n){i=(n+sl.length)%sl.length;sl.forEach(function(s,k){s.classList.toggle('is-active',k===i);});dots.forEach(function(d,k){d.classList.toggle('on',k===i);});}
+    function rst(){clearInterval(tm);tm=setInterval(function(){go(i+1);},4500);}
+    go(0);rst();
+    var x0=null;
+    box.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+    box.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){go(dx<0?i+1:i-1);rst();}x0=null;});
+  }
+  var row=document.getElementById('catRow');
+  if(row){
+    [].slice.call(document.querySelectorAll('.cat-arrow')).forEach(function(btn){
+      btn.addEventListener('click',function(e){e.stopPropagation();
+        var card=row.querySelector('.cat-item');
+        var step=card?card.getBoundingClientRect().width+12:280;
+        row.scrollBy({left:step*(+btn.dataset.dir),behavior:'smooth'});
+      });
+    });
+  }
+})();
+
+      const drawer = document.getElementById('drawer');
   document.addEventListener('click',e=>{
     if(e.target.closest('[data-menu]')){ drawer.classList.add('open'); return; }
     if(e.target.closest('[data-menu-close]')){ drawer.classList.remove('open'); return; }
