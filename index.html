@@ -701,6 +701,32 @@ body{
   .grid,.brandgrid,.rail,.brandcards{grid-template-columns:repeat(4,1fr)}
   .hero-logo{width:min(380px,26vw)}
 }
+
+/* ---- cart & badge ---- */
+.bagwrap{position:relative;display:inline-flex}
+.badge{position:absolute;top:-6px;right:-7px;min-width:15px;height:15px;padding:0 3px;border-radius:8px;background:var(--wine);color:#fff;font-family:var(--sans);font-size:9px;font-weight:700;display:none;align-items:center;justify-content:center;line-height:1;box-sizing:border-box}
+.badge.show{display:inline-flex}
+.cadd.added{background:var(--wine);color:#fff;border-color:var(--wine)}
+.cart-wrap{padding:0 20px 150px}
+.cart-title{font-family:var(--serif);font-size:30px;color:var(--ink);margin:6px 0 18px;letter-spacing:.02em}
+.crow{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.cph{width:76px;height:96px;border-radius:4px;background:#e9e3d8;flex:0 0 auto}
+.cinfo{flex:1;display:flex;flex-direction:column;justify-content:center;gap:5px}
+.cbr{font-family:var(--label);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe)}
+.cnm{font-family:var(--sans);font-size:14px;color:var(--ink)}
+.cpr{font-family:var(--sans);font-size:13px;color:var(--ink);opacity:.75}
+.cqty{display:flex;align-items:center;gap:11px;align-self:center}
+.cqty button{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:16px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:var(--sans)}
+.cqty span{font-family:var(--sans);font-size:14px;min-width:14px;text-align:center}
+.cart-empty{display:flex;flex-direction:column;align-items:center;gap:14px;padding:70px 20px;text-align:center;color:var(--taupe)}
+.cart-empty svg{width:38px;height:38px;color:var(--line)}
+.cart-empty-link{border-bottom:1px solid var(--taupe);cursor:pointer;padding-bottom:2px;font-family:var(--label);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
+.cart-foot{position:fixed;left:0;right:0;bottom:0;background:var(--cream);border-top:1px solid var(--line);padding:16px 20px calc(16px + env(safe-area-inset-bottom));z-index:45}
+.cart-sum{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.cart-sum .lb{font-family:var(--label);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe)}
+.cart-sum .val{font-family:var(--serif);font-size:23px;color:var(--ink)}
+.cart-checkout{width:100%;border:none;background:var(--wine);color:#fff;font-family:var(--label);font-size:11px;letter-spacing:.24em;text-transform:uppercase;padding:16px;border-radius:4px;cursor:pointer;transition:.3s}
+.cart-checkout:hover{background:var(--wine-deep)}
 </style>
 </head>
 <body>
@@ -776,9 +802,9 @@ body{
         <svg class="ic" data-menu><use href="#menu"/></svg>
         <div class="tb-brand">MAEL</div>
         <div class="tb-side">
-          <svg class="ic"><use href="#search"/></svg>
+          <svg class="ic" data-search><use href="#search"/></svg>
           <svg class="ic" data-go="profile"><use href="#user"/></svg>
-          <svg class="ic"><use href="#bag"/></svg>
+          <span class="bagwrap" data-go="cart"><svg class="ic"><use href="#bag"/></svg><i class="badge" data-cartcount>0</i></span>
         </div>
       </div>
 
@@ -908,12 +934,12 @@ body{
         </div>
         <div class="tb-side">
           <svg class="ic" data-go="profile"><use href="#user"/></svg>
-          <svg class="ic"><use href="#bag"/></svg>
+          <span class="bagwrap" data-go="cart"><svg class="ic"><use href="#bag"/></svg><i class="badge" data-cartcount>0</i></span>
         </div>
       </div>
       <div class="cat-head">
         <div class="cat-intro"><span class="ci-eyebrow">новый сезон · 2026</span><h2 class="ci-title">Каталог</h2></div>
-        <div class="searchbar"><svg style="width:16px;height:16px"><use href="#search"/></svg><input placeholder="Поиск по бренду или вещи"></div>
+        <div class="searchbar"><svg style="width:16px;height:16px"><use href="#search"/></svg><input id="catSearch" placeholder="Поиск по бренду или вещи"></div>
       </div>
       <div class="seg">
         <button class="on" data-seg="cat">По категориям</button>
@@ -933,35 +959,35 @@ body{
       <div class="grid reveal">
         <div class="card" data-go="product">
           <div class="img"><div class="ph t2"><span class="lbl">SINTÉM</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
-          <div class="meta"><div class="brand">SINTÉM</div><div class="name">Платье «Флора»</div><div class="prow"><div class="price">18 900 ₽</div><button class="cadd" onclick="event.stopPropagation()" aria-label="В корзину">+</button></div></div>
+          <div class="meta"><div class="brand">SINTÉM</div><div class="name">Платье «Флора»</div><div class="prow"><div class="price">18 900 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
         <div class="card" data-go="product">
           <div class="img"><div class="ph t4"><span class="lbl">NANI</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
-          <div class="meta"><div class="brand">NANI</div><div class="name">Абайя «Дюна»</div><div class="prow"><div class="price">24 500 ₽</div><button class="cadd" onclick="event.stopPropagation()" aria-label="В корзину">+</button></div></div>
+          <div class="meta"><div class="brand">NANI</div><div class="name">Абайя «Дюна»</div><div class="prow"><div class="price">24 500 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
         <div class="card" data-go="product">
           <div class="img"><div class="ph t7"><span class="lbl">MALÉKA</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
-          <div class="meta"><div class="brand">MALÉKA</div><div class="name">Платок шёлк «Вензель»</div><div class="prow"><div class="price">6 400 ₽</div><button class="cadd" onclick="event.stopPropagation()" aria-label="В корзину">+</button></div></div>
+          <div class="meta"><div class="brand">MALÉKA</div><div class="name">Платок шёлк «Вензель»</div><div class="prow"><div class="price">6 400 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
         <div class="card" data-go="product">
           <div class="img"><div class="ph t3"><span class="lbl">ÉLBE</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
-          <div class="meta"><div class="brand">ÉLBE</div><div class="name">Кольцо с цитрином</div><div class="prow"><div class="price">9 200 ₽</div><button class="cadd" onclick="event.stopPropagation()" aria-label="В корзину">+</button></div></div>
+          <div class="meta"><div class="brand">ÉLBE</div><div class="name">Кольцо с цитрином</div><div class="prow"><div class="price">9 200 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
         <div class="card" data-go="product">
           <div class="img"><div class="ph t8"><span class="lbl">KNITMAN</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
-          <div class="meta"><div class="brand">KNITMAN</div><div class="name">Джемпер «Оливия»</div><div class="prow"><div class="price">12 700 ₽</div><button class="cadd" onclick="event.stopPropagation()" aria-label="В корзину">+</button></div></div>
+          <div class="meta"><div class="brand">KNITMAN</div><div class="name">Джемпер «Оливия»</div><div class="prow"><div class="price">12 700 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
         <div class="card" data-go="product">
           <div class="img"><div class="ph t5"><span class="lbl">VARISÓ</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
-          <div class="meta"><div class="brand">VARISÓ</div><div class="name">Платье «Наследие»</div><div class="prow"><div class="price">31 000 ₽</div><button class="cadd" onclick="event.stopPropagation()" aria-label="В корзину">+</button></div></div>
+          <div class="meta"><div class="brand">VARISÓ</div><div class="name">Платье «Наследие»</div><div class="prow"><div class="price">31 000 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
         <div class="card" data-go="product">
           <div class="img"><div class="ph t6"><span class="lbl">STORMIES</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
-          <div class="meta"><div class="brand">STORMIES</div><div class="name">Сумка «Найт»</div><div class="prow"><div class="price">15 800 ₽</div><button class="cadd" onclick="event.stopPropagation()" aria-label="В корзину">+</button></div></div>
+          <div class="meta"><div class="brand">STORMIES</div><div class="name">Сумка «Найт»</div><div class="prow"><div class="price">15 800 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
         <div class="card" data-go="product">
           <div class="img"><div class="ph t1"><span class="lbl">SHIDAEVA</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
-          <div class="meta"><div class="brand">SHIDAEVA</div><div class="name">Костюм «Юнис»</div><div class="prow"><div class="price">27 400 ₽</div><button class="cadd" onclick="event.stopPropagation()" aria-label="В корзину">+</button></div></div>
+          <div class="meta"><div class="brand">SHIDAEVA</div><div class="name">Костюм «Юнис»</div><div class="prow"><div class="price">27 400 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
       </div>
       <div class="brand-note">Все бренды · 12</div>
@@ -1071,7 +1097,7 @@ body{
           <svg class="ic" data-go="home"><use href="#back"/></svg>
           <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">кабинет</div>
         </div>
-        <svg class="ic"><use href="#bag"/></svg>
+        <span class="bagwrap" data-go="cart"><svg class="ic"><use href="#bag"/></svg><i class="badge" data-cartcount>0</i></span>
       </div>
 
       <div class="prof">
@@ -1184,7 +1210,7 @@ body{
           <svg class="ic" data-go="catalog"><use href="#back"/></svg>
           <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">избранное</div>
         </div>
-        <svg class="ic"><use href="#bag"/></svg>
+        <span class="bagwrap" data-go="cart"><svg class="ic"><use href="#bag"/></svg><i class="badge" data-cartcount>0</i></span>
       </div>
       <div class="fav-head">
         <h1>Избранное</h1>
@@ -1199,17 +1225,40 @@ body{
       </div>
     </section>
 
+    <!-- ===================== CART ===================== -->
+    <section class="screen" id="cart">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-go="catalog"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">корзина</div>
+        </div>
+      </div>
+      <div class="cart-wrap">
+        <div class="cart-title">Ваша корзина</div>
+        <div id="cartlist"></div>
+        <div class="cart-empty" id="cartempty">
+          <svg><use href="#bag"/></svg>
+          <div>Пока пусто</div>
+          <a data-go="catalog" class="cart-empty-link">В каталог</a>
+        </div>
+      </div>
+      <div class="cart-foot" id="cartfoot">
+        <div class="cart-sum"><span class="lb">Итого</span><span class="val" id="cartTotal">0 ₽</span></div>
+        <button class="cart-checkout" data-checkout>Оформить заказ</button>
+      </div>
+    </section>
 
   </div>
 
 <script>
-  const screens = ['home','catalog','product','profile','about','favorites'];
+  const screens = ['home','catalog','product','profile','about','favorites','cart'];
   function goTo(id){
     document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('is-active', s.id===id));
     document.querySelectorAll('.demo button').forEach(b=>b.classList.toggle('on', b.dataset.go===id));
     const vp = document.querySelector('#'+id);
     if(vp) vp.scrollTop = 0;
     if(id==='favorites') renderFav();
+    if(id==='cart') renderCart();
   }
   (function(){
     function bind(){
@@ -1255,6 +1304,14 @@ body{
     if(e.target.closest('[data-menu-close]')){ drawer.classList.remove('open'); return; }
     const favBtn = e.target.closest('.card .fav');
     if(favBtn){ e.preventDefault(); e.stopPropagation(); toggleFav(favBtn); return; }
+    const addBtn = e.target.closest('[data-add]');
+    if(addBtn){ e.preventDefault(); e.stopPropagation(); addToCart(addBtn.closest('.card')); addBtn.classList.add('added'); setTimeout(function(){addBtn.classList.remove('added');},700); return; }
+    const qb = e.target.closest('[data-qty]');
+    if(qb){ e.stopPropagation(); cartQty(qb.dataset.key, parseInt(qb.dataset.qty,10)); return; }
+    const co = e.target.closest('[data-checkout]');
+    if(co){ e.preventDefault(); alert('Оформление заказа появится после подключения базы и оплаты.'); return; }
+    const sb = e.target.closest('[data-search]');
+    if(sb){ e.stopPropagation(); goTo('catalog'); var ci=document.getElementById('catSearch'); if(ci){ setTimeout(function(){ci.focus();},80); } return; }
     const el = e.target.closest('[data-go]');
     if(el){ goTo(el.dataset.go); if(drawer) drawer.classList.remove('open'); }
     // accordions
@@ -1342,6 +1399,12 @@ body{
 
   /* ---------- favorites / избранное ---------- */
   const FAV = new Map();
+  const CART = new Map();
+  function priceNum(x){return parseInt((x||'').replace(/[^0-9]/g,''),10)||0;}
+  function updateCartCount(){var t=0;CART.forEach(function(x){t+=x.qty;});document.querySelectorAll('[data-cartcount]').forEach(function(el){el.textContent=t;el.classList.toggle('show',t>0);});}
+  function addToCart(card){if(!card)return;var d=readCard(card);if(CART.has(d.key)){CART.get(d.key).qty++;}else{d.qty=1;CART.set(d.key,d);}updateCartCount();var cs=document.getElementById('cart');if(cs&&cs.classList.contains('is-active'))renderCart();}
+  function cartQty(key,delta){if(!CART.has(key))return;var it=CART.get(key);it.qty+=delta;if(it.qty<=0)CART.delete(key);updateCartCount();renderCart();}
+  function renderCart(){var list=document.getElementById('cartlist'),empty=document.getElementById('cartempty'),foot=document.getElementById('cartfoot');if(!list)return;list.innerHTML='';var total=0;CART.forEach(function(d){total+=priceNum(d.price)*d.qty;var k=d.key.replace(/"/g,'');list.insertAdjacentHTML('beforeend','<div class="crow"><div class="cph '+d.ph+'"></div><div class="cinfo"><div class="cbr">'+d.brand+'</div><div class="cnm">'+d.name+'</div><div class="cpr">'+d.price+'</div></div><div class="cqty"><button data-qty="-1" data-key="'+k+'">\u2013</button><span>'+d.qty+'</span><button data-qty="1" data-key="'+k+'">+</button></div></div>');});var tot=document.getElementById('cartTotal');if(tot)tot.textContent=total.toLocaleString('ru-RU')+' \u20bd';if(CART.size===0){list.style.display='none';if(foot)foot.style.display='none';if(empty)empty.style.display='flex';}else{list.style.display='block';if(foot)foot.style.display='block';if(empty)empty.style.display='none';}}
   function readCard(card){
     var ph=card.querySelector('.ph'), cls='t1';
     if(ph){ ph.classList.forEach(function(c){ if(/^t[0-9]$/.test(c)) cls=c; }); }
@@ -1382,9 +1445,11 @@ body{
     seed.forEach(function(k){ syncHearts(k,true); });
     updateFavCount();
   })();
-</script>
+  // ---- catalog search filter ----
+  (function(){var ci=document.getElementById('catSearch');if(!ci)return;ci.addEventListener('input',function(){var q=ci.value.trim().toLowerCase();var any=false;document.querySelectorAll('#catalog .grid .card').forEach(function(c){var b=(c.querySelector('.brand')||{}).textContent||'';var n=(c.querySelector('.name')||{}).textContent||'';var hit=(b+' '+n).toLowerCase().indexOf(q)>-1;c.style.display=hit?'':'none';if(hit)any=true;});var res=document.querySelector('#catalog .result');if(res)res.textContent=q?(any?'':'ничего не найдено'):'128 моделей · сортировка: новые';});})();
+  updateCartCount();
 
-// force hero video to play (preview sandboxes block autoplay; nudge on any interaction)
+  // force hero video to play (preview sandboxes block autoplay; nudge on any interaction)
 (function(){function kick(){document.querySelectorAll('video.bgvid').forEach(function(v){v.muted=true;v.setAttribute('muted','');var p=v.play();if(p&&p.catch)p.catch(function(){});});}
 ['DOMContentLoaded','load','click','pointerdown','touchstart','scroll','mousemove','keydown'].forEach(function(e){window.addEventListener(e,kick,{passive:true});});
 document.addEventListener('DOMContentLoaded',kick);setTimeout(kick,200);setTimeout(kick,800);})();
