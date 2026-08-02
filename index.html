@@ -404,11 +404,11 @@ body{
 .cat-intro{padding:0 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;margin-bottom:24px}
 .cat-intro .l{font-family:var(--label);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);text-indent:.3em}
 .cat-lead{font-family:var(--serif);font-style:italic;font-size:27px;line-height:1.24;color:var(--ink);max-width:14ch}
-.cat-all{font-family:var(--label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink);border:1px solid var(--line);border-radius:100px;padding:12px 28px;cursor:pointer;transition:.3s;text-indent:.24em}
-.cat-all:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.cat-all{font-family:var(--label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);border-bottom:1px solid var(--taupe);padding-bottom:3px;cursor:pointer;transition:.3s;text-indent:.24em}
+.cat-all:hover{color:var(--ink);border-color:var(--ink)}
 .cat-nav{display:flex;justify-content:center;gap:14px;padding:22px 20px 0}
-.cat-arrow{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);font-size:22px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.3s;font-family:var(--serif)}
-.cat-arrow:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.cat-arrow{width:38px;height:38px;border:none;background:transparent;color:var(--taupe);font-size:26px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s;font-family:var(--serif)}
+.cat-arrow:hover{color:var(--ink)}
 .mh-banner{position:relative;min-height:82vh;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;color:var(--cream);text-align:center}
 .mh-banner .bg{position:absolute;inset:0;background-size:cover;background-position:center 22%;z-index:0}
 .mh-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,8,6,.6),rgba(18,8,6,.04) 52%);z-index:1}
@@ -781,7 +781,6 @@ body{
           <a data-go="catalog"><span class="n">Каталог</span></a>
           <a data-go="catalog"><span class="n">Новинки</span><span class="c">new</span></a>
           <a data-go="catalog"><span class="n">Бренды</span></a>
-          <a data-go="home"><span class="n">Lookbook</span></a>
           <a data-go="about"><span class="n">О MAEL</span></a>
         </nav>
         <div class="dr-foot">
@@ -849,21 +848,12 @@ body{
         </div>
       </div>
 
-      <div class="mh-slideshow reveal" id="mhSlideshow">
-        <div class="mh-slide is-active" style="background-image:url('brands/nani-brand.jpg')"></div>
-        <div class="mh-slide" style="background-image:url('brands/sintem.jpg')"></div>
-        <div class="mh-slide" style="background-image:url('brands/maleka.jpg')"></div>
-        <div class="mh-slide" style="background-image:url('brands/shidaeva.jpg')"></div>
-        <div class="mh-slide" style="background-image:url('brands/variso.jpg')"></div>
-        <div class="mh-dots"></div>
-      </div>
-
       <!-- ===== КАТЕГОРИИ ===== -->
       <div class="cat-block reveal">
         <div class="cat-intro">
           <span class="l">Категории</span>
           <p class="cat-lead">Найдите то, что&nbsp;ближе именно вам.</p>
-          <a class="cat-all" data-go="catalog">Смотреть все</a>
+          <a class="cat-all" data-go="catalog">смотреть все</a>
         </div>
         <div class="cat-row" id="catRow">
           <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/sintem.jpg')"></div></div><div class="nm">Платья и абайи</div><div class="ct">смотреть</div></div>
@@ -879,7 +869,7 @@ body{
       </div>
 
       <!-- ===== БРЕНДЫ ===== -->
-      <div class="mh-head reveal"><span class="l">Бренды</span><a data-go="catalog">все бренды</a></div>
+      <div class="mh-head reveal"><span class="l">Бренды</span><a data-go="catalog">смотреть все</a></div>
 
       <div class="mh-brandgrid reveal">
         <div class="mh-brandcard" data-go="catalog"><div class="bg" style="background-image:url('brands/sintem.jpg')"></div><div class="nm">SINTÉM</div></div>
@@ -890,6 +880,18 @@ body{
         <div class="mh-brandcard" data-go="catalog"><div class="bg" style="background-image:url('brands/shidaeva.jpg')"></div><div class="nm">SHIDAEVA</div></div>
       </div>
 
+
+      <!-- ===== ОБРАЗЫ / ЛУКБУК ===== -->
+      <div class="mh-head reveal"><span class="l">Образы MAEL</span><a data-go="catalog">смотреть все</a></div>
+
+      <div class="mh-slideshow reveal" id="mhSlideshow">
+        <div class="mh-slide is-active" style="background-image:url('brands/nani-brand.jpg')"></div>
+        <div class="mh-slide" style="background-image:url('brands/sintem.jpg')"></div>
+        <div class="mh-slide" style="background-image:url('brands/maleka.jpg')"></div>
+        <div class="mh-slide" style="background-image:url('brands/shidaeva.jpg')"></div>
+        <div class="mh-slide" style="background-image:url('brands/variso.jpg')"></div>
+        <div class="mh-dots"></div>
+      </div>
 
       <div class="footx reveal">
         <div class="cols">
