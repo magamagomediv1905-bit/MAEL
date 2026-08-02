@@ -400,13 +400,13 @@ body{
 .mh-dots{position:absolute;left:0;right:0;bottom:22px;z-index:3;display:flex;justify-content:center;gap:8px}
 .mh-dots button{width:7px;height:7px;border-radius:50%;border:none;padding:0;background:rgba(239,234,224,.5);cursor:pointer;transition:.3s}
 .mh-dots button.on{background:var(--cream);width:20px;border-radius:4px}
-.cat-block{margin:46px 0 8px}
-.cat-intro{padding:0 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;margin-bottom:24px}
-.cat-intro .l{font-family:var(--label);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);text-indent:.3em}
-.cat-lead{font-family:var(--serif);font-style:italic;font-size:27px;line-height:1.24;color:var(--ink);max-width:14ch}
+.cat-block{margin:32px 0 4px}
+.hc-intro{padding:0 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;margin-bottom:20px}
+.hc-intro .l{font-family:var(--label);font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--taupe);text-indent:.34em}
+.cat-lead{font-family:var(--serif);font-style:italic;font-size:24px;line-height:1.3;color:var(--ink);margin:2px 0 3px}
 .cat-all{font-family:var(--label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);border-bottom:1px solid var(--taupe);padding-bottom:3px;cursor:pointer;transition:.3s;text-indent:.24em}
 .cat-all:hover{color:var(--ink);border-color:var(--ink)}
-.cat-nav{display:flex;justify-content:center;gap:14px;padding:22px 20px 0}
+.cat-nav{display:flex;justify-content:center;gap:16px;padding:18px 20px 0}
 .cat-arrow{width:38px;height:38px;border:none;background:transparent;color:var(--taupe);font-size:26px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s;font-family:var(--serif)}
 .cat-arrow:hover{color:var(--ink)}
 .mh-banner{position:relative;min-height:82vh;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;color:var(--cream);text-align:center}
@@ -850,9 +850,9 @@ body{
 
       <!-- ===== КАТЕГОРИИ ===== -->
       <div class="cat-block reveal">
-        <div class="cat-intro">
+        <div class="hc-intro">
           <span class="l">Категории</span>
-          <p class="cat-lead">Найдите то, что&nbsp;ближе именно вам.</p>
+          <p class="cat-lead">Найдите то, что&nbsp;ближе<br>именно&nbsp;вам.</p>
           <a class="cat-all" data-go="catalog">смотреть все</a>
         </div>
         <div class="cat-row" id="catRow">
