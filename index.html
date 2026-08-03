@@ -727,6 +727,24 @@ body{
 .cart-sum .val{font-family:var(--serif);font-size:23px;color:var(--ink)}
 .cart-checkout{width:100%;border:none;background:var(--wine);color:#fff;font-family:var(--label);font-size:11px;letter-spacing:.24em;text-transform:uppercase;padding:16px;border-radius:4px;cursor:pointer;transition:.3s}
 .cart-checkout:hover{background:var(--wine-deep)}
+
+/* ---- subpages: Новинки / Бренды ---- */
+.subhead{padding:26px 20px 12px;text-align:center;background:var(--cream)}
+.subhead .eyebrow{display:block;font-family:var(--label);font-size:9.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--taupe);margin-bottom:9px}
+.subhead h1{font-family:var(--head);font-weight:500;font-size:30px;letter-spacing:.01em;margin:0;color:var(--ink)}
+.subhead .sub{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--taupe);margin-top:7px}
+.brandlist{padding:8px 0 34px}
+.bp-row{display:flex;align-items:center;gap:16px;padding:15px 20px;border-bottom:1px solid var(--line);cursor:pointer;transition:background .25s}
+.bp-row:hover{background:rgba(28,26,23,.03)}
+.bp-img{width:84px;height:104px;flex:0 0 auto;background-size:cover;background-position:center}
+.bp-info{flex:1;min-width:0}
+.bp-nm{font-family:var(--head);font-weight:500;font-size:22px;letter-spacing:.02em;color:var(--ink);line-height:1.1}
+.bp-desc{font-size:12px;line-height:1.5;color:var(--taupe);margin-top:5px}
+.bp-go{font-family:var(--serif);font-size:22px;color:var(--taupe);flex:0 0 auto}
+@media(min-width:820px){
+  .brandlist{max-width:900px;margin:0 auto}
+  .subhead h1{font-size:36px}
+}
 </style>
 </head>
 <body>
@@ -779,8 +797,8 @@ body{
       <div class="dr-scroll">
         <nav class="dr-nav">
           <a data-go="catalog"><span class="n">Каталог</span></a>
-          <a data-go="catalog"><span class="n">Новинки</span><span class="c">new</span></a>
-          <a data-go="catalog"><span class="n">Бренды</span></a>
+          <a data-go="novinki"><span class="n">Новинки</span><span class="c">new</span></a>
+          <a data-go="brands"><span class="n">Бренды</span></a>
           <a data-go="about"><span class="n">О MAEL</span></a>
         </nav>
         <div class="dr-foot">
@@ -819,7 +837,7 @@ body{
 
 
       <!-- ===== НОВИНКИ ===== -->
-      <div class="mh-head reveal"><span class="l">Новинки</span><a data-go="catalog">смотреть все</a></div>
+      <div class="mh-head reveal"><span class="l">Новинки</span><a data-go="novinki">смотреть все</a></div>
 
       <div class="mh-grid reveal">
         <div class="mh-card" data-go="product">
@@ -869,7 +887,7 @@ body{
       </div>
 
       <!-- ===== БРЕНДЫ ===== -->
-      <div class="mh-head reveal"><span class="l">Бренды</span><a data-go="catalog">смотреть все</a></div>
+      <div class="mh-head reveal"><span class="l">Бренды</span><a data-go="brands">смотреть все</a></div>
 
       <div class="mh-brandgrid reveal">
         <div class="mh-brandcard" data-go="catalog"><div class="bg" style="background-image:url('brands/sintem.jpg')"></div><div class="nm">SINTÉM</div></div>
@@ -1250,10 +1268,115 @@ body{
       </div>
     </section>
 
+    <!-- ===================== НОВИНКИ ===================== -->
+    <section class="screen" id="novinki">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-go="home"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">новинки</div>
+        </div>
+        <div class="tb-side">
+          <svg class="ic" data-go="profile"><use href="#user"/></svg>
+          <span class="bagwrap" data-go="cart"><svg class="ic"><use href="#bag"/></svg><i class="badge" data-cartcount>0</i></span>
+        </div>
+      </div>
+      <div class="subhead">
+        <span class="eyebrow">новый сезон · 2026</span>
+        <h1>Новинки</h1>
+        <div class="sub">Свежие поступления недели</div>
+      </div>
+      <div class="mh-grid reveal">
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/sintem.jpg')"></div><div class="b" style="background-image:url('brands/maleka.jpg')"></div></div>
+          <div class="m"><div class="br">SINTÉM</div><div class="nm">Платье-рубашка «Флора»</div><div class="pr">18 900 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/nani.jpg')"></div><div class="b" style="background-image:url('brands/shidaeva.jpg')"></div></div>
+          <div class="m"><div class="br">NANI</div><div class="nm">Абайя «Дюна»</div><div class="pr">24 500 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/elbe.jpg')"></div><div class="b" style="background-image:url('brands/variso.jpg')"></div></div>
+          <div class="m"><div class="br">ÉLBE</div><div class="nm">Кольцо с цитрином</div><div class="pr">9 200 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/maleka.jpg')"></div><div class="b" style="background-image:url('brands/sintem.jpg')"></div></div>
+          <div class="m"><div class="br">MALÉKA</div><div class="nm">Костюм «Тень»</div><div class="pr">32 000 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/variso.jpg')"></div><div class="b" style="background-image:url('brands/nani.jpg')"></div></div>
+          <div class="m"><div class="br">VARISÓ</div><div class="nm">Сумка «Мила»</div><div class="pr">14 800 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/shidaeva.jpg')"></div><div class="b" style="background-image:url('brands/elbe.jpg')"></div></div>
+          <div class="m"><div class="br">SHIDAEVA</div><div class="nm">Платок «Дюны»</div><div class="pr">6 900 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/nani-brand.jpg')"></div><div class="b" style="background-image:url('brands/maleka.jpg')"></div></div>
+          <div class="m"><div class="br">NANI</div><div class="nm">Пальто «Бархан»</div><div class="pr">39 500 ₽</div></div>
+        </div>
+        <div class="mh-card" data-go="product">
+          <div class="img"><div class="a" style="background-image:url('brands/sintem.jpg')"></div><div class="b" style="background-image:url('brands/variso.jpg')"></div></div>
+          <div class="m"><div class="br">SINTÉM</div><div class="nm">Тюрбан «Лён»</div><div class="pr">4 900 ₽</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== БРЕНДЫ ===================== -->
+    <section class="screen" id="brands">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-go="home"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">бренды</div>
+        </div>
+        <div class="tb-side">
+          <svg class="ic" data-go="profile"><use href="#user"/></svg>
+          <span class="bagwrap" data-go="cart"><svg class="ic"><use href="#bag"/></svg><i class="badge" data-cartcount>0</i></span>
+        </div>
+      </div>
+      <div class="subhead">
+        <span class="eyebrow">резиденты MAEL</span>
+        <h1>Бренды</h1>
+        <div class="sub">Авторы, которых мы собрали под одной крышей</div>
+      </div>
+      <div class="brandlist reveal">
+        <div class="bp-row" data-go="catalog">
+          <div class="bp-img" style="background-image:url('brands/sintem.jpg')"></div>
+          <div class="bp-info"><div class="bp-nm">SINTÉM</div><div class="bp-desc">Архитектурный минимализм: платья и абайи чистых линий.</div></div>
+          <span class="bp-go">&#8250;</span>
+        </div>
+        <div class="bp-row" data-go="catalog">
+          <div class="bp-img" style="background-image:url('brands/nani-brand.jpg')"></div>
+          <div class="bp-info"><div class="bp-nm">NANI</div><div class="bp-desc">Свободные силуэты и природные оттенки для повседневных образов.</div></div>
+          <span class="bp-go">&#8250;</span>
+        </div>
+        <div class="bp-row" data-go="catalog">
+          <div class="bp-img" style="background-image:url('brands/elbe.jpg')"></div>
+          <div class="bp-info"><div class="bp-nm">ÉLBE</div><div class="bp-desc">Тонкие украшения ручной работы с полудрагоценными камнями.</div></div>
+          <span class="bp-go">&#8250;</span>
+        </div>
+        <div class="bp-row" data-go="catalog">
+          <div class="bp-img" style="background-image:url('brands/maleka.jpg')"></div>
+          <div class="bp-info"><div class="bp-nm">MALÉKA</div><div class="bp-desc">Костюмы и верх с характером — глубокие тона и фактуры.</div></div>
+          <span class="bp-go">&#8250;</span>
+        </div>
+        <div class="bp-row" data-go="catalog">
+          <div class="bp-img" style="background-image:url('brands/variso.jpg')"></div>
+          <div class="bp-info"><div class="bp-nm">VARISÓ</div><div class="bp-desc">Сумки и аксессуары из натуральной кожи.</div></div>
+          <span class="bp-go">&#8250;</span>
+        </div>
+        <div class="bp-row" data-go="catalog">
+          <div class="bp-img" style="background-image:url('brands/shidaeva.jpg')"></div>
+          <div class="bp-info"><div class="bp-nm">SHIDAEVA</div><div class="bp-desc">Платки, тюрбаны и палантины с авторскими принтами.</div></div>
+          <span class="bp-go">&#8250;</span>
+        </div>
+      </div>
+    </section>
+
+
   </div>
 
 <script>
-  const screens = ['home','catalog','product','profile','about','favorites','cart'];
+  const screens = ['home','catalog','product','profile','about','favorites','cart','novinki','brands'];
   function goTo(id){
     document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('is-active', s.id===id));
     document.querySelectorAll('.demo button').forEach(b=>b.classList.toggle('on', b.dataset.go===id));
