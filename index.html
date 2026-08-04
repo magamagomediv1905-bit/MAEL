@@ -105,7 +105,7 @@ body{
 .dr-close:hover{background:rgba(239,234,224,.12);border-color:rgba(239,234,224,.55)}
 .dr-close svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round}
 .dr-nav{padding:8px 26px 6px;position:relative;z-index:2}
-.dr-nav a{display:flex;align-items:baseline;gap:12px;padding:11px 0;cursor:pointer;
+.dr-nav a{display:flex;align-items:baseline;gap:12px;padding:13px 0;cursor:pointer;
   opacity:0;transform:translateX(-18px);transition:opacity .5s,transform .5s,color .2s}
 .drawer.open .dr-nav a{opacity:1;transform:none}
 .drawer.open .dr-nav a:nth-child(1){transition-delay:.12s}
@@ -113,7 +113,7 @@ body{
 .drawer.open .dr-nav a:nth-child(3){transition-delay:.24s}
 .drawer.open .dr-nav a:nth-child(4){transition-delay:.30s}
 .drawer.open .dr-nav a:nth-child(5){transition-delay:.36s}
-.dr-nav a .n{font-family:var(--sans);font-weight:400;font-size:18px;line-height:1;
+.dr-nav a .n{font-family:var(--sans);font-weight:400;font-size:16px;line-height:1;
   letter-spacing:.02em;transition:.28s cubic-bezier(.3,.8,.24,1)}
 .dr-nav a:hover .n{transform:translateX(6px)}
 .dr-nav a .c{font-size:10px;letter-spacing:.16em;color:rgba(239,234,224,.45);margin-left:auto}
@@ -824,13 +824,13 @@ body{
     <section class="screen is-active" id="home">
       <div class="topbar on-hero">
         <div class="tb-left">
-          <svg class="ic" data-menu><use href="#menu"/></svg>
           <div class="tb-brand">MAEL</div>
         </div>
         <div class="tb-side">
           <svg class="ic" data-search><use href="#search"/></svg>
           <svg class="ic" data-go="profile"><use href="#user"/></svg>
           <span class="bagwrap" data-go="cart"><svg class="ic"><use href="#bag"/></svg><i class="badge" data-cartcount>0</i></span>
+          <svg class="ic" data-menu><use href="#menu"/></svg>
         </div>
       </div>
 
