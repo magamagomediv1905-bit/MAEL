@@ -64,11 +64,11 @@ body{
 
 /* topbar */
 .topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;
-  padding:16px 20px 12px;background:linear-gradient(var(--cream) 68%, rgba(239,234,224,0));backdrop-filter:blur(2px)}
+  padding:16px 20px 12px;background:var(--cream);box-shadow:0 1px 0 var(--line)}
 .topbar.on-hero{background:transparent;position:sticky;left:0;right:0;top:0;margin-bottom:-56px;transition:background .3s ease,box-shadow .3s ease}
 .topbar .ic{width:23px;height:23px;color:var(--ink);cursor:pointer}
 .topbar.on-hero .ic{color:var(--cream);filter:drop-shadow(0 1px 5px rgba(18,1,1,.6))}
-.topbar.on-hero.scrolled{background:linear-gradient(var(--cream) 74%, rgba(239,234,224,0));backdrop-filter:blur(7px);box-shadow:0 1px 0 var(--line)}
+.topbar.on-hero.scrolled{background:var(--cream);box-shadow:0 1px 0 var(--line)}
 .topbar.on-hero.scrolled .ic{color:var(--wine-deep);filter:none}
 .tb-brand{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.28em;padding-left:.28em;color:var(--wine-deep);opacity:0;transition:opacity .3s ease;pointer-events:none}
 .topbar.on-hero:not(.scrolled) .tb-brand{color:var(--cream);text-shadow:0 1px 6px rgba(18,1,1,.55)}
@@ -809,7 +809,7 @@ body{
     <rect width="640" height="458" fill="currentColor" mask="url(#logo_m)"/>
   </symbol>
   <symbol id="heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M12 20.3C12 20.3 3 14.5 3 8.8C3 6.1 5.1 4.3 7.5 4.3C9.2 4.3 10.8 5.3 12 7C13.2 5.3 14.8 4.3 16.5 4.3C18.9 4.3 21 6.1 21 8.8C21 14.5 12 20.3 12 20.3Z"/></symbol>
-  <symbol id="bag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M6 8h12l-1 12H7L6 8Zm3 0V6a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="bag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" d="M6 2 3 6.5V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.5L18 2H6Z M3 6.5h18 M16 10.5a4 4 0 0 1-8 0"/></symbol>
   <symbol id="menu" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M4 11l8-6 8 6v9H4v-9Z"/></symbol>
   <symbol id="grid" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M4 4h7v7H4V4Zm9 0h7v7h-7V4ZM4 13h7v7H4v-7Zm9 0h7v7h-7v-7Z"/></symbol>
@@ -858,11 +858,18 @@ body{
         </nav>
 
         <div class="dr-div"></div>
+        <div class="dr-lbl">MAEL</div>
         <nav class="dr-nav dr-sec">
-          <a data-go="catalog" class="dr-hi2"><span class="n">Sale · Скидки</span></a>
-          <a data-go="about"><span class="n">О MAEL</span></a>
+          <a data-go="about"><span class="n">Мероприятия</span></a>
+          <a data-go="about"><span class="n">Галерея</span></a>
+          <a data-go="about"><span class="n">О бутике</span></a>
+        </nav>
+
+        <div class="dr-div"></div>
+        <div class="dr-lbl">Сервис</div>
+        <nav class="dr-nav dr-sec">
+          <a data-go="catalog" class="dr-hi2"><span class="n">Sale</span></a>
           <a data-go="about"><span class="n">Доставка и оплата</span></a>
-          <a data-go="profile"><span class="n">Личный кабинет</span></a>
         </nav>
 
         <div class="dr-foot">
