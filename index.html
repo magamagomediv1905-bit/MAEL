@@ -791,6 +791,18 @@ body{
 .drawer .dr-social a{border:1px solid rgba(28,26,23,.18);color:var(--wine-deep);width:38px;height:38px}
 .drawer .dr-social a:hover{background:var(--wine);color:var(--cream);border-color:var(--wine)}
 .drawer .mono-bg{color:var(--wine);opacity:.04}
+
+/* --- Даша: статичная прозрачная плашка + белая вспомогательная --- */
+.topbar.on-hero.scrolled .ic{color:var(--cream);filter:drop-shadow(0 1px 5px rgba(18,1,1,.6))}
+.topbar.on-hero.tuck{transform:none}
+.topbar.on-hero.scrolled{background:transparent;box-shadow:none}
+.topbar.on-hero.scrolled .tb-brand{opacity:0}
+.tb-lite{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:#ffffff;border-bottom:1px solid var(--line);transform:translateY(-102%);transition:transform .32s cubic-bezier(.4,0,.2,1);will-change:transform}
+.tb-lite.show{transform:translateY(0)}
+.tb-lite .tb-side{display:flex;gap:18px;align-items:center}
+.tb-lite .ic{width:22px;height:22px;color:var(--ink);cursor:pointer}
+.tb-lite .bagwrap{position:relative;display:inline-flex;align-items:center}
+.tbl-brand{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:.26em;padding-left:.26em;color:var(--wine-deep)}
 </style>
 </head>
 <body>
@@ -809,7 +821,7 @@ body{
     <rect width="640" height="458" fill="currentColor" mask="url(#logo_m)"/>
   </symbol>
   <symbol id="heart" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" d="M12 20.3C12 20.3 3 14.5 3 8.8C3 6.1 5.1 4.3 7.5 4.3C9.2 4.3 10.8 5.3 12 7C13.2 5.3 14.8 4.3 16.5 4.3C18.9 4.3 21 6.1 21 8.8C21 14.5 12 20.3 12 20.3Z"/></symbol>
-  <symbol id="bag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 8H19V19.5A1.5 1.5 0 0 1 17.5 21H6.5A1.5 1.5 0 0 1 5 19.5Z M8.5 11V7.5A3.5 3.5 0 0 1 15.5 7.5V11"/></symbol>
+  <symbol id="bag" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M7 8.5 L17 8.5 L18.4 18.6 Q18.7 20 17.3 20 L6.7 20 Q5.3 20 5.6 18.6 Z M9.5 11 V8 A2.5 2.5 0 0 1 14.5 8 V11"/></symbol>
   <symbol id="menu" viewBox="0 0 24 24"><path stroke="currentColor" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M4 11l8-6 8 6v9H4v-9Z"/></symbol>
   <symbol id="grid" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.5" d="M4 4h7v7H4V4Zm9 0h7v7h-7V4ZM4 13h7v7H4v-7Zm9 0h7v7h-7v-7Z"/></symbol>
@@ -886,6 +898,15 @@ body{
 
     <!-- ===================== HOME ===================== -->
     <section class="screen is-active" id="home">
+      <div class="tb-lite" id="liteBar" aria-hidden="true">
+        <div class="tbl-brand">MAEL</div>
+        <div class="tb-side">
+          <svg class="ic" data-search><use href="#search"/></svg>
+          <svg class="ic" data-go="profile"><use href="#user"/></svg>
+          <span class="bagwrap" data-go="cart"><svg class="ic"><use href="#bag"/></svg><i class="badge" data-cartcount>0</i></span>
+          <svg class="ic" data-menu><use href="#menu"/></svg>
+        </div>
+      </div>
       <div class="topbar on-hero">
         <div class="tb-left">
           <div class="tb-brand">MAEL</div>
@@ -1454,7 +1475,7 @@ body{
     document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('is-active', s.id===id));
     document.querySelectorAll('.demo button').forEach(b=>b.classList.toggle('on', b.dataset.go===id));
     const vp = document.querySelector('#'+id);
-    if(vp){ vp.scrollTop = 0; var _tb=vp.querySelector('.topbar'); if(_tb) _tb.classList.remove('tuck','scrolled'); }
+    if(vp){ vp.scrollTop = 0; var _tb=vp.querySelector('.topbar'); if(_tb) _tb.classList.remove('tuck','scrolled'); var _lb=document.getElementById('liteBar'); if(_lb)_lb.classList.remove('show'); }
     if(id==='favorites') renderFav();
     if(id==='cart') renderCart();
   }
@@ -1474,6 +1495,20 @@ body{
     }
     if(document.readyState!=='loading') bind();
     else document.addEventListener('DOMContentLoaded', bind);
+  })();
+  (function(){
+    function initLite(){
+      var home=document.getElementById('home');
+      var lite=document.getElementById('liteBar');
+      if(!home||!lite) return;
+      var hero=home.querySelector('.hero');
+      home.addEventListener('scroll',function(){
+        var trig=hero?Math.max(hero.offsetHeight-70,220):320;
+        lite.classList.toggle('show', home.scrollTop>trig);
+      },{passive:true});
+    }
+    if(document.readyState!=='loading') initLite();
+    else document.addEventListener('DOMContentLoaded', initLite);
   })();
   (function(){
   var box=document.getElementById('mhSlideshow');
