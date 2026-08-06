@@ -63,9 +63,9 @@ body{
 .screen.is-active{opacity:1;visibility:visible;transform:none}
 
 /* topbar */
-.topbar{position:relative;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;
+.topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;
   padding:16px 20px 12px;background:transparent}
-.topbar.on-hero{background:transparent;position:relative;left:0;right:0;top:0;margin-bottom:-56px;transition:background .3s ease,box-shadow .3s ease}
+.topbar.on-hero{background:transparent;position:sticky;left:0;right:0;top:0;margin-bottom:-56px;transition:background .3s ease,box-shadow .3s ease}
 .topbar .ic{width:23px;height:23px;color:var(--ink);cursor:pointer}
 .topbar.on-hero .ic{color:var(--cream);filter:drop-shadow(0 1px 5px rgba(18,1,1,.6))}
 .topbar.on-hero.scrolled{background:transparent;box-shadow:none}
@@ -749,7 +749,7 @@ body{
 /* ---- header: monochrome-style layout + auto-hide shutter ---- */
 .topbar{transition:transform .38s cubic-bezier(.4,0,.2,1),background .3s ease,box-shadow .3s ease}
 .topbar.on-hero{transition:transform .38s cubic-bezier(.4,0,.2,1),background .3s ease,box-shadow .3s ease}
-.topbar.tuck{transform:translateY(-118%)}
+.topbar.tuck{transform:none}
 .tb-brand{position:relative;left:auto;transform:none}
 .topbar.on-hero.scrolled .tb-brand{color:var(--wine-deep);text-shadow:none}
 
