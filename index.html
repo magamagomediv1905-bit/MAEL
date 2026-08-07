@@ -70,6 +70,8 @@ body{
 .topbar.on-hero .ic{color:var(--cream);filter:drop-shadow(0 1px 5px rgba(18,1,1,.6))}
 .topbar.on-hero.scrolled{background:transparent;box-shadow:none}
 .topbar.on-hero.scrolled .ic{color:var(--wine-deep);filter:none}
+.topbar.on-hero.beyond{background:var(--cream)}
+.topbar.on-hero.beyond .ic{color:var(--wine-deep);filter:none}
 .tb-brand{position:absolute;left:50%;transform:translateX(-50%);font-family:var(--serif);font-weight:600;font-size:20px;letter-spacing:.28em;padding-left:.28em;color:var(--wine-deep);opacity:0;transition:opacity .3s ease;pointer-events:none}
 .topbar.on-hero:not(.scrolled) .tb-brand{color:var(--cream);text-shadow:0 1px 6px rgba(18,1,1,.55)}
 .topbar.on-hero.scrolled .tb-brand{opacity:1}
@@ -1476,7 +1478,7 @@ body{
     document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('is-active', s.id===id));
     document.querySelectorAll('.demo button').forEach(b=>b.classList.toggle('on', b.dataset.go===id));
     const vp = document.querySelector('#'+id);
-    if(vp){ vp.scrollTop = 0; var _tb=vp.querySelector('.topbar'); if(_tb) _tb.classList.remove('tuck','scrolled'); var _lb=document.getElementById('liteBar'); if(_lb)_lb.classList.remove('show'); }
+    if(vp){ vp.scrollTop = 0; var _tb=vp.querySelector('.topbar'); if(_tb) _tb.classList.remove('tuck','scrolled','beyond'); var _lb=document.getElementById('liteBar'); if(_lb)_lb.classList.remove('show'); }
     if(id==='favorites') renderFav();
     if(id==='cart') renderCart();
   }
@@ -1484,10 +1486,12 @@ body{
     function bind(){
       document.querySelectorAll('.screen').forEach(function(sc){
         var tb = sc.querySelector('.topbar'); if(!tb) return;
+        var hero = sc.querySelector('.hero');
         var last = 0;
         sc.addEventListener('scroll', function(){
           var y = sc.scrollTop;
           tb.classList.toggle('scrolled', y > 36);
+          if(hero){ tb.classList.toggle('beyond', y > Math.max(hero.offsetHeight - 70, 220)); }
           if(y > 120 && y > last + 4){ tb.classList.add('tuck'); }
           else if(y < last - 4 || y < 80){ tb.classList.remove('tuck'); }
           last = y;
