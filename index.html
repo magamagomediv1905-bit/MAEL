@@ -749,7 +749,7 @@ body{
 /* ---- header: monochrome-style layout + auto-hide shutter ---- */
 .topbar{transition:transform .38s cubic-bezier(.4,0,.2,1),background .3s ease,box-shadow .3s ease}
 .topbar.on-hero{transition:transform .38s cubic-bezier(.4,0,.2,1),background .3s ease,box-shadow .3s ease}
-.topbar.tuck{transform:none}
+.topbar.tuck{transform:translateY(-118%)}
 .tb-brand{position:relative;left:auto;transform:none}
 .topbar.on-hero.scrolled .tb-brand{color:var(--wine-deep);text-shadow:none}
 
@@ -794,7 +794,7 @@ body{
 
 /* --- Даша: статичная прозрачная плашка + белая вспомогательная --- */
 .topbar.on-hero.scrolled .ic{color:var(--cream);filter:drop-shadow(0 1px 5px rgba(18,1,1,.6))}
-.topbar.on-hero.tuck{transform:none}
+.topbar.on-hero.tuck{transform:translateY(-118%)}
 .topbar.on-hero.scrolled{background:transparent;box-shadow:none}
 .topbar.on-hero.scrolled .tb-brand{opacity:0}
 .tb-lite{position:fixed;top:0;left:0;right:0;z-index:70;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:#ffffff;border-bottom:1px solid var(--line);transform:translateY(-102%);transition:transform .32s cubic-bezier(.4,0,.2,1);will-change:transform}
