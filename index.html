@@ -806,6 +806,77 @@ body{
 .tb-lite .ic{width:22px;height:22px;color:var(--ink);cursor:pointer}
 .tb-lite .bagwrap{position:relative;display:inline-flex;align-items:center}
 .tbl-brand{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:.26em;padding-left:.26em;color:var(--wine-deep)}
+
+/* ===== category filter ===== */
+.grid .card.hide-cat{display:none}
+/* ===== SALE ===== */
+.sale-hero{position:relative;margin:2px 20px 8px;border-radius:16px;overflow:hidden;min-height:220px;display:flex;align-items:flex-end;background:var(--wine)}
+.sale-hero .sh-bg{position:absolute;inset:0;background-size:cover;background-position:center 30%;opacity:.42}
+.sale-hero .sh-in{position:relative;padding:22px 22px 24px;color:var(--cream)}
+.sale-hero .sh-eyebrow{font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;opacity:.9}
+.sale-hero h1{font-family:var(--serif);font-weight:600;font-size:46px;line-height:.94;margin:8px 0 6px;letter-spacing:.01em}
+.sale-hero .sh-sub{font-size:12.5px;letter-spacing:.03em;opacity:.92;max-width:230px;line-height:1.45}
+.card .disc{position:absolute;top:10px;left:10px;z-index:3;background:var(--wine);color:var(--cream);font-size:9px;letter-spacing:.12em;padding:4px 8px;border-radius:30px}
+.prow .old{font-size:11px;color:var(--taupe);text-decoration:line-through;margin-right:7px}
+.prow .price.sale{color:var(--wine)}
+/* ===== GALLERY ===== */
+.gal-grid{columns:2;column-gap:10px;padding:8px 20px 34px}
+.gal-grid figure{margin:0 0 10px;break-inside:avoid;border-radius:12px;overflow:hidden;position:relative}
+.gal-grid figure .ph{position:absolute;inset:0}
+.gal-grid figcaption{position:absolute;left:0;right:0;bottom:0;padding:22px 13px 11px;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+.gal-a{aspect-ratio:3/4}.gal-b{aspect-ratio:1/1}.gal-c{aspect-ratio:4/5}.gal-d{aspect-ratio:5/7}
+/* ===== EVENTS ===== */
+.ev-list{padding:8px 20px 34px;display:flex;flex-direction:column;gap:18px}
+.ev-card{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--white)}
+.ev-card .ev-img{aspect-ratio:16/10;position:relative}
+.ev-card .ev-img .ph{position:absolute;inset:0}
+.ev-card .ev-date{position:absolute;top:12px;left:12px;background:var(--cream);border-radius:12px;padding:8px 12px;text-align:center;line-height:1}
+.ev-date .d{display:block;font-family:var(--serif);font-size:22px;font-weight:600;color:var(--wine)}
+.ev-date .m{display:block;font-size:8.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe);margin-top:3px}
+.ev-body{padding:16px 17px 18px}
+.ev-body .ev-kind{font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:var(--taupe)}
+.ev-body h3{font-family:var(--serif);font-weight:600;font-size:22px;margin:7px 0 7px;color:var(--ink)}
+.ev-body p{font-size:12.5px;line-height:1.52;color:#4a463f;margin:0 0 13px}
+.ev-meta{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:11px;color:var(--taupe);margin-bottom:14px}
+.ev-meta span{display:inline-flex;align-items:center;gap:6px}
+.ev-meta svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:1.6}
+.ev-card.past{opacity:.6}
+.ev-card.past .ev-date .d{color:var(--taupe)}
+/* ===== LEGAL doc pages ===== */
+.doc{padding:10px 22px 44px}
+.doc .doc-upd{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);margin-bottom:20px}
+.doc h2{font-family:var(--serif);font-weight:600;font-size:17px;margin:24px 0 8px;color:var(--ink)}
+.doc h2:first-of-type{margin-top:2px}
+.doc p,.doc li{font-size:13px;line-height:1.64;color:#3c3934}
+.doc ul{padding-left:18px;margin:6px 0}
+.doc li{margin-bottom:5px}
+.doc a{color:var(--wine);text-decoration:underline}
+.req-box{border:1px solid var(--line);border-radius:14px;padding:6px 18px;margin:8px 0 20px}
+.req-box .r{display:flex;justify-content:space-between;gap:16px;font-size:12.5px;padding:11px 0;border-bottom:1px solid var(--line)}
+.req-box .r:last-child{border-bottom:0}
+.req-box .r .k{color:var(--taupe);flex:0 0 auto}
+.req-box .r .v{text-align:right;color:var(--ink)}
+/* ===== contact WA/TG buttons ===== */
+.contact-btns{display:flex;gap:10px;margin:16px 0 6px}
+.contact-btns a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:13px;font-size:12px;letter-spacing:.05em;text-decoration:none;font-weight:600;color:#fff}
+.cb-wa{background:#25D366}
+.cb-tg{background:#229ED9}
+.contact-btns svg{width:17px;height:17px;fill:#fff}
+/* ===== cookie banner ===== */
+.cookie{position:fixed;left:12px;right:12px;bottom:12px;z-index:130;background:var(--ink);color:var(--cream);border-radius:16px;padding:16px 17px;box-shadow:0 12px 44px rgba(0,0,0,.32);display:flex;flex-direction:column;gap:12px;transform:translateY(180%);transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.cookie.show{transform:none}
+.cookie p{margin:0;font-size:11.5px;line-height:1.5;opacity:.92}
+.cookie a{color:var(--cream);text-decoration:underline}
+.cookie-row{display:flex;gap:9px}
+.cookie button{flex:1;border:0;border-radius:10px;padding:11px;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;font-weight:700}
+.ck-acc{background:var(--cream);color:var(--ink)}
+.ck-dec{background:transparent;color:var(--cream);border:1px solid rgba(239,234,224,.4)}
+/* consent line */
+.consent{font-size:11px;line-height:1.5;color:var(--taupe);text-align:center;padding:14px 6px 2px}
+.consent a{color:var(--wine);text-decoration:underline}
+/* tiny withdraw link */
+.dr-withdraw{display:block;margin-top:12px;font-size:9px;letter-spacing:.02em;color:rgba(28,26,23,.26);text-decoration:none;text-align:center}
+
 </style>
 </head>
 <body>
@@ -865,30 +936,34 @@ body{
         <div class="dr-div"></div>
         <div class="dr-lbl">Категории</div>
         <nav class="dr-cat">
-          <a data-go="catalog"><span class="n">Платья и абайи</span><span class="ch">&#8250;</span></a>
-          <a data-go="catalog"><span class="n">Верх и костюмы</span><span class="ch">&#8250;</span></a>
-          <a data-go="catalog"><span class="n">Платки и тюрбаны</span><span class="ch">&#8250;</span></a>
-          <a data-go="catalog"><span class="n">Украшения</span><span class="ch">&#8250;</span></a>
-          <a data-go="catalog"><span class="n">Аксессуары</span><span class="ch">&#8250;</span></a>
+          <a data-go="catalog" data-cat="dresses"><span class="n">Платья и абайи</span><span class="ch">&#8250;</span></a>
+          <a data-go="catalog" data-cat="tops"><span class="n">Верх и костюмы</span><span class="ch">&#8250;</span></a>
+          <a data-go="catalog" data-cat="scarves"><span class="n">Платки и тюрбаны</span><span class="ch">&#8250;</span></a>
+          <a data-go="catalog" data-cat="jewelry"><span class="n">Украшения</span><span class="ch">&#8250;</span></a>
+          <a data-go="catalog" data-cat="lifestyle"><span class="n">Аксессуары</span><span class="ch">&#8250;</span></a>
         </nav>
 
         <div class="dr-div"></div>
         <div class="dr-lbl">MAEL</div>
         <nav class="dr-nav dr-sec">
-          <a data-go="about"><span class="n">Мероприятия</span></a>
-          <a data-go="about"><span class="n">Галерея</span></a>
+          <a data-go="events"><span class="n">Мероприятия</span></a>
+          <a data-go="gallery"><span class="n">Галерея</span></a>
           <a data-go="about"><span class="n">О бутике</span></a>
         </nav>
 
         <div class="dr-div"></div>
         <div class="dr-lbl">Сервис</div>
         <nav class="dr-nav dr-sec">
-          <a data-go="catalog" class="dr-hi2"><span class="n">Sale</span></a>
-          <a data-go="about"><span class="n">Доставка и оплата</span></a>
+          <a data-go="sale" class="dr-hi2"><span class="n">Sale</span></a>
+          <a data-go="offer"><span class="n">Доставка и оплата</span></a>
+          <a data-go="privacy"><span class="n">Конфиденциальность</span></a>
+          <a data-go="offer"><span class="n">Публичная оферта</span></a>
+          <a data-go="requisites"><span class="n">Реквизиты</span></a>
         </nav>
 
         <div class="dr-foot">
           <div class="addr">Москва, ул.&nbsp;Винницкая&nbsp;8к3<br>Раменки · ежедневно 11–22</div>
+            <a class="dr-withdraw" data-go="privacy">отзыв согласия на обработку данных</a>
           <div class="dr-social">
             <a title="Telegram"><svg><use href="#tg"/></svg></a>
             <a title="Instagram"><svg><use href="#ig"/></svg></a>
@@ -1064,45 +1139,45 @@ body{
       </div>
       <div class="filters">
         <div class="chip icon"><svg><use href="#grid"/></svg>Фильтры</div>
-        <div class="chip on">Все</div>
-        <div class="chip">Платья и абайи</div>
-        <div class="chip">Верх</div>
-        <div class="chip">Платки</div>
-        <div class="chip">Украшения</div>
-        <div class="chip">Трикотаж</div>
-        <div class="chip">Lifestyle</div>
+        <div class="chip on" data-cat="all">Все</div>
+        <div class="chip" data-cat="dresses">Платья и абайи</div>
+        <div class="chip" data-cat="tops">Верх</div>
+        <div class="chip" data-cat="scarves">Платки</div>
+        <div class="chip" data-cat="jewelry">Украшения</div>
+        <div class="chip" data-cat="knit">Трикотаж</div>
+        <div class="chip" data-cat="lifestyle">Lifestyle</div>
       </div>
       <div class="result">128 моделей · сортировка: новые</div>
       <div class="grid reveal">
-        <div class="card" data-go="product">
+        <div class="card" data-go="product" data-cat="dresses">
           <div class="img"><div class="ph t2"><span class="lbl">SINTÉM</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
           <div class="meta"><div class="brand">SINTÉM</div><div class="name">Платье «Флора»</div><div class="prow"><div class="price">18 900 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
-        <div class="card" data-go="product">
+        <div class="card" data-go="product" data-cat="dresses">
           <div class="img"><div class="ph t4"><span class="lbl">NANI</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
           <div class="meta"><div class="brand">NANI</div><div class="name">Абайя «Дюна»</div><div class="prow"><div class="price">24 500 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
-        <div class="card" data-go="product">
+        <div class="card" data-go="product" data-cat="scarves">
           <div class="img"><div class="ph t7"><span class="lbl">MALÉKA</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
           <div class="meta"><div class="brand">MALÉKA</div><div class="name">Платок шёлк «Вензель»</div><div class="prow"><div class="price">6 400 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
-        <div class="card" data-go="product">
+        <div class="card" data-go="product" data-cat="jewelry">
           <div class="img"><div class="ph t3"><span class="lbl">ÉLBE</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
           <div class="meta"><div class="brand">ÉLBE</div><div class="name">Кольцо с цитрином</div><div class="prow"><div class="price">9 200 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
-        <div class="card" data-go="product">
+        <div class="card" data-go="product" data-cat="knit">
           <div class="img"><div class="ph t8"><span class="lbl">KNITMAN</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
           <div class="meta"><div class="brand">KNITMAN</div><div class="name">Джемпер «Оливия»</div><div class="prow"><div class="price">12 700 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
-        <div class="card" data-go="product">
+        <div class="card" data-go="product" data-cat="dresses">
           <div class="img"><div class="ph t5"><span class="lbl">VARISÓ</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
           <div class="meta"><div class="brand">VARISÓ</div><div class="name">Платье «Наследие»</div><div class="prow"><div class="price">31 000 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
-        <div class="card" data-go="product">
+        <div class="card" data-go="product" data-cat="lifestyle">
           <div class="img"><div class="ph t6"><span class="lbl">STORMIES</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
           <div class="meta"><div class="brand">STORMIES</div><div class="name">Сумка «Найт»</div><div class="prow"><div class="price">15 800 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
-        <div class="card" data-go="product">
+        <div class="card" data-go="product" data-cat="tops">
           <div class="img"><div class="ph t1"><span class="lbl">SHIDAEVA</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
           <div class="meta"><div class="brand">SHIDAEVA</div><div class="name">Костюм «Юнис»</div><div class="prow"><div class="price">27 400 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
@@ -1361,6 +1436,7 @@ body{
       </div>
       <div class="cart-foot" id="cartfoot">
         <div class="cart-sum"><span class="lb">Итого</span><span class="val" id="cartTotal">0 ₽</span></div>
+        <p class="consent">Нажимая «Оформить заказ», вы соглашаетесь с <a data-go="offer">публичной офертой</a> и <a data-go="privacy">политикой конфиденциальности</a>.</p>
         <button class="cart-checkout" data-checkout>Оформить заказ</button>
       </div>
     </section>
@@ -1469,11 +1545,248 @@ body{
       </div>
     </section>
 
+    <!-- ===================== SALE ===================== -->
+    <section class="screen" id="sale">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-go="home"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">Sale</div>
+        </div>
+        <div class="tb-side">
+          <svg class="ic" data-go="profile"><use href="#user"/></svg>
+          <span class="bagwrap" data-go="cart"><svg class="ic"><use href="#bag"/></svg><i class="badge" data-cartcount>0</i></span>
+        </div>
+      </div>
+      <div class="sale-hero reveal">
+        <div class="sh-bg t3"></div>
+        <div class="sh-in">
+          <div class="sh-eyebrow">Финальные цены</div>
+          <h1>Sale</h1>
+          <div class="sh-sub">Избранные вещи сезона со скидкой до&nbsp;50%. Количество ограничено.</div>
+        </div>
+      </div>
+      <div class="result">6 моделей со скидкой</div>
+      <div class="grid reveal">
+        <div class="card" data-go="product" data-cat="dresses">
+          <div class="img"><div class="ph t2"><span class="lbl">SINTÉM</span></div><div class="ph2"></div><div class="disc">−30%</div><div class="fav"><svg><use href="#heart"/></svg></div></div>
+          <div class="meta"><div class="brand">SINTÉM</div><div class="name">Платье «Флора»</div><div class="prow"><span class="old">18 900 ₽</span><div class="price sale">13 200 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
+        </div>
+        <div class="card" data-go="product" data-cat="dresses">
+          <div class="img"><div class="ph t4"><span class="lbl">NANI</span></div><div class="ph2"></div><div class="disc">−30%</div><div class="fav"><svg><use href="#heart"/></svg></div></div>
+          <div class="meta"><div class="brand">NANI</div><div class="name">Абайя «Дюна»</div><div class="prow"><span class="old">24 500 ₽</span><div class="price sale">17 100 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
+        </div>
+        <div class="card" data-go="product" data-cat="scarves">
+          <div class="img"><div class="ph t7"><span class="lbl">MALÉKA</span></div><div class="ph2"></div><div class="disc">−40%</div><div class="fav"><svg><use href="#heart"/></svg></div></div>
+          <div class="meta"><div class="brand">MALÉKA</div><div class="name">Платок шёлк «Вензель»</div><div class="prow"><span class="old">6 400 ₽</span><div class="price sale">3 800 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
+        </div>
+        <div class="card" data-go="product" data-cat="knit">
+          <div class="img"><div class="ph t8"><span class="lbl">KNITMAN</span></div><div class="ph2"></div><div class="disc">−30%</div><div class="fav"><svg><use href="#heart"/></svg></div></div>
+          <div class="meta"><div class="brand">KNITMAN</div><div class="name">Джемпер «Оливия»</div><div class="prow"><span class="old">12 700 ₽</span><div class="price sale">8 900 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
+        </div>
+        <div class="card" data-go="product" data-cat="tops">
+          <div class="img"><div class="ph t5"><span class="lbl">SHIDAEVA</span></div><div class="ph2"></div><div class="disc">−40%</div><div class="fav"><svg><use href="#heart"/></svg></div></div>
+          <div class="meta"><div class="brand">SHIDAEVA</div><div class="name">Костюм «Юнис»</div><div class="prow"><span class="old">21 000 ₽</span><div class="price sale">12 600 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
+        </div>
+        <div class="card" data-go="product" data-cat="lifestyle">
+          <div class="img"><div class="ph t3"><span class="lbl">STORMIES</span></div><div class="ph2"></div><div class="disc">−30%</div><div class="fav"><svg><use href="#heart"/></svg></div></div>
+          <div class="meta"><div class="brand">STORMIES</div><div class="name">Сумка «Найт»</div><div class="prow"><span class="old">15 400 ₽</span><div class="price sale">10 700 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== GALLERY ===================== -->
+    <section class="screen" id="gallery">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-go="home"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">Галерея</div>
+        </div>
+        <svg class="ic" data-go="profile"><use href="#user"/></svg>
+      </div>
+      <div class="subhead">
+        <span class="eyebrow">Пространство</span>
+        <h1>Галерея</h1>
+        <div class="sub">Бутик MAEL · Раменки, Москва</div>
+      </div>
+      <div class="gal-grid reveal">
+        <figure class="gal-a"><div class="ph t3"></div><figcaption>Витрина</figcaption></figure>
+        <figure class="gal-b"><div class="ph t2"></div><figcaption>Зона примерочных</figcaption></figure>
+        <figure class="gal-c"><div class="ph t5"></div><figcaption>Стойка с абайями</figcaption></figure>
+        <figure class="gal-a"><div class="ph t8"></div><figcaption>Уголок аксессуаров</figcaption></figure>
+        <figure class="gal-d"><div class="ph t4"></div><figcaption>Общий зал</figcaption></figure>
+        <figure class="gal-b"><div class="ph t7"></div><figcaption>Платки и тюрбаны</figcaption></figure>
+        <figure class="gal-c"><div class="ph t2"></div><figcaption>Зеркальная стена</figcaption></figure>
+        <figure class="gal-a"><div class="ph t3"></div><figcaption>Витрина украшений</figcaption></figure>
+      </div>
+    </section>
+
+    <!-- ===================== EVENTS ===================== -->
+    <section class="screen" id="events">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-go="home"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">Мероприятия</div>
+        </div>
+        <svg class="ic" data-go="profile"><use href="#user"/></svg>
+      </div>
+      <div class="subhead">
+        <span class="eyebrow">Афиша</span>
+        <h1>Мероприятия</h1>
+        <div class="sub">Встречи, показы и вечера в бутике</div>
+      </div>
+      <div class="ev-list reveal">
+        <div class="ev-card">
+          <div class="ev-img"><div class="ph t5"></div>
+            <div class="ev-date"><span class="d">14</span><span class="m">сен</span></div>
+          </div>
+          <div class="ev-body">
+            <div class="ev-kind">Закрытый показ</div>
+            <h3>Новая коллекция осень–зима</h3>
+            <p>Первыми смотрим капсулу сезона: абайи, костюмы и шёлк. Стилист MAEL поможет собрать образ, для гостей — welcome-чай и специальные цены вечера.</p>
+            <div class="ev-meta"><span><svg viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>ул. Винницкая 8к3</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>18:00</span></div>
+            <div class="contact-btns">
+        <a class="cb-wa" href="https://wa.me/79250000090" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.7-4.4-3.9-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.3 0 .5l-.3.5c-.2.2-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.4.1.5-.1l.6-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6-.1 1.1z"/></svg>WhatsApp</a>
+        <a class="cb-tg" href="https://t.me/maelvibeboutique" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21.9 4.3l-3.1 14.8c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6 12.6l-4.8-1.5c-1-.3-1-1 .2-1.5l18.7-7.2c.9-.3 1.6.2 1.3 1.6z"/></svg>Telegram</a>
+      </div>
+          </div>
+        </div>
+        <div class="ev-card">
+          <div class="ev-img"><div class="ph t5"></div>
+            <div class="ev-date"><span class="d">28</span><span class="m">сен</span></div>
+          </div>
+          <div class="ev-body">
+            <div class="ev-kind">Мастер-класс</div>
+            <h3>Искусство тюрбана и платка</h3>
+            <p>Учимся красиво завязывать платки и тюрбаны под разные образы. Разбираем ткани, посадку и сочетания. Количество мест ограничено — нужна запись.</p>
+            <div class="ev-meta"><span><svg viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Бутик MAEL, Раменки</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>16:00</span></div>
+            <div class="contact-btns">
+        <a class="cb-wa" href="https://wa.me/79250000090" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.7-4.4-3.9-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.3 0 .5l-.3.5c-.2.2-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.4.1.5-.1l.6-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6-.1 1.1z"/></svg>WhatsApp</a>
+        <a class="cb-tg" href="https://t.me/maelvibeboutique" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21.9 4.3l-3.1 14.8c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6 12.6l-4.8-1.5c-1-.3-1-1 .2-1.5l18.7-7.2c.9-.3 1.6.2 1.3 1.6z"/></svg>Telegram</a>
+      </div>
+          </div>
+        </div>
+        <div class="ev-card past">
+          <div class="ev-img"><div class="ph t8"></div>
+            <div class="ev-date"><span class="d">17</span><span class="m">авг</span></div>
+          </div>
+          <div class="ev-body">
+            <div class="ev-kind">Прошло</div>
+            <h3>Вечер скромной моды</h3>
+            <p>Тёплая встреча с покупательницами и брендами MAEL: живое общение, примерки и первые заказы новой линейки.</p>
+            <div class="ev-meta"><span><svg viewBox="0 0 24 24"><path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Бутик MAEL, Раменки</span><span><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>17:00</span></div>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PRIVACY ===================== -->
+    <section class="screen" id="privacy">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-go="home"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">Конфиденциальность</div>
+        </div>
+        <svg class="ic" data-go="profile"><use href="#user"/></svg>
+      </div>
+      <div class="doc reveal">
+        <div class="doc-upd">Обновлено: 8 августа 2026</div>
+        <h2>1. Общие положения</h2>
+        <p>Настоящая Политика конфиденциальности разработана в соответствии с Федеральным законом от 27.07.2006 №152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению их безопасности на сайте бутика MAEL (далее — Сайт).</p>
+        <p>Оператор персональных данных: ИП [укажите ФИО], ИНН [укажите ИНН]. Адрес: г.&nbsp;Москва, ул.&nbsp;Винницкая, 8к3.</p>
+        <h2>2. Какие данные мы обрабатываем</h2>
+        <p>Сайт не содержит форм обратной связи и не собирает контактные данные напрямую через формы. Мы можем обрабатывать:</p>
+        <ul>
+          <li>обезличенные данные о посещениях (файлы cookie, данные систем аналитики: тип браузера, страницы, время визита);</li>
+          <li>данные, которые вы добровольно сообщаете нам сами при обращении к менеджеру в WhatsApp или Telegram (имя, телефон, адрес доставки) — исключительно для оформления и доставки заказа.</li>
+        </ul>
+        <h2>3. Цели обработки</h2>
+        <p>Обработка данных осуществляется для оформления и доставки заказов, ответов на обращения, а также улучшения работы Сайта. Данные не используются для рассылок без вашего согласия и не передаются третьим лицам, кроме служб доставки и платёжного провайдера в объёме, необходимом для выполнения заказа.</p>
+        <h2>4. Файлы cookie</h2>
+        <p>Сайт использует cookie для корректной работы и аналитики. Продолжая пользоваться Сайтом, вы соглашаетесь с использованием cookie. Отключить их можно в настройках браузера.</p>
+        <h2>5. Хранение и защита</h2>
+        <p>Персональные данные граждан РФ хранятся на серверах, расположенных на территории Российской Федерации, в соответствии с требованиями 152-ФЗ. Мы применяем организационные и технические меры для защиты данных от несанкционированного доступа.</p>
+        <h2>6. Ваши права и отзыв согласия</h2>
+        <p>Вы вправе запросить сведения об обработке ваших данных, их уточнение, блокирование или удаление, а также отозвать согласие на обработку персональных данных в любой момент. Для этого напишите нам:</p>
+        <div class="contact-btns">
+        <a class="cb-wa" href="https://wa.me/79250000090" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.7-4.4-3.9-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.3 0 .5l-.3.5c-.2.2-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.4.1.5-.1l.6-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6-.1 1.1z"/></svg>WhatsApp</a>
+        <a class="cb-tg" href="https://t.me/maelvibeboutique" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21.9 4.3l-3.1 14.8c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6 12.6l-4.8-1.5c-1-.3-1-1 .2-1.5l18.7-7.2c.9-.3 1.6.2 1.3 1.6z"/></svg>Telegram</a>
+      </div>
+        <h2>7. Контакты</h2>
+        <p>По вопросам обработки персональных данных: WhatsApp/Telegram выше или в бутике по адресу г.&nbsp;Москва, ул.&nbsp;Винницкая, 8к3, ежедневно 11:00–22:00.</p>
+      </div>
+    </section>
+
+    <!-- ===================== OFFER ===================== -->
+    <section class="screen" id="offer">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-go="home"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">Оферта</div>
+        </div>
+        <svg class="ic" data-go="profile"><use href="#user"/></svg>
+      </div>
+      <div class="doc reveal">
+        <div class="doc-upd">Публичная оферта · 8 августа 2026</div>
+        <h2>1. Общие положения</h2>
+        <p>Настоящий документ является публичной офертой ИП [укажите ФИО] (далее — Продавец) и содержит условия продажи товаров дистанционным способом. Оформляя заказ, Покупатель принимает условия настоящей оферты в полном объёме.</p>
+        <h2>2. Предмет</h2>
+        <p>Продавец продаёт, а Покупатель приобретает товары, представленные на Сайте (одежда, платки, трикотаж, украшения, аксессуары). Изображения товаров носят информационный характер; допустимы незначительные отличия оттенков.</p>
+        <h2>3. Оформление заказа</h2>
+        <p>Заказ оформляется через менеджера в WhatsApp или Telegram. Покупатель сообщает состав заказа, размер, адрес и способ доставки. Менеджер подтверждает наличие, итоговую стоимость и сроки.</p>
+        <h2>4. Цена и оплата</h2>
+        <p>Цены указаны в рублях. Оплата производится через защищённый эквайринг (ПАО Сбербанк) или иным согласованным способом. Обязательства по оплате считаются исполненными в момент поступления средств.</p>
+        <h2>5. Доставка</h2>
+        <p>Доставка по Москве курьером, по России — Почтой России и СДЭК (пункты выдачи и до двери). Сроки и стоимость рассчитываются при оформлении. Возможен самовывоз из бутика.</p>
+        <h2>6. Возврат и обмен</h2>
+        <p>Покупатель вправе отказаться от товара надлежащего качества в течение 7 дней после получения при сохранении товарного вида, ярлыков и упаковки (ст.&nbsp;26.1 Закона «О защите прав потребителей»). Товар ненадлежащего качества возвращается в соответствии с законом. Для возврата напишите менеджеру.</p>
+        <h2>7. Реквизиты</h2>
+        <p>Полные реквизиты Продавца указаны в разделе «Реквизиты».</p>
+      </div>
+    </section>
+
+    <!-- ===================== REQUISITES ===================== -->
+    <section class="screen" id="requisites">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-go="home"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">Реквизиты</div>
+        </div>
+        <svg class="ic" data-go="profile"><use href="#user"/></svg>
+      </div>
+      <div class="doc reveal">
+        <div class="doc-upd">Информация о продавце</div>
+        <div class="req-box">
+          <div class="r"><span class="k">Наименование</span><span class="v">ИП [укажите ФИО]</span></div>
+          <div class="r"><span class="k">ИНН</span><span class="v">[укажите ИНН]</span></div>
+          <div class="r"><span class="k">ОГРНИП</span><span class="v">[укажите ОГРНИП]</span></div>
+          <div class="r"><span class="k">Адрес</span><span class="v">г. Москва, ул. Винницкая, 8к3</span></div>
+          <div class="r"><span class="k">Режим работы</span><span class="v">Ежедневно 11:00–22:00</span></div>
+          <div class="r"><span class="k">Эквайринг</span><span class="v">ПАО Сбербанк</span></div>
+        </div>
+        <p>По любым вопросам о товаре, заказе или возврате свяжитесь с менеджером — форма обратной связи не требуется, пишите напрямую в мессенджер:</p>
+        <div class="contact-btns">
+        <a class="cb-wa" href="https://wa.me/79250000090" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15l-1.4 5 5.1-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.7-4.4-3.9-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.7 1.7c.1.2.1.3 0 .5l-.3.5c-.2.2-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.8 1.1.2.1.4.1.5-.1l.6-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.2.4.3.1.2.1.6-.1 1.1z"/></svg>WhatsApp</a>
+        <a class="cb-tg" href="https://t.me/maelvibeboutique" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M21.9 4.3l-3.1 14.8c-.2 1-.9 1.3-1.8.8l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5 9.1-8.2c.4-.4-.1-.6-.6-.2L6 12.6l-4.8-1.5c-1-.3-1-1 .2-1.5l18.7-7.2c.9-.3 1.6.2 1.3 1.6z"/></svg>Telegram</a>
+      </div>
+        <p style="margin-top:14px"><a data-go="privacy">Политика конфиденциальности</a> · <a data-go="offer">Публичная оферта</a></p>
+      </div>
+    </section>
+
 
   </div>
 
+  <!-- ===================== COOKIE BANNER ===================== -->
+  <div class="cookie" id="cookie" role="dialog" aria-label="Файлы cookie">
+    <p>Мы используем файлы cookie для корректной работы сайта и аналитики. Продолжая, вы соглашаетесь с <a data-go="privacy">политикой конфиденциальности</a>.</p>
+    <div class="cookie-row">
+      <button class="ck-acc" data-cookie="ok">Принять</button>
+      <button class="ck-dec" data-cookie="no">Только необходимые</button>
+    </div>
+  </div>
+
 <script>
-  const screens = ['home','catalog','product','profile','about','favorites','cart','novinki','brands'];
+  const screens = ['home','catalog','product','profile','about','favorites','cart','novinki','brands','sale','gallery','events','privacy','offer','requisites'];
   function goTo(id){
     document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('is-active', s.id===id));
     document.querySelectorAll('.demo button').forEach(b=>b.classList.toggle('on', b.dataset.go===id));
@@ -1542,6 +1855,20 @@ body{
 })();
 
       const drawer = document.getElementById('drawer');
+  var CAT_TITLES={all:'Каталог',dresses:'Платья и абайи',tops:'Верх и костюмы',scarves:'Платки и тюрбаны',jewelry:'Украшения',knit:'Трикотаж',lifestyle:'Аксессуары'};
+  function plural(n,f,s,m){var n10=n%10,n100=n%100;if(n10===1&&n100!==11)return f;if(n10>=2&&n10<=4&&(n100<10||n100>=20))return s;return m;}
+  function applyCatFilter(key){
+    key=key||'all';var shown=0;
+    document.querySelectorAll('#catalog .grid .card').forEach(function(c){
+      var hit=(key==='all')||c.dataset.cat===key;
+      c.classList.toggle('hide-cat',!hit);c.style.display='';if(hit)shown++;
+    });
+    var t=document.querySelector('#catalog .ci-title');if(t)t.textContent=CAT_TITLES[key]||'Каталог';
+    document.querySelectorAll('#catalog .filters .chip').forEach(function(ch){ch.classList.toggle('on',(ch.dataset.cat||'all')===key);});
+    var res=document.querySelector('#catalog .result');
+    if(res){res.textContent=(key==='all')?'128 моделей · сортировка: новые':(shown+' '+plural(shown,'модель','модели','моделей'));}
+    var cs=document.getElementById('catSearch');if(cs)cs.value='';
+  }
   document.addEventListener('click',e=>{
     if(e.target.closest('[data-menu]')){ drawer.classList.add('open'); return; }
     if(e.target.closest('[data-menu-close]')){ drawer.classList.remove('open'); return; }
@@ -1556,7 +1883,7 @@ body{
     const sb = e.target.closest('[data-search]');
     if(sb){ e.stopPropagation(); goTo('catalog'); var ci=document.getElementById('catSearch'); if(ci){ setTimeout(function(){ci.focus();},80); } return; }
     const el = e.target.closest('[data-go]');
-    if(el){ goTo(el.dataset.go); if(drawer) drawer.classList.remove('open'); }
+    if(el){ goTo(el.dataset.go); if(el.dataset.go==='catalog') applyCatFilter(el.dataset.cat||'all'); if(drawer) drawer.classList.remove('open'); }
     // accordions
     const acc = e.target.closest('.acc button');
     if(acc){ acc.parentElement.classList.toggle('open'); }
@@ -1568,7 +1895,7 @@ body{
     if(seg){ seg.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('on')); seg.classList.add('on');
       const catEl=document.getElementById('catalog'); if(catEl) catEl.classList.toggle('mode-brands', seg.dataset.seg==='brand'); }
     const chip = e.target.closest('.filters .chip:not(.icon)');
-    if(chip){ document.querySelectorAll('.filters .chip').forEach(c=>c.classList.remove('on')); chip.classList.add('on'); }
+    if(chip){ document.querySelectorAll('.filters .chip').forEach(c=>c.classList.remove('on')); chip.classList.add('on'); if(chip.dataset.cat) applyCatFilter(chip.dataset.cat); }
   });
 
   /* ---------- scroll-reveal (scoped to the active screen) ---------- */
@@ -1688,6 +2015,10 @@ body{
     seed.forEach(function(k){ syncHearts(k,true); });
     updateFavCount();
   })();
+  // ---- cookie consent banner ----
+  (function(){var box=document.getElementById('cookie');if(!box)return;var seen;try{seen=localStorage.getItem('mael_cookie');}catch(e){seen=null;}
+    if(!seen){setTimeout(function(){box.classList.add('show');},1200);}
+    document.addEventListener('click',function(e){var b=e.target.closest('[data-cookie]');if(!b)return;try{localStorage.setItem('mael_cookie',b.dataset.cookie);}catch(e){}box.classList.remove('show');});})();
   // ---- catalog search filter ----
   (function(){var ci=document.getElementById('catSearch');if(!ci)return;ci.addEventListener('input',function(){var q=ci.value.trim().toLowerCase();var any=false;document.querySelectorAll('#catalog .grid .card').forEach(function(c){var b=(c.querySelector('.brand')||{}).textContent||'';var n=(c.querySelector('.name')||{}).textContent||'';var hit=(b+' '+n).toLowerCase().indexOf(q)>-1;c.style.display=hit?'':'none';if(hit)any=true;});var res=document.querySelector('#catalog .result');if(res)res.textContent=q?(any?'':'ничего не найдено'):'128 моделей · сортировка: новые';});})();
   updateCartCount();
