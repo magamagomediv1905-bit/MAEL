@@ -940,6 +940,8 @@ body{
           <a data-go="catalog" data-cat="scarves"><span class="n">Платки и тюрбаны</span><span class="ch">&#8250;</span></a>
           <a data-go="catalog" data-cat="jewelry"><span class="n">Украшения</span><span class="ch">&#8250;</span></a>
           <a data-go="catalog" data-cat="lifestyle"><span class="n">Аксессуары</span><span class="ch">&#8250;</span></a>
+          <a data-go="catalog" data-cat="beauty"><span class="n">Косметика</span><span class="ch">&#8250;</span></a>
+          <a data-go="catalog" data-cat="home"><span class="n">Товары для дома</span><span class="ch">&#8250;</span></a>
         </nav>
 
         <div class="dr-div"></div>
@@ -1042,11 +1044,12 @@ body{
           <a class="cat-all" data-go="catalog">смотреть все</a>
         </div>
         <div class="cat-row" id="catRow">
-          <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/sintem.jpg')"></div></div><div class="nm">Платья и абайи</div><div class="ct">смотреть</div></div>
-          <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/variso.jpg')"></div></div><div class="nm">Платки и тюрбаны</div><div class="ct">смотреть</div></div>
-          <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/elbe.jpg');background-position:center 74%"></div></div><div class="nm">Украшения</div><div class="ct">смотреть</div></div>
-          <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/maleka.jpg')"></div></div><div class="nm">Верх и костюмы</div><div class="ct">смотреть</div></div>
-          <div class="cat-item" data-go="catalog"><div class="ph"><div class="bg" style="background-image:url('brands/shidaeva.jpg')"></div></div><div class="nm">Абайи</div><div class="ct">смотреть</div></div>
+          <div class="cat-item" data-go="catalog" data-cat="dresses"><div class="ph"><div class="bg" style="background-image:url('brands/sintem.jpg')"></div></div><div class="nm">Платья и абайи</div><div class="ct">смотреть</div></div>
+          <div class="cat-item" data-go="catalog" data-cat="scarves"><div class="ph"><div class="bg" style="background-image:url('brands/variso.jpg')"></div></div><div class="nm">Платки и тюрбаны</div><div class="ct">смотреть</div></div>
+          <div class="cat-item" data-go="catalog" data-cat="jewelry"><div class="ph"><div class="bg" style="background-image:url('brands/elbe.jpg');background-position:center 74%"></div></div><div class="nm">Украшения</div><div class="ct">смотреть</div></div>
+          <div class="cat-item" data-go="catalog" data-cat="tops"><div class="ph"><div class="bg" style="background-image:url('brands/maleka.jpg')"></div></div><div class="nm">Верх и костюмы</div><div class="ct">смотреть</div></div>
+          <div class="cat-item" data-go="catalog" data-cat="beauty"><div class="ph"><div class="bg" style="background-image:url('brands/nani-brand.jpg')"></div></div><div class="nm">Косметика</div><div class="ct">смотреть</div></div>
+          <div class="cat-item" data-go="catalog" data-cat="home"><div class="ph"><div class="bg" style="background-image:url('brands/shidaeva.jpg')"></div></div><div class="nm">Товары для дома</div><div class="ct">смотреть</div></div>
         </div>
         <div class="cat-nav">
           <button class="cat-arrow" data-dir="-1" aria-label="Назад">&#8249;</button>
@@ -1089,10 +1092,12 @@ body{
           </div>
           <div class="col">
             <h4>Каталог</h4>
-            <a data-go="catalog">Платья и абайи</a>
-            <a data-go="catalog">Платки и тюрбаны</a>
-            <a data-go="catalog">Украшения</a>
-            <a data-go="catalog">Все бренды</a>
+            <a data-go="catalog" data-cat="dresses">Платья и абайи</a>
+            <a data-go="catalog" data-cat="scarves">Платки и тюрбаны</a>
+            <a data-go="catalog" data-cat="jewelry">Украшения</a>
+            <a data-go="catalog" data-cat="beauty">Косметика</a>
+            <a data-go="catalog" data-cat="home">Товары для дома</a>
+            <a data-go="brands">Все бренды</a>
           </div>
           <div class="col">
             <h4>Покупателям</h4>
@@ -1143,6 +1148,8 @@ body{
         <div class="chip" data-cat="jewelry">Украшения</div>
         <div class="chip" data-cat="knit">Трикотаж</div>
         <div class="chip" data-cat="lifestyle">Lifestyle</div>
+        <div class="chip" data-cat="beauty">Косметика</div>
+        <div class="chip" data-cat="home">Товары для дома</div>
       </div>
       <div class="result">128 моделей · сортировка: новые</div>
       <div class="grid reveal">
@@ -1177,6 +1184,22 @@ body{
         <div class="card" data-go="product" data-cat="tops">
           <div class="img"><div class="ph t1"><span class="lbl">SHIDAEVA</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
           <div class="meta"><div class="brand">SHIDAEVA</div><div class="name">Костюм «Юнис»</div><div class="prow"><div class="price">27 400 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
+        </div>
+        <div class="card" data-go="product" data-cat="beauty">
+          <div class="img"><div class="ph t3"><span class="lbl">SAMAYA</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
+          <div class="meta"><div class="brand">SAMAYA</div><div class="name">Парфюм «Уд Роял»</div><div class="prow"><div class="price">7 900 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
+        </div>
+        <div class="card" data-go="product" data-cat="beauty">
+          <div class="img"><div class="ph t6"><span class="lbl">INAÏA</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
+          <div class="meta"><div class="brand">INAÏA</div><div class="name">Крем для рук «Мисбах»</div><div class="prow"><div class="price">2 400 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
+        </div>
+        <div class="card" data-go="product" data-cat="home">
+          <div class="img"><div class="ph t8"><span class="lbl">MAEL HOME</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
+          <div class="meta"><div class="brand">MAEL HOME</div><div class="name">Молитвенный коврик «Михраб»</div><div class="prow"><div class="price">5 600 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
+        </div>
+        <div class="card" data-go="product" data-cat="home">
+          <div class="img"><div class="ph t5"><span class="lbl">MAEL HOME</span></div><div class="ph2"></div><div class="fav"><svg><use href="#heart"/></svg></div></div>
+          <div class="meta"><div class="brand">MAEL HOME</div><div class="name">Диффузор «Нур»</div><div class="prow"><div class="price">4 200 ₽</div><button class="cadd" data-add aria-label="В корзину">+</button></div></div>
         </div>
       </div>
       <div class="brand-note">Все бренды · 12</div>
@@ -1852,7 +1875,7 @@ body{
 })();
 
       const drawer = document.getElementById('drawer');
-  var CAT_TITLES={all:'Каталог',dresses:'Платья и абайи',tops:'Верх и костюмы',scarves:'Платки и тюрбаны',jewelry:'Украшения',knit:'Трикотаж',lifestyle:'Аксессуары'};
+  var CAT_TITLES={all:'Каталог',dresses:'Платья и абайи',tops:'Верх и костюмы',scarves:'Платки и тюрбаны',jewelry:'Украшения',knit:'Трикотаж',lifestyle:'Аксессуары',beauty:'Косметика',home:'Товары для дома'};
   function plural(n,f,s,m){var n10=n%10,n100=n%100;if(n10===1&&n100!==11)return f;if(n10>=2&&n10<=4&&(n100<10||n100>=20))return s;return m;}
   function applyCatFilter(key){
     key=key||'all';var shown=0;
