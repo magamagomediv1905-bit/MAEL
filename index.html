@@ -552,19 +552,15 @@ body{
 .mb-order-bar i{display:block;height:100%;background:var(--wine);border-radius:3px}
 .mb-order-d{display:flex;align-items:center;font-size:11px;letter-spacing:.02em;color:var(--taupe)}
 .mb-order-d em{margin-left:auto;font-style:normal;font-size:16px;line-height:1;color:var(--wine)}
-.mb-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px}
-.mb-tile{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:104px;background:#fff;border:1px solid var(--line);border-radius:5px;padding:14px 14px 15px;text-decoration:none;color:var(--ink);transition:.2s}
-.mb-tile:hover{border-color:var(--wine);transform:translateY(-2px);box-shadow:0 12px 26px rgba(58,2,2,.10)}
-.mb-tile-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:26px}
-.mb-tile-meta{font-family:var(--label);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe)}
-.mb-tile-meta b{font-weight:600;color:var(--wine)}
-.mb-tile-arw{font-size:15px;line-height:1;color:var(--wine)}
-.mb-tile-lb{font-family:var(--sans);font-size:16px;font-weight:600;letter-spacing:.01em;color:var(--ink)}
-.mb-wide{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:5px;padding:16px;text-decoration:none;color:var(--ink);margin-bottom:24px;transition:.2s}
-.mb-wide:hover{border-color:var(--wine)}
-.mb-wide .lb{font-family:var(--sans);font-size:15px;font-weight:500;letter-spacing:.01em;flex:1}
-.mb-wide .mt{font-family:var(--label);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--taupe);margin-right:12px}
-.mb-wide em{font-style:normal;color:var(--wine);font-size:16px;line-height:1}
+.mb-list{background:#fff;border:1px solid var(--line);border-radius:5px;overflow:hidden;margin-bottom:24px}
+.mb-row{display:flex;align-items:center;gap:14px;padding:16px 16px;text-decoration:none;color:var(--ink);border-top:1px solid var(--line);transition:.2s}
+.mb-row:first-child{border-top:none}
+.mb-row:hover{background:rgba(90,13,13,.035)}
+.mb-ic{flex:none;width:22px;height:22px;color:var(--wine)}
+.mb-ic svg{width:100%;height:100%;display:block;fill:none;stroke:currentColor;stroke-width:1.5}
+.mb-rl{flex:1;font-family:var(--sans);font-size:15px;font-weight:500;letter-spacing:.01em;color:var(--ink)}
+.mb-rb{min-width:22px;height:22px;padding:0 7px;display:inline-flex;align-items:center;justify-content:center;background:var(--cream);border-radius:22px;font-family:var(--sans);font-size:11px;font-weight:600;color:var(--wine)}
+.mb-ra{font-size:17px;line-height:1;color:var(--taupe)}
 .mb-care{background:rgba(90,13,13,.05);border:1px solid rgba(90,13,13,.13);border-radius:5px;padding:20px;text-align:center;margin-bottom:24px}
 .mb-care-t{font-family:var(--sans);font-size:13px;line-height:1.55;color:var(--ink);margin-bottom:15px}
 .mb-care-b{display:flex;gap:10px}
@@ -1340,14 +1336,13 @@ body{
             <div class="mb-order-d">3 позиции · ожидается 14&nbsp;августа<em>›</em></div>
           </a>
 
-          <div class="mb-grid reveal">
-            <a class="mb-tile"><div class="mb-tile-top"><span class="mb-tile-meta">3 активных</span><span class="mb-tile-arw">&#8599;</span></div><div class="mb-tile-lb">Заказы</div></a>
-            <a class="mb-tile" data-go="favorites"><div class="mb-tile-top"><span class="mb-tile-meta"><b data-favcount>0</b> вещей</span><span class="mb-tile-arw">&#8599;</span></div><div class="mb-tile-lb">Избранное</div></a>
-            <a class="mb-tile"><div class="mb-tile-top"><span class="mb-tile-meta">2 сохранено</span><span class="mb-tile-arw">&#8599;</span></div><div class="mb-tile-lb">Адреса</div></a>
-            <a class="mb-tile"><div class="mb-tile-top"><span class="mb-tile-meta">Вход и данные</span><span class="mb-tile-arw">&#8599;</span></div><div class="mb-tile-lb">Профиль</div></a>
+          <div class="mb-list reveal">
+            <a class="mb-row"><span class="mb-ic"><svg><use href="#bag"/></svg></span><span class="mb-rl">Мои заказы</span><span class="mb-ra">&#8250;</span></a>
+            <a class="mb-row" data-go="favorites"><span class="mb-ic"><svg><use href="#heart"/></svg></span><span class="mb-rl">Избранное</span><span class="mb-rb" data-favcount>0</span><span class="mb-ra">&#8250;</span></a>
+            <a class="mb-row"><span class="mb-ic"><svg><use href="#home"/></svg></span><span class="mb-rl">Адреса доставки</span><span class="mb-ra">&#8250;</span></a>
+            <a class="mb-row"><span class="mb-ic"><svg><use href="#user"/></svg></span><span class="mb-rl">Данные профиля</span><span class="mb-ra">&#8250;</span></a>
+            <a class="mb-row"><span class="mb-ic"><svg><use href="#share"/></svg></span><span class="mb-rl">Возврат и обмен</span><span class="mb-ra">&#8250;</span></a>
           </div>
-
-          <a class="mb-wide reveal"><span class="lb">Возврат и обмен</span><span class="mt">14 дней</span><em>&#8250;</em></a>
 
           <div class="mb-care reveal">
             <div class="mb-care-t">Нужна помощь с размером или консультация стилиста? Напишите нам — ежедневно&nbsp;11–22.</div>
