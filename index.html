@@ -535,32 +535,37 @@ body{
 .lookb .lb-cta:hover{background:var(--ink);color:var(--cream)}
 
 /* ===== profile / личный кабинет ===== */
-.prof{padding:20px 20px 64px;background:var(--cream);min-height:100%}
-.prof-hero{display:flex;align-items:center;gap:14px;padding:6px 0 20px}
-.pf-ava{width:64px;height:64px;border-radius:50%;flex:0 0 auto;background:var(--wine);color:var(--cream);
-  display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:28px;font-weight:500}
-.pf-id h1{font-family:var(--sans);font-weight:600;font-size:20px;letter-spacing:.01em;margin:0 0 4px}
-.pf-contact{font-size:11px;color:var(--taupe);letter-spacing:.02em}
-.pf-club{background:#fff;border:1px solid var(--line);color:var(--ink);border-radius:2px;padding:16px 18px;margin-bottom:14px;box-shadow:0 8px 22px rgba(58,2,2,.20)}
-.pf-club-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
-.pf-tier{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--taupe)}
-.pf-pts{font-family:var(--sans);font-size:19px;font-weight:600;color:var(--wine)}
-.pf-bar{height:5px;border-radius:5px;background:var(--line);overflow:hidden;margin-bottom:8px}
-.pf-bar i{display:block;height:100%;background:var(--wine);border-radius:5px}
-.pf-note{font-size:10px;letter-spacing:.04em;color:var(--taupe)}
-.pf-quick{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
-.pf-q{background:#fff;border:1px solid var(--line);border-radius:2px;padding:14px 8px;text-align:center}
-.pf-qn{font-family:var(--sans);font-size:20px;font-weight:600;color:var(--wine);line-height:1}
-.pf-ql{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--taupe);margin-top:6px}
-.pf-menu{background:#fff;border:1px solid var(--line);border-radius:2px;overflow:hidden;margin-bottom:18px}
-.pf-row{display:flex;align-items:center;gap:14px;padding:15px 16px;border-bottom:1px solid var(--line);cursor:pointer;transition:.18s;text-decoration:none;color:var(--ink)}
+.prof{padding:22px 20px 64px;background:var(--cream);min-height:100%}
+.pf-greet{padding:6px 0 22px}
+.pf-hello{font-family:var(--label);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe);margin-bottom:9px}
+.pf-name{font-family:var(--sans);font-weight:600;font-size:26px;letter-spacing:.01em;margin:0 0 8px;color:var(--ink)}
+.pf-contact{font-size:12px;color:var(--taupe);letter-spacing:.02em}
+.pf-order{display:block;background:var(--wine);color:var(--cream);border-radius:3px;padding:18px 18px 15px;margin-bottom:16px;text-decoration:none;box-shadow:0 14px 30px rgba(58,2,2,.20)}
+.pf-order-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.pf-order-no{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.02em}
+.pf-order-st{font-family:var(--label);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(239,234,224,.74)}
+.pf-order-track{height:3px;border-radius:3px;background:rgba(239,234,224,.22);overflow:hidden;margin-bottom:9px}
+.pf-order-track i{display:block;height:100%;background:var(--cream);border-radius:3px}
+.pf-order-steps{display:flex;justify-content:space-between;font-family:var(--label);font-size:8px;letter-spacing:.06em;text-transform:uppercase;color:rgba(239,234,224,.42);margin-bottom:14px}
+.pf-order-steps .on{color:var(--cream)}
+.pf-order-meta{display:flex;align-items:center;font-size:11px;letter-spacing:.02em;color:rgba(239,234,224,.85);border-top:1px solid rgba(239,234,224,.16);padding-top:12px}
+.pf-order-meta em{margin-left:auto;font-style:normal;font-size:17px;line-height:1;color:rgba(239,234,224,.7)}
+.pf-menu{background:#fff;border:1px solid var(--line);border-radius:3px;overflow:hidden;margin-bottom:16px}
+.pf-row{display:flex;align-items:center;gap:14px;padding:16px 16px;border-bottom:1px solid var(--line);cursor:pointer;transition:.18s;text-decoration:none;color:var(--ink)}
 .pf-row:last-child{border-bottom:none}
 .pf-row:hover{background:var(--cream)}
-.pf-row svg{width:19px;height:19px;color:var(--wine);flex:0 0 auto}
+.pf-row svg{width:18px;height:18px;color:var(--wine);flex:0 0 auto}
 .pf-row span{flex:1;font-size:13px;letter-spacing:.02em}
 .pf-row em{font-style:normal;color:var(--taupe);font-size:18px;line-height:1}
-.pf-logout{width:100%;background:transparent;border:1px solid var(--wine);color:var(--wine);border-radius:40px;padding:14px;font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:.22s}
-.pf-logout:hover{background:var(--wine);color:var(--cream)}
+.pf-row em.pf-c{font-family:var(--label);font-size:11px;background:var(--cream);border-radius:20px;min-width:22px;text-align:center;padding:3px 7px;color:var(--wine)}
+.pf-care{background:#fff;border:1px solid var(--line);border-radius:3px;padding:18px;margin-bottom:18px;text-align:center}
+.pf-care-t{font-family:var(--sans);font-weight:600;font-size:14px;color:var(--ink);margin-bottom:6px}
+.pf-care-s{font-size:11px;line-height:1.55;color:var(--taupe);margin-bottom:14px}
+.pf-care-btns{display:flex;gap:10px}
+.pf-care-btn{flex:1;border:1px solid var(--wine);color:var(--wine);border-radius:40px;padding:11px;font-family:var(--label);font-size:10px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:.22s}
+.pf-care-btn:hover{background:var(--wine);color:var(--cream)}
+.pf-logout{width:100%;background:transparent;border:1px solid rgba(28,26,23,.2);color:var(--taupe);border-radius:40px;padding:14px;font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:.22s}
+.pf-logout:hover{border-color:var(--wine);color:var(--wine)}
 .pf-foot{text-align:center;font-size:10px;letter-spacing:.1em;color:var(--taupe);margin-top:20px}
 
 /* ===== richer brand cards ===== */
@@ -643,7 +648,7 @@ body{
 #about .ab-block .sec-h{flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:8px}
 #about .ab-block .sec-h h3{text-align:center}
 #about .ab-block .sec-h a{margin:0}
-.eyebrow,.hero-sub,.hero .eyebrow,.hero .cta,.hero .scroll-cue,.stage-head p,.dr-head .brand-lock small,.dr-sub .lbl,.dr-nav a,.sec-h a,.card .brand,.tagline,.cats-head .eyebrow,.cats-head .ghost,.philo .vals span,.look .eyebrow,.foot .soc a,.marquee .track,.imgband .eyebrow,.imgband .cta,.lookbook .lb-head .eyebrow,.footx .col h4,.footx .fsoc a,.footx .fnote,.seg button,.chip,.result,.grid .card .cadd,.cadd,.p-body .brand,.p-lbl,.sizeguide,.acc button,.buybar .add,.add,.ghost,.cta,.pf-tier,.pf-ql,.pf-logout,.bc-tag,.ab-hero-in .eyebrow,.ab-vcap,.ab-cta a,.fav-count,.fav-empty .cta,.brand-note{font-family:var(--label)}
+.eyebrow,.hero-sub,.hero .eyebrow,.hero .cta,.hero .scroll-cue,.stage-head p,.dr-head .brand-lock small,.dr-sub .lbl,.dr-nav a,.sec-h a,.card .brand,.tagline,.cats-head .eyebrow,.cats-head .ghost,.philo .vals span,.look .eyebrow,.foot .soc a,.marquee .track,.imgband .eyebrow,.imgband .cta,.lookbook .lb-head .eyebrow,.footx .col h4,.footx .fsoc a,.footx .fnote,.seg button,.chip,.result,.grid .card .cadd,.cadd,.p-body .brand,.p-lbl,.sizeguide,.acc button,.buybar .add,.add,.ghost,.cta,.pf-logout,.pf-care-btn,.bc-tag,.ab-hero-in .eyebrow,.ab-vcap,.ab-cta a,.fav-count,.fav-empty .cta,.brand-note{font-family:var(--label)}
 
 /* ===== DESKTOP LAYOUT: full website on wide screens (mobile untouched) ===== */
 @media (min-width:760px){
@@ -1313,35 +1318,37 @@ body{
       </div>
 
       <div class="prof">
-        <div class="prof-hero reveal">
-          <div class="pf-ava">А</div>
-          <div class="pf-id">
-            <h1>Амина</h1>
-            <div class="pf-contact">+7&nbsp;900&nbsp;000-00-00 · amina@mail.ru</div>
-          </div>
+        <div class="pf-greet reveal">
+          <div class="pf-hello">Личный кабинет</div>
+          <h1 class="pf-name">Амина</h1>
+          <div class="pf-contact">+7&nbsp;900&nbsp;000-00-00 · amina@mail.ru</div>
         </div>
 
-        <div class="pf-club reveal">
-          <div class="pf-club-top">
-            <span class="pf-tier">MAEL Club · Silver</span>
-            <span class="pf-pts">1 240 баллов</span>
+        <a class="pf-order reveal">
+          <div class="pf-order-top">
+            <span class="pf-order-no">Заказ №&nbsp;10482</span>
+            <span class="pf-order-st">Собирается</span>
           </div>
-          <div class="pf-bar"><i style="width:62%"></i></div>
-          <div class="pf-note">до уровня Gold — 760 баллов</div>
-        </div>
-
-        <div class="pf-quick reveal">
-          <div class="pf-q"><div class="pf-qn">3</div><div class="pf-ql">Заказа</div></div>
-          <div class="pf-q" data-go="favorites"><div class="pf-qn" data-favcount>0</div><div class="pf-ql">В избранном</div></div>
-          <div class="pf-q"><div class="pf-qn">2</div><div class="pf-ql">Купона</div></div>
-        </div>
+          <div class="pf-order-track"><i style="width:38%"></i></div>
+          <div class="pf-order-steps"><span class="on">Оформлен</span><span class="on">Собирается</span><span>В&nbsp;пути</span><span>Готов</span></div>
+          <div class="pf-order-meta">3 позиции · ожидается 14&nbsp;августа<em>›</em></div>
+        </a>
 
         <div class="pf-menu reveal">
           <a class="pf-row"><svg><use href="#bag"/></svg><span>Мои заказы</span><em>›</em></a>
-          <a class="pf-row" data-go="favorites"><svg><use href="#heart"/></svg><span>Избранное</span><em>›</em></a>
+          <a class="pf-row" data-go="favorites"><svg><use href="#heart"/></svg><span>Избранное</span><em class="pf-c" data-favcount>0</em><em>›</em></a>
           <a class="pf-row"><svg><use href="#home"/></svg><span>Адреса доставки</span><em>›</em></a>
-          <a class="pf-row"><svg><use href="#grid"/></svg><span>История покупок</span><em>›</em></a>
-          <a class="pf-row"><svg><use href="#user"/></svg><span>Настройки профиля</span><em>›</em></a>
+          <a class="pf-row"><svg><use href="#user"/></svg><span>Данные профиля</span><em>›</em></a>
+          <a class="pf-row"><svg><use href="#share"/></svg><span>Возврат и обмен</span><em>›</em></a>
+        </div>
+
+        <div class="pf-care reveal">
+          <div class="pf-care-t">Служба заботы</div>
+          <div class="pf-care-s">Поможем с размером, доставкой и возвратом — ежедневно&nbsp;11–22</div>
+          <div class="pf-care-btns">
+            <a class="pf-care-btn" href="https://wa.me/79250000090" target="_blank" rel="noopener">WhatsApp</a>
+            <a class="pf-care-btn" href="https://t.me/maelvibeboutique" target="_blank" rel="noopener">Telegram</a>
+          </div>
         </div>
 
         <button class="pf-logout reveal">Выйти из аккаунта</button>
