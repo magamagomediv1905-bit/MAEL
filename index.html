@@ -353,6 +353,37 @@ body{
 .chip.on{background:var(--wine);color:var(--cream);border-color:var(--wine)}
 .chip.icon{display:flex;align-items:center;gap:6px}
 .chip.icon svg{width:13px;height:13px}
+.chip.icon{position:relative}
+.chip.icon.has-filt::after{content:"";position:absolute;top:6px;right:8px;width:6px;height:6px;border-radius:50%;background:var(--wine)}
+.fsheet{position:fixed;inset:0;z-index:120;display:none}
+.fsheet.open{display:block}
+.fsheet-scrim{position:absolute;inset:0;background:rgba(28,26,23,.44);opacity:0;transition:.3s}
+.fsheet.open .fsheet-scrim{opacity:1}
+.fsheet-panel{position:absolute;left:0;right:0;bottom:0;background:var(--cream);border-radius:16px 16px 0 0;padding:10px 20px calc(20px + env(safe-area-inset-bottom));max-height:86vh;overflow-y:auto;transform:translateY(100%);transition:transform .34s cubic-bezier(.22,.61,.36,1);box-shadow:0 -14px 40px rgba(58,2,2,.18)}
+.fsheet.open .fsheet-panel{transform:translateY(0)}
+.fsheet-grab{width:38px;height:4px;border-radius:4px;background:var(--line);margin:2px auto 14px}
+.fsheet-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px}
+.fsheet-head span{font-family:var(--head);font-size:26px;font-weight:500;color:var(--ink)}
+.fsheet-x{background:none;border:none;font-family:var(--label);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);cursor:pointer}
+.fsheet-sec{padding:16px 0;border-top:1px solid var(--line)}
+.fsheet-lb{font-family:var(--label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe);margin-bottom:12px}
+.fsheet-opts{display:flex;gap:8px;flex-wrap:wrap}
+.fopt{flex:1;min-width:0;background:#fff;border:1px solid var(--line);border-radius:40px;padding:11px 10px;font-family:var(--sans);font-size:12px;font-weight:500;color:var(--ink);cursor:pointer;transition:.2s;white-space:nowrap}
+.fopt.on{background:var(--wine);color:var(--cream);border-color:var(--wine)}
+.fprice{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.fprice input{flex:1;width:100%;background:#fff;border:1px solid var(--line);border-radius:5px;padding:13px 14px;font-family:var(--sans);font-size:14px;color:var(--ink);-moz-appearance:textfield}
+.fprice input::-webkit-outer-spin-button,.fprice input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.fprice input:focus{outline:none;border-color:var(--wine)}
+.fdash{color:var(--taupe)}
+.fchips{display:flex;gap:8px;flex-wrap:wrap}
+.fchip{background:#fff;border:1px solid var(--line);border-radius:40px;padding:9px 14px;font-family:var(--label);font-size:10px;letter-spacing:.08em;color:var(--ink);cursor:pointer;transition:.2s}
+.fchip.on{background:var(--wine);color:var(--cream);border-color:var(--wine)}
+.fsheet-foot{display:flex;gap:10px;padding-top:18px;border-top:1px solid var(--line);margin-top:4px}
+.fbtn{flex:1;border-radius:40px;padding:15px;font-family:var(--label);font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:.2s}
+.fbtn.ghost{flex:0 0 40%;background:none;border:1px solid var(--line);color:var(--ink)}
+.fbtn.ghost:hover{border-color:var(--wine);color:var(--wine)}
+.fbtn.solid{background:var(--wine);border:1px solid var(--wine);color:var(--cream)}
+.fbtn.solid:hover{background:var(--wine-deep)}
 .result{padding:18px 20px 4px;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe);text-align:center;position:relative}
 .result::before,.result::after{content:"";position:absolute;top:50%;width:22px;height:1px;background:var(--line)}
 .result::before{left:20px}.result::after{right:20px}
@@ -1147,7 +1178,7 @@ body{
         <button data-seg="brand">По брендам</button>
       </div>
       <div class="filters">
-        <div class="chip icon"><svg><use href="#grid"/></svg>Фильтры</div>
+        <div class="chip icon" data-fopen><svg><use href="#grid"/></svg>Фильтры</div>
         <div class="chip on" data-cat="all">Все</div>
         <div class="chip" data-cat="dresses">Платья и абайи</div>
         <div class="chip" data-cat="tops">Блузы</div>
@@ -1223,6 +1254,39 @@ body{
         <div class="bcard" data-go="product"><div class="ph t5"></div><svg class="bc-wm"><use href="#mono"/></svg><div class="bc-in"><div class="bc-name">AISHA</div></div></div>
         <div class="bcard" data-go="product"><div class="ph t7"></div><svg class="bc-wm"><use href="#mono"/></svg><div class="bc-in"><div class="bc-name">NÙR</div></div></div>
         <div class="bcard" data-go="product"><div class="ph t4"></div><svg class="bc-wm"><use href="#mono"/></svg><div class="bc-in"><div class="bc-name">ZAHRA</div></div></div>
+      </div>
+      <div class="fsheet" id="fsheet" aria-hidden="true">
+        <div class="fsheet-scrim" data-fclose></div>
+        <div class="fsheet-panel">
+          <div class="fsheet-grab"></div>
+          <div class="fsheet-head"><span>Фильтры</span><button class="fsheet-x" data-fclose>Закрыть</button></div>
+          <div class="fsheet-sec">
+            <div class="fsheet-lb">Сортировка</div>
+            <div class="fsheet-opts" data-sortgroup>
+              <button class="fopt on" data-sort="new">Сначала новые</button>
+              <button class="fopt" data-sort="asc">Дешевле</button>
+              <button class="fopt" data-sort="desc">Дороже</button>
+            </div>
+          </div>
+          <div class="fsheet-sec">
+            <div class="fsheet-lb">Цена, ₽</div>
+            <div class="fprice">
+              <input type="number" id="fmin" inputmode="numeric" placeholder="от">
+              <span class="fdash">—</span>
+              <input type="number" id="fmax" inputmode="numeric" placeholder="до">
+            </div>
+            <div class="fchips" data-pricegroup>
+              <button class="fchip" data-pmin="0" data-pmax="7000">до 7 000</button>
+              <button class="fchip" data-pmin="7000" data-pmax="15000">7–15 тыс</button>
+              <button class="fchip" data-pmin="15000" data-pmax="25000">15–25 тыс</button>
+              <button class="fchip" data-pmin="25000" data-pmax="9999999">от 25 000</button>
+            </div>
+          </div>
+          <div class="fsheet-foot">
+            <button class="fbtn ghost" data-freset>Сбросить</button>
+            <button class="fbtn solid" data-fapply>Показать</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1908,18 +1972,90 @@ body{
       const drawer = document.getElementById('drawer');
   var CAT_TITLES={all:'Каталог',dresses:'Платья и абайи',tops:'Блузы и костюмы',scarves:'Платки и тюрбаны',jewelry:'Украшения',knit:'Трикотаж',lifestyle:'Аксессуары',beauty:'Косметика',home:'Товары для дома'};
   function plural(n,f,s,m){var n10=n%10,n100=n%100;if(n10===1&&n100!==11)return f;if(n10>=2&&n10<=4&&(n100<10||n100>=20))return s;return m;}
-  function applyCatFilter(key){
-    key=key||'all';var shown=0;
-    document.querySelectorAll('#catalog .grid .card').forEach(function(c){
-      var hit=(key==='all')||c.dataset.cat===key;
-      c.classList.toggle('hide-cat',!hit);c.style.display='';if(hit)shown++;
+  var FILT={cat:'all',min:null,max:null,sort:'new'};
+  var SORT_LB={new:'новые',asc:'дешевле',desc:'дороже'};
+  function cardPrice(c){var p=c.querySelector('.price');return p?(parseInt(p.textContent.replace(/[^0-9]/g,''),10)||0):0;}
+  function applyFilters(){
+    var grid=document.querySelector('#catalog .grid');if(!grid)return;
+    var cards=Array.prototype.slice.call(grid.querySelectorAll('.card'));
+    var shown=0;
+    cards.forEach(function(c){
+      var okCat=(FILT.cat==='all')||c.dataset.cat===FILT.cat;
+      var pr=cardPrice(c);
+      var okMin=(FILT.min==null)||pr>=FILT.min;
+      var okMax=(FILT.max==null)||pr<=FILT.max;
+      var hit=okCat&&okMin&&okMax;
+      c.classList.toggle('hide-cat',!hit);c.style.display=hit?'':'none';if(hit)shown++;
     });
-    var t=document.querySelector('#catalog .ci-title');if(t)t.textContent=CAT_TITLES[key]||'Каталог';
-    document.querySelectorAll('#catalog .filters .chip').forEach(function(ch){ch.classList.toggle('on',(ch.dataset.cat||'all')===key);});
+    if(FILT.sort!=='new'){
+      var vis=cards.filter(function(c){return c.style.display!=='none';});
+      vis.sort(function(a,b){return FILT.sort==='asc'?cardPrice(a)-cardPrice(b):cardPrice(b)-cardPrice(a);});
+      vis.forEach(function(c){grid.appendChild(c);});
+    }
+    var t=document.querySelector('#catalog .ci-title');if(t)t.textContent=CAT_TITLES[FILT.cat]||'Каталог';
+    document.querySelectorAll('#catalog .filters .chip[data-cat]').forEach(function(ch){ch.classList.toggle('on',(ch.dataset.cat||'all')===FILT.cat);});
     var res=document.querySelector('#catalog .result');
-    if(res){res.textContent=(key==='all')?'128 моделей · сортировка: новые':(shown+' '+plural(shown,'модель','модели','моделей'));}
-    var cs=document.getElementById('catSearch');if(cs)cs.value='';
+    var noFilt=(FILT.cat==='all'&&FILT.min==null&&FILT.max==null&&FILT.sort==='new');
+    if(res){res.textContent=noFilt?'128 моделей · сортировка: новые':(shown+' '+plural(shown,'модель','модели','моделей')+' · сортировка: '+SORT_LB[FILT.sort]);}
+    var fc=document.querySelector('#catalog .chip.icon');
+    if(fc)fc.classList.toggle('has-filt',!(FILT.min==null&&FILT.max==null&&FILT.sort==='new'));
   }
+  function applyCatFilter(key){
+    FILT.cat=key||'all';
+    var cs=document.getElementById('catSearch');if(cs)cs.value='';
+    applyFilters();
+  }
+  /* ---- filter bottom-sheet ---- */
+  (function(){
+    var sheet=document.getElementById('fsheet');if(!sheet)return;
+    function openSheet(){
+      var mn=document.getElementById('fmin'),mx=document.getElementById('fmax');
+      if(mn)mn.value=FILT.min==null?'':FILT.min;
+      if(mx)mx.value=FILT.max==null?'':FILT.max;
+      sheet.querySelectorAll('[data-sortgroup] .fopt').forEach(function(b){b.classList.toggle('on',b.dataset.sort===FILT.sort);});
+      syncPriceChips();
+      sheet.classList.add('open');
+    }
+    function closeSheet(){sheet.classList.remove('open');}
+    function syncPriceChips(){
+      sheet.querySelectorAll('[data-pricegroup] .fchip').forEach(function(ch){
+        var on=(FILT.min!=null&&parseInt(ch.dataset.pmin,10)===FILT.min&&FILT.max!=null&&parseInt(ch.dataset.pmax,10)===FILT.max);
+        ch.classList.toggle('on',on);
+      });
+    }
+    document.addEventListener('click',function(e){
+      if(e.target.closest('[data-fopen]')){openSheet();return;}
+      if(e.target.closest('[data-fclose]')){closeSheet();return;}
+      var so=e.target.closest('[data-sortgroup] .fopt');
+      if(so){so.parentElement.querySelectorAll('.fopt').forEach(function(b){b.classList.remove('on');});so.classList.add('on');FILT.sort=so.dataset.sort;return;}
+      var pc=e.target.closest('[data-pricegroup] .fchip');
+      if(pc){
+        var mn=document.getElementById('fmin'),mx=document.getElementById('fmax');
+        if(pc.classList.contains('on')){pc.classList.remove('on');if(mn)mn.value='';if(mx)mx.value='';}
+        else{sheet.querySelectorAll('[data-pricegroup] .fchip').forEach(function(b){b.classList.remove('on');});pc.classList.add('on');if(mn)mn.value=pc.dataset.pmin;if(mx)mx.value=pc.dataset.pmax;}
+        return;
+      }
+      if(e.target.closest('[data-fapply]')){
+        var mn=document.getElementById('fmin'),mx=document.getElementById('fmax');
+        var vmin=mn&&mn.value!==''?parseInt(mn.value,10):null;
+        var vmax=mx&&mx.value!==''?parseInt(mx.value,10):null;
+        FILT.min=(vmin!=null&&!isNaN(vmin))?vmin:null;
+        FILT.max=(vmax!=null&&!isNaN(vmax))?vmax:null;
+        applyFilters();closeSheet();return;
+      }
+      if(e.target.closest('[data-freset]')){
+        FILT.min=null;FILT.max=null;FILT.sort='new';
+        var mn=document.getElementById('fmin'),mx=document.getElementById('fmax');if(mn)mn.value='';if(mx)mx.value='';
+        sheet.querySelectorAll('[data-sortgroup] .fopt').forEach(function(b){b.classList.toggle('on',b.dataset.sort==='new');});
+        sheet.querySelectorAll('[data-pricegroup] .fchip').forEach(function(b){b.classList.remove('on');});
+        applyFilters();return;
+      }
+    });
+    var mn=document.getElementById('fmin'),mx=document.getElementById('fmax');
+    function clearChipSel(){sheet.querySelectorAll('[data-pricegroup] .fchip').forEach(function(b){b.classList.remove('on');});}
+    if(mn)mn.addEventListener('input',clearChipSel);
+    if(mx)mx.addEventListener('input',clearChipSel);
+  })();
   document.addEventListener('click',e=>{
     if(e.target.closest('[data-menu]')){ drawer.classList.add('open'); return; }
     if(e.target.closest('[data-menu-close]')){ drawer.classList.remove('open'); return; }
