@@ -535,38 +535,44 @@ body{
 .lookb .lb-cta:hover{background:var(--ink);color:var(--cream)}
 
 /* ===== profile / личный кабинет ===== */
-.prof{padding:26px 22px 70px;background:var(--cream);min-height:100%}
-.ac-head{padding:2px 0 20px;border-bottom:1px solid var(--line);margin-bottom:22px}
-.ac-ey{font-family:var(--label);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe);margin-bottom:11px}
-.ac-name{font-family:var(--sans);font-weight:600;font-size:32px;line-height:1;letter-spacing:0;margin:0 0 12px;color:var(--ink)}
-.ac-sub{font-size:12px;color:var(--taupe);letter-spacing:.02em}
-.ac-order{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--wine);border-radius:3px;padding:16px 16px 15px;margin-bottom:30px;transition:.2s}
-.ac-order:hover{background:rgba(90,0,0,.035)}
-.ac-order-r{display:flex;justify-content:space-between;align-items:baseline}
-.ac-order-k{font-family:var(--label);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--taupe)}
-.ac-order-st{font-family:var(--label);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine)}
-.ac-order-no{font-family:var(--sans);font-size:18px;font-weight:600;letter-spacing:.01em;margin:7px 0 12px}
-.ac-order-bar{height:2px;background:var(--line);overflow:hidden;margin-bottom:11px}
-.ac-order-bar i{display:block;height:100%;background:var(--wine)}
-.ac-order-d{display:flex;align-items:center;font-size:11px;letter-spacing:.02em;color:var(--taupe)}
-.ac-order-d em{margin-left:auto;font-style:normal;font-size:17px;line-height:1;color:var(--wine)}
-.ac-nav{border-top:1px solid var(--line);margin-bottom:26px}
-.ac-item{display:flex;align-items:center;padding:19px 2px;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);transition:.18s}
-.ac-no{font-family:var(--label);font-size:10px;letter-spacing:.08em;color:var(--taupe);width:26px;flex:0 0 auto}
-.ac-lb{font-family:var(--sans);font-size:16px;font-weight:500;letter-spacing:.01em;flex:1;transition:.18s}
-.ac-meta{font-family:var(--label);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--taupe);margin-right:12px}
-.ac-meta b{font-weight:600;color:var(--wine)}
-.ac-item em{font-style:normal;color:rgba(28,26,23,.3);font-size:18px;line-height:1;transition:.18s}
-.ac-item:hover .ac-lb{color:var(--wine)}
-.ac-item:hover em{color:var(--wine);transform:translateX(3px)}
-.ac-care{padding:2px 0 6px;margin-bottom:24px}
-.ac-care-t{font-family:var(--sans);font-size:14px;line-height:1.5;color:var(--ink);margin-bottom:16px;max-width:30ch}
-.ac-care-b{display:flex;gap:10px}
-.ac-care-btn{flex:1;border:1px solid var(--wine);color:var(--wine);border-radius:40px;padding:12px;text-align:center;font-family:var(--label);font-size:10px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:.22s}
-.ac-care-btn:hover{background:var(--wine);color:var(--cream)}
-.ac-out{background:none;border:none;color:var(--taupe);font-family:var(--label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:6px 0;border-bottom:1px solid var(--line);transition:.2s}
-.ac-out:hover{color:var(--wine);border-color:var(--wine)}
-.ac-foot{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(28,26,23,.28);margin-top:26px}
+.prof{padding:0 0 72px;background:var(--cream);min-height:100%}
+.mb-hero{position:relative;overflow:hidden;background:linear-gradient(158deg,#6b0d0d 0%,var(--wine) 42%,var(--wine-deep) 100%);color:var(--cream);padding:36px 22px 40px}
+.mb-mono{position:absolute;right:-34px;top:-26px;width:172px;opacity:.12;color:#fff;pointer-events:none}
+.mb-mono svg{width:100%;height:auto;display:block}
+.mb-hero-in{position:relative;z-index:2}
+.mb-ey{font-family:var(--label);font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:rgba(239,234,224,.72);margin-bottom:13px}
+.mb-name{font-family:var(--sans);font-weight:600;font-size:32px;line-height:1;letter-spacing:0;margin:0 0 13px}
+.mb-since{font-family:var(--label);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(239,234,224,.6)}
+.mb-wrap{padding:0 20px}
+.mb-order{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:5px;padding:16px 16px 15px;margin:-22px 0 22px;position:relative;z-index:3;box-shadow:0 18px 38px rgba(58,2,2,.18)}
+.mb-order-r{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.mb-order-k{font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.01em;color:var(--ink)}
+.mb-order-st{font-family:var(--label);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--wine)}
+.mb-order-bar{height:3px;border-radius:3px;background:var(--line);overflow:hidden;margin-bottom:11px}
+.mb-order-bar i{display:block;height:100%;background:var(--wine);border-radius:3px}
+.mb-order-d{display:flex;align-items:center;font-size:11px;letter-spacing:.02em;color:var(--taupe)}
+.mb-order-d em{margin-left:auto;font-style:normal;font-size:16px;line-height:1;color:var(--wine)}
+.mb-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px}
+.mb-tile{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:104px;background:#fff;border:1px solid var(--line);border-radius:5px;padding:14px 14px 15px;text-decoration:none;color:var(--ink);transition:.2s}
+.mb-tile:hover{border-color:var(--wine);transform:translateY(-2px);box-shadow:0 12px 26px rgba(58,2,2,.10)}
+.mb-tile-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:26px}
+.mb-tile-meta{font-family:var(--label);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe)}
+.mb-tile-meta b{font-weight:600;color:var(--wine)}
+.mb-tile-arw{font-size:15px;line-height:1;color:var(--wine)}
+.mb-tile-lb{font-family:var(--sans);font-size:16px;font-weight:600;letter-spacing:.01em;color:var(--ink)}
+.mb-wide{display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:5px;padding:16px;text-decoration:none;color:var(--ink);margin-bottom:24px;transition:.2s}
+.mb-wide:hover{border-color:var(--wine)}
+.mb-wide .lb{font-family:var(--sans);font-size:15px;font-weight:500;letter-spacing:.01em;flex:1}
+.mb-wide .mt{font-family:var(--label);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--taupe);margin-right:12px}
+.mb-wide em{font-style:normal;color:var(--wine);font-size:16px;line-height:1}
+.mb-care{background:rgba(90,13,13,.05);border:1px solid rgba(90,13,13,.13);border-radius:5px;padding:20px;text-align:center;margin-bottom:24px}
+.mb-care-t{font-family:var(--sans);font-size:13px;line-height:1.55;color:var(--ink);margin-bottom:15px}
+.mb-care-b{display:flex;gap:10px}
+.mb-care-btn{flex:1;background:var(--wine);color:var(--cream);border-radius:40px;padding:12px;text-align:center;font-family:var(--label);font-size:10px;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:.2s}
+.mb-care-btn:hover{background:var(--wine-deep)}
+.mb-out{display:block;margin:0 auto;background:none;border:none;color:var(--taupe);font-family:var(--label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;padding:6px 0;border-bottom:1px solid var(--line);transition:.2s}
+.mb-out:hover{color:var(--wine);border-color:var(--wine)}
+.mb-foot{text-align:center;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(28,26,23,.28);margin-top:22px}
 
 /* ===== richer brand cards ===== */
 .sec-sub{font-size:12px;line-height:1.6;color:var(--taupe);max-width:300px;margin:-8px 0 16px}
@@ -1318,40 +1324,42 @@ body{
       </div>
 
       <div class="prof">
-        <div class="ac-head reveal">
-          <div class="ac-ey">Добрый день</div>
-          <h1 class="ac-name">Амина</h1>
-          <div class="ac-sub">amina@mail.ru · +7&nbsp;900&nbsp;000-00-00</div>
-        </div>
-
-        <a class="ac-order reveal">
-          <div class="ac-order-r">
-            <span class="ac-order-k">Текущий заказ</span>
-            <span class="ac-order-st">Собирается</span>
+        <header class="mb-hero reveal">
+          <span class="mb-mono"><svg><use href="#mono"/></svg></span>
+          <div class="mb-hero-in">
+            <div class="mb-ey">Личный кабинет</div>
+            <h1 class="mb-name">Амина</h1>
+            <div class="mb-since">Клиент MAEL с 2024 года</div>
           </div>
-          <div class="ac-order-no">№&nbsp;10482</div>
-          <div class="ac-order-bar"><i style="width:38%"></i></div>
-          <div class="ac-order-d">3 позиции · ожидается 14&nbsp;августа<em>›</em></div>
-        </a>
+        </header>
 
-        <nav class="ac-nav reveal">
-          <a class="ac-item"><span class="ac-no">01</span><span class="ac-lb">Заказы</span><span class="ac-meta">3 активных</span><em>›</em></a>
-          <a class="ac-item" data-go="favorites"><span class="ac-no">02</span><span class="ac-lb">Избранное</span><span class="ac-meta"><b data-favcount>0</b> вещей</span><em>›</em></a>
-          <a class="ac-item"><span class="ac-no">03</span><span class="ac-lb">Адреса доставки</span><span class="ac-meta">2 сохранено</span><em>›</em></a>
-          <a class="ac-item"><span class="ac-no">04</span><span class="ac-lb">Данные профиля</span><span class="ac-meta">Вход и контакты</span><em>›</em></a>
-          <a class="ac-item"><span class="ac-no">05</span><span class="ac-lb">Возврат и обмен</span><span class="ac-meta">14 дней</span><em>›</em></a>
-        </nav>
+        <div class="mb-wrap">
+          <a class="mb-order reveal">
+            <div class="mb-order-r"><span class="mb-order-k">Текущий заказ · №&nbsp;10482</span><span class="mb-order-st">Собирается</span></div>
+            <div class="mb-order-bar"><i style="width:38%"></i></div>
+            <div class="mb-order-d">3 позиции · ожидается 14&nbsp;августа<em>›</em></div>
+          </a>
 
-        <div class="ac-care reveal">
-          <div class="ac-care-t">Нужна помощь с размером или консультация стилиста? Напишите нам — ежедневно 11–22.</div>
-          <div class="ac-care-b">
-            <a class="ac-care-btn" href="https://wa.me/79250000090" target="_blank" rel="noopener">WhatsApp</a>
-            <a class="ac-care-btn" href="https://t.me/maelvibeboutique" target="_blank" rel="noopener">Telegram</a>
+          <div class="mb-grid reveal">
+            <a class="mb-tile"><div class="mb-tile-top"><span class="mb-tile-meta">3 активных</span><span class="mb-tile-arw">&#8599;</span></div><div class="mb-tile-lb">Заказы</div></a>
+            <a class="mb-tile" data-go="favorites"><div class="mb-tile-top"><span class="mb-tile-meta"><b data-favcount>0</b> вещей</span><span class="mb-tile-arw">&#8599;</span></div><div class="mb-tile-lb">Избранное</div></a>
+            <a class="mb-tile"><div class="mb-tile-top"><span class="mb-tile-meta">2 сохранено</span><span class="mb-tile-arw">&#8599;</span></div><div class="mb-tile-lb">Адреса</div></a>
+            <a class="mb-tile"><div class="mb-tile-top"><span class="mb-tile-meta">Вход и данные</span><span class="mb-tile-arw">&#8599;</span></div><div class="mb-tile-lb">Профиль</div></a>
           </div>
-        </div>
 
-        <button class="ac-out reveal">Выйти из аккаунта</button>
-        <div class="ac-foot reveal">MAEL vibe boutique · Москва</div>
+          <a class="mb-wide reveal"><span class="lb">Возврат и обмен</span><span class="mt">14 дней</span><em>&#8250;</em></a>
+
+          <div class="mb-care reveal">
+            <div class="mb-care-t">Нужна помощь с размером или консультация стилиста? Напишите нам — ежедневно&nbsp;11–22.</div>
+            <div class="mb-care-b">
+              <a class="mb-care-btn" href="https://wa.me/79250000090" target="_blank" rel="noopener">WhatsApp</a>
+              <a class="mb-care-btn" href="https://t.me/maelvibeboutique" target="_blank" rel="noopener">Telegram</a>
+            </div>
+          </div>
+
+          <button class="mb-out reveal">Выйти из аккаунта</button>
+          <div class="mb-foot reveal">MAEL vibe boutique · Москва</div>
+        </div>
       </div>
     </section>
 
@@ -1813,22 +1821,36 @@ body{
 
 <script>
   const screens = ['home','catalog','product','profile','about','favorites','cart','novinki','brands','sale','gallery','events','privacy','offer','requisites'];
-  var navStack = [];
   var currentScreen = (document.querySelector('.screen.is-active')||{}).id || 'home';
-  function goTo(id, isBack){
-    if(!isBack && currentScreen && currentScreen!==id){ navStack.push(currentScreen); }
-    currentScreen = id;
+  try{ history.replaceState({screen:currentScreen, root:true}, ''); }catch(e){}
+  function showScreen(id){
+    if(!document.getElementById(id)) return;
     document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('is-active', s.id===id));
     document.querySelectorAll('.demo button').forEach(b=>b.classList.toggle('on', b.dataset.go===id));
-    const vp = document.querySelector('#'+id);
+    var vp = document.getElementById(id);
     if(vp){ vp.scrollTop = 0; var _tb=vp.querySelector('.topbar'); if(_tb) _tb.classList.remove('tuck','scrolled','beyond'); var _lb=document.getElementById('liteBar'); if(_lb)_lb.classList.remove('show'); }
     if(id==='favorites') renderFav();
     if(id==='cart') renderCart();
+    currentScreen = id;
+  }
+  function goTo(id){
+    if(!id || id===currentScreen) return;
+    try{ history.pushState({screen:id}, ''); }catch(e){}
+    showScreen(id);
   }
   function goBack(fallback){
-    var prev = navStack.pop();
-    goTo(prev || fallback || 'home', true);
+    var st = history.state;
+    if(st && st.root){
+      var t = (fallback && fallback!==currentScreen) ? fallback : 'home';
+      if(t!==currentScreen){ try{ history.pushState({screen:t}, ''); }catch(e){} showScreen(t); }
+      return;
+    }
+    history.back();
   }
+  window.addEventListener('popstate', function(e){
+    var id = (e.state && e.state.screen) || 'home';
+    showScreen(id);
+  });
   (function(){
     function bind(){
       document.querySelectorAll('.screen').forEach(function(sc){
