@@ -7,6 +7,119 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<!-- ==== MAEL · подключение витрины (Supabase) ==== -->
+<script>
+/* Прод: витрина Supabase за HTTPS на боевом домене api.mael.boutique.
+   Локальный тест (если нужен) — SSH-туннель на http://localhost:8000.
+   AUTH_ENABLED=false -> сайт работает как раньше (муляж кабинета). */
+window.MAEL_CFG = {
+  SUPABASE_URL:  'https://api.mael.boutique',
+  SUPABASE_ANON: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlzcyI6InN1cGFiYXNlIiwiaWF0IjoxNzg2NTY5OTM2LCJleHAiOjIxMDE5Mjk5MzZ9.WZEMLVLVyc8yHeB8XAok6_HUm3rziAfpNsfPnP_RdpY',
+  AUTH_ENABLED:  true
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+/* ===== auth · вход / регистрация ===== */
+.au-wrap{max-width:440px;margin:0 auto;padding:7vh 24px 48px;min-height:100%;box-sizing:border-box}
+.au-ey{font-family:var(--label);text-transform:uppercase;letter-spacing:.28em;font-size:12px;color:var(--taupe);margin-bottom:10px}
+.au-h{font-family:var(--head);font-weight:600;font-size:30px;line-height:1.12;color:var(--ink);margin:0 0 8px}
+.au-sub{color:var(--taupe);font-size:14px;line-height:1.55;margin:0 0 26px}
+.au-field{margin-bottom:16px}
+.au-label{display:block;font-size:11px;letter-spacing:.14em;color:var(--taupe);margin:0 0 7px;text-transform:uppercase;font-family:var(--label)}
+.au-input{width:100%;box-sizing:border-box;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:15px 16px;font-family:var(--serif);font-size:16px;color:var(--ink);outline:none;transition:border-color .2s,box-shadow .2s}
+.au-input:focus{border-color:var(--wine);box-shadow:0 0 0 3px rgba(90,0,0,.08)}
+.au-btn{width:100%;border:none;border-radius:14px;background:var(--wine);color:#fff;font-family:var(--label);letter-spacing:.14em;text-transform:uppercase;font-size:13px;padding:16px;cursor:pointer;transition:background .2s,opacity .2s;margin-top:6px}
+.au-btn:hover{background:var(--wine-deep)}
+.au-btn[disabled]{opacity:.55;cursor:default}
+.au-alt{text-align:center;margin-top:22px;font-size:14px;color:var(--taupe)}
+.au-link{color:var(--wine);cursor:pointer;text-decoration:none;font-weight:600}
+.au-err{background:rgba(90,0,0,.06);border:1px solid rgba(90,0,0,.2);color:var(--wine);font-size:13px;line-height:1.45;padding:11px 13px;border-radius:12px;margin-bottom:16px;display:none}
+.au-err.show{display:block}
+.au-ok{background:rgba(129,120,99,.12);border:1px solid rgba(129,120,99,.35);color:var(--ink);font-size:13px;padding:11px 13px;border-radius:12px;margin-bottom:16px;display:none}
+.au-ok.show{display:block}
+.au-hint{font-size:12px;color:var(--taupe-soft);margin-top:6px;line-height:1.4}
+.au-code{letter-spacing:.5em;text-align:center;font-size:22px;font-weight:600}
+.au-btn-ghost{background:transparent;color:var(--taupe);border:1px solid var(--line);margin-top:10px}
+.au-btn-ghost:hover{background:rgba(0,0,0,.03)}
+.pd-sep{height:1px;background:var(--line);margin:34px 0 30px}
+/* ---- общий контейнер экранов кабинета ---- */
+.cab-wrap{max-width:640px;margin:0 auto;padding:24px 20px 60px;box-sizing:border-box}
+.cab-empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:56px 30px;background:var(--cream);border-radius:16px;min-height:44vh;justify-content:center}
+.cab-empty .fe-ic{width:42px;height:42px;color:var(--wine);opacity:.5;margin-bottom:14px}
+.cab-empty .fe-t{font-family:var(--sans);font-weight:600;font-size:20px;margin-bottom:8px}
+.cab-empty .fe-p{font-size:13px;line-height:1.6;color:var(--taupe);max-width:280px;margin-bottom:22px}
+.cab-empty .cta{background:var(--wine);color:var(--cream);border:none;border-radius:40px;padding:14px 26px;font-family:var(--sans);font-size:10px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer}
+/* ---- карточка заказа в списке ---- */
+.ord-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px;box-shadow:0 10px 26px rgba(58,2,2,.06)}
+.ord-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.ord-no{font-family:var(--sans);font-weight:600;font-size:15px}
+.ord-st{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--wine)}
+.ord-bar{height:3px;border-radius:3px;background:var(--line);overflow:hidden;margin-bottom:9px}
+.ord-bar i{display:block;height:100%;background:var(--wine);border-radius:3px}
+.ord-meta{font-size:12.5px;color:var(--taupe)}
+/* ---- заглушка «текущий заказ» в кабинете ---- */
+.mb-order-slot{margin:-22px 0 22px;position:relative;z-index:3}
+.mb-order-slot .mb-order{margin:0}
+.mb-order-empty{background:#fff;border:1px solid var(--line);border-radius:5px;padding:18px 16px;box-shadow:0 18px 38px rgba(58,2,2,.10);text-align:center}
+.mb-order-empty .t{font-family:var(--sans);font-weight:600;font-size:15px;margin-bottom:4px}
+.mb-order-empty .p{font-size:12.5px;color:var(--taupe)}
+/* ---- адреса ---- */
+.addr-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-bottom:14px;position:relative}
+.addr-card.is-default{border-color:var(--wine)}
+.addr-badge{position:absolute;top:14px;right:16px;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--wine);background:rgba(90,0,0,.07);padding:4px 9px;border-radius:20px}
+.addr-name{font-family:var(--sans);font-weight:600;font-size:15px;margin-bottom:4px}
+.addr-lines{font-size:13px;line-height:1.55;color:var(--taupe);margin-bottom:12px}
+.addr-acts{display:flex;gap:16px}
+.addr-acts a{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--wine);cursor:pointer;font-family:var(--label)}
+.addr-acts a.mut{color:var(--taupe)}
+.addr-add{width:100%;border:1px dashed var(--taupe);background:transparent;border-radius:14px;padding:15px;font-family:var(--label);letter-spacing:.12em;text-transform:uppercase;font-size:12px;color:var(--wine);cursor:pointer;margin-top:6px}
+.addr-add:hover{background:rgba(90,0,0,.03)}
+.addr-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.addr-def{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink);margin:6px 0 14px;cursor:pointer}
+.addr-def input{width:17px;height:17px;accent-color:var(--wine)}
+.addr-sheet{position:fixed;inset:0;z-index:120;display:none}
+.addr-sheet.open{display:block}
+.addr-sheet-scrim{position:absolute;inset:0;background:rgba(28,26,23,.42);backdrop-filter:blur(2px)}
+.addr-sheet-panel{position:absolute;left:0;right:0;bottom:0;max-height:90vh;overflow:auto;background:var(--cream);border-radius:20px 20px 0 0;padding:10px 22px 34px;max-width:640px;margin:0 auto}
+.addr-sheet-h{font-family:var(--sans);font-weight:600;font-size:20px;text-align:center;margin:4px 0 20px}
+/* ---- checkout ---- */
+.co-wrap{padding:18px 22px 130px;max-width:640px;margin:0 auto}
+.co-sec{margin-bottom:26px}
+.co-h{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe);margin-bottom:12px}
+.co-addr-list{display:flex;flex-direction:column;gap:10px}
+.co-addr-add{width:100%;margin-top:10px}
+.co-ship{display:flex;flex-direction:column;gap:10px}
+.co-opt{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;cursor:pointer;background:var(--white);transition:border-color .2s,background .2s}
+.co-opt:has(input:checked){border-color:var(--wine);background:rgba(90,0,0,.03)}
+.co-opt input{margin-top:3px;accent-color:var(--wine);width:16px;height:16px;flex:0 0 auto}
+.co-opt-b{display:flex;flex-direction:column;gap:3px}
+.co-opt-t{font-family:var(--sans);font-weight:600;font-size:14px;color:var(--ink)}
+.co-opt-s{font-size:12px;color:var(--taupe)}
+.co-pay{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:var(--white)}
+.co-pay-line{font-family:var(--sans);font-weight:600;font-size:14px;color:var(--ink)}
+.co-pay-note{font-size:12px;line-height:1.55;color:var(--taupe);margin:8px 0 0}
+.co-items{display:flex;flex-direction:column;gap:12px}
+.co-it{display:flex;justify-content:space-between;gap:12px;font-size:13px}
+.co-it .co-it-l{color:var(--ink)}
+.co-it .co-it-l small{display:block;color:var(--taupe);font-size:11px;margin-top:2px}
+.co-it .co-it-r{white-space:nowrap;color:var(--ink)}
+/* ---- order detail ---- */
+.od-head{margin-bottom:18px}
+.od-no{font-family:var(--sans);font-weight:600;font-size:20px;margin-bottom:6px}
+.od-st{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--wine);background:rgba(90,0,0,.08);padding:5px 12px;border-radius:30px}
+.od-bar{height:4px;border-radius:4px;background:var(--cream-2);margin:14px 0 6px;overflow:hidden}
+.od-bar i{display:block;height:100%;background:var(--wine)}
+.od-eta{font-size:12px;color:var(--taupe)}
+.od-block{border-top:1px solid var(--line);padding:16px 0}
+.od-block-h{font-family:var(--sans);font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);margin-bottom:10px}
+.od-it{display:flex;justify-content:space-between;gap:12px;font-size:13px;margin-bottom:10px}
+.od-it small{display:block;color:var(--taupe);font-size:11px;margin-top:2px}
+.od-sum{display:flex;justify-content:space-between;font-family:var(--sans);font-weight:600;font-size:15px;padding-top:6px}
+.od-addr{font-size:13px;line-height:1.55;color:var(--ink)}
+.od-acts{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.rt-seg{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+</style>
 <style>
 :root{
   --wine:#5A0000;
@@ -1414,17 +1527,13 @@ body{
         </header>
 
         <div class="mb-wrap">
-          <a class="mb-order reveal">
-            <div class="mb-order-r"><span class="mb-order-k">Текущий заказ · №&nbsp;10482</span><span class="mb-order-st">Собирается</span></div>
-            <div class="mb-order-bar"><i style="width:38%"></i></div>
-            <div class="mb-order-d">3 позиции · ожидается 14&nbsp;августа<em>›</em></div>
-          </a>
+          <div class="mb-order-slot reveal" id="mbOrderSlot"></div>
 
           <div class="mb-list reveal">
-            <a class="mb-row"><span class="mb-ic"><svg><use href="#bag"/></svg></span><span class="mb-rl">Мои заказы</span><span class="mb-ra">&#8250;</span></a>
+            <a class="mb-row" data-go="orders"><span class="mb-ic"><svg><use href="#bag"/></svg></span><span class="mb-rl">Мои заказы</span><span class="mb-rb" data-orderscount style="display:none">0</span><span class="mb-ra">&#8250;</span></a>
             <a class="mb-row" data-go="favorites"><span class="mb-ic"><svg><use href="#heart"/></svg></span><span class="mb-rl">Избранное</span><span class="mb-rb" data-favcount>0</span><span class="mb-ra">&#8250;</span></a>
-            <a class="mb-row"><span class="mb-ic"><svg><use href="#home"/></svg></span><span class="mb-rl">Адреса доставки</span><span class="mb-ra">&#8250;</span></a>
-            <a class="mb-row"><span class="mb-ic"><svg><use href="#user"/></svg></span><span class="mb-rl">Данные профиля</span><span class="mb-ra">&#8250;</span></a>
+            <a class="mb-row" data-go="addresses"><span class="mb-ic"><svg><use href="#home"/></svg></span><span class="mb-rl">Адреса доставки</span><span class="mb-ra">&#8250;</span></a>
+            <a class="mb-row" data-go="pdata"><span class="mb-ic"><svg><use href="#user"/></svg></span><span class="mb-rl">Данные профиля</span><span class="mb-ra">&#8250;</span></a>
             <a class="mb-row"><span class="mb-ic"><svg><use href="#share"/></svg></span><span class="mb-rl">Возврат и обмен</span><span class="mb-ra">&#8250;</span></a>
           </div>
 
@@ -1436,9 +1545,100 @@ body{
             </div>
           </div>
 
-          <button class="mb-out reveal">Выйти из аккаунта</button>
+          <button class="mb-out reveal" id="mbOut">Выйти из аккаунта</button>
           <div class="mb-foot reveal">MAEL vibe boutique · Москва</div>
         </div>
+      </div>
+    </section>
+
+    <!-- ===================== LOGIN / ВХОД ===================== -->
+    <section class="screen" id="login">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-back="home"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">вход</div>
+        </div>
+      </div>
+      <div class="au-wrap">
+        <div class="au-ey">MAEL vibe boutique</div>
+        <h1 class="au-h">Вход в кабинет</h1>
+        <p class="au-sub">Войдите по email или номеру телефона и паролю.</p>
+        <div class="au-err" id="loginErr"></div>
+        <form id="loginForm" novalidate>
+          <div class="au-field">
+            <label class="au-label">Email или телефон</label>
+            <input class="au-input" id="loginId" type="text" autocomplete="username" placeholder="you@mail.ru или +7 999 000-00-00">
+          </div>
+          <div class="au-field">
+            <label class="au-label">Пароль</label>
+            <input class="au-input" id="loginPass" type="password" autocomplete="current-password" placeholder="Ваш пароль">
+          </div>
+          <button class="au-btn" type="submit" id="loginBtn">Войти</button>
+        </form>
+        <div class="au-alt">Нет аккаунта? <a class="au-link" data-go="register">Зарегистрироваться</a></div>
+      </div>
+    </section>
+
+    <!-- ===================== REGISTER / РЕГИСТРАЦИЯ ===================== -->
+    <section class="screen" id="register">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-back="login"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">регистрация</div>
+        </div>
+      </div>
+      <div class="au-wrap">
+        <div class="au-ey">Создать аккаунт</div>
+        <h1 class="au-h">Регистрация</h1>
+        <p class="au-sub">Чтобы оформлять заказы, следить за доставкой и хранить избранное.</p>
+        <div class="au-err" id="regErr"></div>
+        <form id="regForm" novalidate>
+          <div class="au-field">
+            <label class="au-label">Имя</label>
+            <input class="au-input" id="regName" type="text" autocomplete="name" placeholder="Как к вам обращаться">
+          </div>
+          <div class="au-field">
+            <label class="au-label">Email</label>
+            <input class="au-input" id="regEmail" type="email" autocomplete="email" placeholder="you@mail.ru">
+          </div>
+          <div class="au-field">
+            <label class="au-label">Телефон</label>
+            <input class="au-input" id="regPhone" type="tel" autocomplete="tel" placeholder="+7 999 000-00-00">
+            <div class="au-hint">Нужен для связи по заказу и доставки.</div>
+          </div>
+          <div class="au-field">
+            <label class="au-label">Пароль</label>
+            <input class="au-input" id="regPass" type="password" autocomplete="new-password" placeholder="Придумайте пароль">
+            <div class="au-hint">Минимум 6 символов.</div>
+          </div>
+          <button class="au-btn" type="submit" id="regBtn">Зарегистрироваться</button>
+        </form>
+        <div class="au-alt">Уже с нами? <a class="au-link" data-go="login">Войти</a></div>
+        <p class="au-hint" style="margin-top:18px">Регистрируясь, вы соглашаетесь с <a class="au-link" data-go="offer">офертой</a> и <a class="au-link" data-go="privacy">политикой конфиденциальности</a>.</p>
+      </div>
+    </section>
+
+    <!-- ===================== VERIFY / ПОДТВЕРЖДЕНИЕ ПОЧТЫ ===================== -->
+    <section class="screen" id="verify">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-back="register"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">подтверждение</div>
+        </div>
+      </div>
+      <div class="au-wrap">
+        <div class="au-ey">Почти готово</div>
+        <h1 class="au-h">Проверьте почту</h1>
+        <p class="au-sub">Мы отправили код на <b id="verifyEmail">—</b>. Введите его ниже.</p>
+        <div class="au-err" id="verifyErr"></div>
+        <div class="au-ok" id="verifyOk"></div>
+        <form id="verifyForm" novalidate>
+          <div class="au-field">
+            <input class="au-input au-code" id="verifyCode" inputmode="numeric" maxlength="6" placeholder="000000">
+          </div>
+          <button class="au-btn" type="submit" id="verifyBtn">Подтвердить</button>
+        </form>
+        <div class="au-alt"><a class="au-link" id="verifyResend">Отправить код снова</a></div>
       </div>
     </section>
 
@@ -1530,6 +1730,157 @@ body{
       </div>
     </section>
 
+    <!-- ===================== ORDERS / МОИ ЗАКАЗЫ ===================== -->
+    <section class="screen" id="orders">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-back="profile"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">мои заказы</div>
+        </div>
+      </div>
+      <div class="cab-wrap">
+        <div id="ordersList"></div>
+        <div class="cab-empty" id="ordersEmpty">
+          <svg class="fe-ic"><use href="#bag"/></svg>
+          <div class="fe-t">Заказов пока нет</div>
+          <div class="fe-p">Здесь появятся ваши заказы и статус доставки.</div>
+          <button class="cta" data-go="catalog">Перейти в каталог →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ДЕТАЛИ ЗАКАЗА ===================== -->
+    <section class="screen" id="orderdetail">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-back="orders"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">заказ</div>
+        </div>
+      </div>
+      <div class="cab-wrap" id="odBody"></div>
+    </section>
+
+    <!-- ===================== ВОЗВРАТ И ОБМЕН ===================== -->
+    <section class="screen" id="returns">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-back="orderdetail"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">возврат и обмен</div>
+        </div>
+      </div>
+      <div class="au-wrap">
+        <div class="au-ey">Заявка</div>
+        <h1 class="au-h">Возврат или обмен</h1>
+        <p class="au-sub" id="rtOrderNo">Заказ</p>
+        <form id="rtForm" novalidate>
+          <label class="au-label">Тип обращения</label>
+          <div class="rt-seg">
+            <label class="co-opt"><input type="radio" name="rtType" value="Возврат" checked><span class="co-opt-b"><span class="co-opt-t">Возврат</span><span class="co-opt-s">вернём деньги за товар</span></span></label>
+            <label class="co-opt"><input type="radio" name="rtType" value="Обмен"><span class="co-opt-b"><span class="co-opt-t">Обмен</span><span class="co-opt-s">на другой размер или модель</span></span></label>
+          </div>
+          <label class="au-label" for="rtReason">Причина</label>
+          <textarea class="au-input" id="rtReason" rows="4" placeholder="Например: не подошёл размер"></textarea>
+          <div class="au-err" id="rtErr"></div>
+          <div class="au-ok" id="rtOk">Заявка отправлена. Менеджер бутика свяжется с вами.</div>
+          <button class="au-btn" type="submit" id="rtBtn">Отправить заявку</button>
+        </form>
+        <p class="au-sub" style="margin-top:14px;font-size:12px;opacity:.7">Возврат возможен в течение 14 дней при сохранении товарного вида. Условия — в <a data-go="offer">публичной оферте</a>.</p>
+      </div>
+    </section>
+
+    <!-- ===================== PDATA / ДАННЫЕ ПРОФИЛЯ ===================== -->
+    <section class="screen" id="pdata">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-back="profile"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">данные профиля</div>
+        </div>
+      </div>
+      <div class="au-wrap">
+        <div class="au-ey">Личные данные</div>
+        <h1 class="au-h">Имя и телефон</h1>
+        <p class="au-sub">Имя показываем в кабинете, телефон нужен для связи по заказу и входа.</p>
+        <div class="au-err" id="pdErr"></div>
+        <div class="au-ok" id="pdOk"></div>
+        <form id="pdForm" novalidate>
+          <div class="au-field">
+            <label class="au-label">Имя</label>
+            <input class="au-input" id="pdName" type="text" autocomplete="name" placeholder="Как к вам обращаться">
+          </div>
+          <div class="au-field">
+            <label class="au-label">Телефон</label>
+            <input class="au-input" id="pdPhone" type="tel" autocomplete="tel" placeholder="+7 999 000-00-00">
+          </div>
+          <div class="au-field">
+            <label class="au-label">Email</label>
+            <input class="au-input" id="pdEmail" type="email" disabled placeholder="—">
+            <div class="au-hint">Email изменить нельзя — это логин аккаунта.</div>
+          </div>
+          <button class="au-btn" type="submit" id="pdBtn">Сохранить</button>
+        </form>
+
+        <div class="pd-sep"></div>
+        <div class="au-ey">Безопасность</div>
+        <h1 class="au-h" style="font-size:22px">Смена пароля</h1>
+        <div class="au-err" id="pwErr"></div>
+        <div class="au-ok" id="pwOk"></div>
+        <form id="pwForm" novalidate>
+          <div class="au-field">
+            <label class="au-label">Новый пароль</label>
+            <input class="au-input" id="pwNew" type="password" autocomplete="new-password" placeholder="Минимум 6 символов">
+          </div>
+          <div class="au-field">
+            <label class="au-label">Повторите пароль</label>
+            <input class="au-input" id="pwNew2" type="password" autocomplete="new-password" placeholder="Ещё раз">
+          </div>
+          <button class="au-btn" type="submit" id="pwBtn">Сменить пароль</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===================== ADDRESSES / АДРЕСА ДОСТАВКИ ===================== -->
+    <section class="screen" id="addresses">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-back="profile"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">адреса доставки</div>
+        </div>
+      </div>
+      <div class="cab-wrap">
+        <div id="addrList"></div>
+        <div class="cab-empty" id="addrEmpty">
+          <svg class="fe-ic"><use href="#home"/></svg>
+          <div class="fe-t">Адресов пока нет</div>
+          <div class="fe-p">Добавьте адрес доставки, чтобы быстрее оформлять заказы.</div>
+        </div>
+        <button class="addr-add" id="addrAddBtn">+ Добавить адрес</button>
+      </div>
+    </section>
+
+    <!-- форма адреса (шторка) — вне экранов, чтобы открывалась и на оформлении -->
+    <div class="addr-sheet" id="addrSheet">
+      <div class="addr-sheet-scrim" data-addrclose></div>
+      <div class="addr-sheet-panel">
+        <div class="szsheet-grab"></div>
+        <div class="addr-sheet-h" id="addrSheetH">Новый адрес</div>
+        <div class="au-err" id="addrErr"></div>
+        <form id="addrForm" novalidate>
+          <input type="hidden" id="addrId">
+          <div class="au-field"><label class="au-label">Получатель</label><input class="au-input" id="addrRecipient" type="text" placeholder="ФИО"></div>
+          <div class="au-field"><label class="au-label">Телефон</label><input class="au-input" id="addrPhone" type="tel" placeholder="+7 999 000-00-00"></div>
+          <div class="au-field"><label class="au-label">Город</label><input class="au-input" id="addrCity" type="text" placeholder="Москва"></div>
+          <div class="au-field"><label class="au-label">Улица, дом</label><input class="au-input" id="addrStreet" type="text" placeholder="ул. Винницкая, 8к3"></div>
+          <div class="addr-row2">
+            <div class="au-field"><label class="au-label">Кв./офис</label><input class="au-input" id="addrApt" type="text" placeholder="12"></div>
+            <div class="au-field"><label class="au-label">Индекс</label><input class="au-input" id="addrZip" type="text" inputmode="numeric" placeholder="119333"></div>
+          </div>
+          <label class="addr-def"><input type="checkbox" id="addrDefault"> Сделать основным адресом</label>
+          <button class="au-btn" type="submit" id="addrSaveBtn">Сохранить</button>
+          <button class="au-btn au-btn-ghost" type="button" data-addrclose>Отмена</button>
+        </form>
+      </div>
+    </div>
+
     <!-- ===================== CART ===================== -->
     <section class="screen" id="cart">
       <div class="topbar">
@@ -1551,6 +1902,48 @@ body{
         <div class="cart-sum"><span class="lb">Итого</span><span class="val" id="cartTotal">0 ₽</span></div>
         <p class="consent">Нажимая «Оформить заказ», вы соглашаетесь с <a data-go="offer">публичной офертой</a> и <a data-go="privacy">политикой конфиденциальности</a>.</p>
         <button class="cart-checkout" data-checkout>Оформить заказ</button>
+      </div>
+    </section>
+
+    <!-- ===================== ОФОРМЛЕНИЕ ЗАКАЗА ===================== -->
+    <section class="screen" id="checkout">
+      <div class="topbar">
+        <div class="tb-left">
+          <svg class="ic" data-back="cart"><use href="#back"/></svg>
+          <div class="brandword" style="font-family:var(--sans);font-weight:600;letter-spacing:.2em;font-size:14px;text-transform:uppercase">оформление</div>
+        </div>
+      </div>
+      <div class="co-wrap">
+        <div class="co-sec">
+          <div class="co-h">Адрес доставки</div>
+          <div id="coAddrList" class="co-addr-list"></div>
+          <button class="au-btn au-btn-ghost co-addr-add" type="button" id="coAddrAdd">+ Добавить адрес</button>
+        </div>
+        <div class="co-sec">
+          <div class="co-h">Способ доставки</div>
+          <div class="co-ship">
+            <label class="co-opt"><input type="radio" name="coShip" value="Курьер по Москве" data-price="0" checked><span class="co-opt-b"><span class="co-opt-t">Курьер по Москве</span><span class="co-opt-s">1–2 дня · бесплатно от 15 000 ₽</span></span></label>
+            <label class="co-opt"><input type="radio" name="coShip" value="СДЭК / ПВЗ" data-price="0"><span class="co-opt-b"><span class="co-opt-t">СДЭК — пункт выдачи</span><span class="co-opt-s">2–5 дней · по тарифу</span></span></label>
+            <label class="co-opt"><input type="radio" name="coShip" value="Почта России" data-price="0"><span class="co-opt-b"><span class="co-opt-t">Почта России</span><span class="co-opt-s">по тарифу · вся Россия</span></span></label>
+          </div>
+        </div>
+        <div class="co-sec">
+          <div class="co-h">Оплата</div>
+          <div class="co-pay">
+            <div class="co-pay-line"><span>Оплата при получении / по счёту</span></div>
+            <p class="co-pay-note">Онлайн-оплата СБП скоро появится. Пока после оформления с вами свяжется менеджер бутика для подтверждения и оплаты.</p>
+          </div>
+        </div>
+        <div class="co-sec">
+          <div class="co-h">Ваш заказ</div>
+          <div id="coItems" class="co-items"></div>
+        </div>
+      </div>
+      <div class="cart-foot" id="coFoot">
+        <div class="cart-sum"><span class="lb">Итого</span><span class="val" id="coTotal">0 ₽</span></div>
+        <p class="consent">Нажимая «Разместить заказ», вы соглашаетесь с <a data-go="offer">публичной офертой</a> и <a data-go="privacy">политикой конфиденциальности</a>.</p>
+        <div class="au-err" id="coErr" style="display:none"></div>
+        <button class="cart-checkout" id="coPlace" type="button">Разместить заказ</button>
       </div>
     </section>
 
@@ -1899,7 +2292,7 @@ body{
   </div>
 
 <script>
-  const screens = ['home','catalog','product','profile','about','favorites','cart','novinki','brands','sale','gallery','events','privacy','offer','requisites'];
+  const screens = ['home','catalog','product','profile','login','register','verify','about','favorites','orders','orderdetail','returns','pdata','addresses','cart','checkout','novinki','brands','sale','gallery','events','privacy','offer','requisites'];
   var _hash=(location.hash||'').replace(/^#/,'');
   var _start=(screens.indexOf(_hash)>-1)?_hash:(((document.querySelector('.screen.is-active')||{}).id)||'home');
   var currentScreen=_start;
@@ -1916,6 +2309,7 @@ body{
     if(vp){ vp.scrollTop = 0; var _tb=vp.querySelector('.topbar'); if(_tb) _tb.classList.remove('tuck','scrolled','beyond'); var _lb=document.getElementById('liteBar'); if(_lb)_lb.classList.remove('show'); }
     if(id==='favorites') renderFav();
     if(id==='cart') renderCart();
+    if(window.MAELCab && window.MAELCab.onScreen) window.MAELCab.onScreen(id);
     currentScreen = id;
   }
   function goTo(id){
@@ -2112,7 +2506,7 @@ body{
     const qb = e.target.closest('[data-qty]');
     if(qb){ e.stopPropagation(); cartQty(qb.dataset.key, parseInt(qb.dataset.qty,10)); return; }
     const co = e.target.closest('[data-checkout]');
-    if(co){ e.preventDefault(); alert('Оформление заказа появится после подключения базы и оплаты.'); return; }
+    if(co){ e.preventDefault(); if(window.MAELCart && window.MAELCart.count()===0){ showToast('Корзина пуста'); return; } if(window.MAELCab && window.MAELCab.startCheckout){ window.MAELCab.startCheckout(); } else { goTo('login'); } return; }
     const sb = e.target.closest('[data-search]');
     if(sb){ e.stopPropagation(); goTo('catalog'); var ci=document.getElementById('catSearch'); if(ci){ setTimeout(function(){ci.focus();},80); } return; }
     const bk = e.target.closest('[data-back]');
@@ -2202,6 +2596,7 @@ body{
 
   const _goTo = goTo;
   goTo = function(id){ _goTo(id); requestAnimationFrame(refresh); setTimeout(refresh,80); };
+  window.goTo = goTo;   // мост для слоя auth/кабинета
 
   window.addEventListener('load',()=>setTimeout(refresh,60));
   window.addEventListener('resize',refresh);
@@ -2215,6 +2610,7 @@ body{
   function addToCart(card){if(!card)return;var d=readCard(card);if(CART.has(d.key)){CART.get(d.key).qty++;}else{d.qty=1;CART.set(d.key,d);}updateCartCount();syncCardButtons();var cs=document.getElementById('cart');if(cs&&cs.classList.contains('is-active'))renderCart();}
   var _toastT;
   function showToast(msg){var t=document.getElementById('toast');if(!t)return;t.innerHTML=msg+' <a data-go="cart">В корзину</a>';t.classList.add('show');clearTimeout(_toastT);_toastT=setTimeout(function(){t.classList.remove('show');},2600);}
+  window.showToast = showToast;   // мост для слоя оформления заказа
   function toggleCart(card){if(!card)return;var d=readCard(card);if(CART.has(d.key)){CART.delete(d.key);showToast('Убрано из корзины');}else{d.qty=1;CART.set(d.key,d);showToast('<b>'+d.name+'</b> — добавлено');}updateCartCount();syncCardButtons();var cs=document.getElementById('cart');if(cs&&cs.classList.contains('is-active'))renderCart();}
   var SIZED_CATS={dresses:1,tops:1,knit:1};
   var _szPending=null;
@@ -2244,10 +2640,12 @@ body{
   function toggleFav(btn){
     var card=btn.closest('.card'); if(!card) return;
     var d=readCard(card);
-    if(FAV.has(d.key)){ FAV.delete(d.key); syncHearts(d.key,false); }
-    else { FAV.set(d.key,d); syncHearts(d.key,true); }
+    var added;
+    if(FAV.has(d.key)){ FAV.delete(d.key); syncHearts(d.key,false); added=false; }
+    else { FAV.set(d.key,d); syncHearts(d.key,true); added=true; }
     updateFavCount();
     var fs=document.getElementById('favorites'); if(fs && fs.classList.contains('is-active')) renderFav();
+    if(window.MAELFav && window.MAELFav.onToggle) window.MAELFav.onToggle(added,d);
   }
   function renderFav(){
     var grid=document.getElementById('favgrid'), empty=document.getElementById('favempty');
@@ -2261,14 +2659,37 @@ body{
     });
     updateFavCount();
   }
-  (function(){
-    var seed=['Платье «Флора»','Платок шёлк «Вензель»','Платье «Наследие»'];
-    document.querySelectorAll('#catalog .grid .card').forEach(function(card){
-      var n=card.querySelector('.name'); if(n && seed.indexOf(n.textContent.trim())>-1){ var d=readCard(card); FAV.set(d.key,d); }
-    });
-    seed.forEach(function(k){ syncHearts(k,true); });
-    updateFavCount();
-  })();
+  // Мост для слоя авторизации: избранное хранится в аккаунте (Supabase).
+  // Гость видит пустое избранное; после входа подгружаются сохранённые вещи.
+  window.MAELFav = {
+    onToggle: null,                         // назначит слой auth: (added, d) => сохранить/удалить
+    replaceAll: function(rows){             // залить избранное из базы
+      FAV.forEach(function(_v,k){ syncHearts(k,false); });
+      FAV.clear();
+      (rows||[]).forEach(function(r){
+        var key=r.product_key||r.name;
+        if(!key) return;
+        FAV.set(key,{ key:key, brand:r.brand||'', name:r.name||key, price:r.price||'', ph:r.ph||'t1' });
+        syncHearts(key,true);
+      });
+      updateFavCount();
+      var fs=document.getElementById('favorites'); if(fs && fs.classList.contains('is-active')) renderFav();
+    },
+    clear: function(){                      // очистить при выходе
+      FAV.forEach(function(_v,k){ syncHearts(k,false); });
+      FAV.clear(); updateFavCount();
+      var fs=document.getElementById('favorites'); if(fs && fs.classList.contains('is-active')) renderFav();
+    },
+    snapshot: function(){ var a=[]; FAV.forEach(function(v){ a.push(v); }); return a; }
+  };
+  // ---- мост корзины для слоя оформления заказа ----
+  window.MAELCart = {
+    snapshot: function(){ var a=[]; CART.forEach(function(d){ a.push({ key:d.key, brand:d.brand||'', name:d.name||'', price:d.price||'', ph:d.ph||'t2', qty:d.qty||1, size:d.size||'' }); }); return a; },
+    total: function(){ var t=0; CART.forEach(function(d){ t+=priceNum(d.price)*(d.qty||1); }); return t; },
+    count: function(){ var t=0; CART.forEach(function(d){ t+=(d.qty||1); }); return t; },
+    clear: function(){ CART.clear(); updateCartCount(); syncCardButtons(); var cs=document.getElementById('cart'); if(cs&&cs.classList.contains('is-active')) renderCart(); }
+  };
+  updateFavCount();
   // ---- cookie consent banner ----
   (function(){var box=document.getElementById('cookie');if(!box)return;var seen;try{seen=localStorage.getItem('mael_cookie');}catch(e){seen=null;}
     if(!seen){setTimeout(function(){box.classList.add('show');},1200);}
@@ -2295,5 +2716,502 @@ document.addEventListener('DOMContentLoaded',kick);setTimeout(kick,200);setTimeo
     <div class="szsheet-opts" id="szOpts"></div>
   </div>
 </div>
+<!-- ==== MAEL · авторизация через Supabase ==== -->
+<script>
+(function(){
+  var CFG = window.MAEL_CFG || {};
+  var ready = !!(window.supabase && CFG.AUTH_ENABLED && CFG.SUPABASE_URL && CFG.SUPABASE_ANON && !/ВСТАВЬ/.test(CFG.SUPABASE_ANON));
+  var sb = ready ? window.supabase.createClient(CFG.SUPABASE_URL, CFG.SUPABASE_ANON) : null;
+  window.sbc = sb;
+  var SESSION = null;
+  var pendingEmail = null;
+
+  function $(id){ return document.getElementById(id); }
+  function show(el){ if(el) el.classList.add('show'); }
+  function hide(el){ if(el) el.classList.remove('show'); }
+  function setErr(id,msg){ var e=$(id); if(!e) return; if(msg){ e.textContent=msg; show(e); } else { hide(e); } }
+  function busy(btn,on){ if(!btn) return; btn.disabled=on; if(on){ btn._t=btn.textContent; btn.textContent='Подождите…'; } else if(btn._t){ btn.textContent=btn._t; } }
+  function isEmail(s){ return /@/.test(s); }
+  function friendly(err){
+    var m=(err&&err.message)||String(err||'Ошибка');
+    if(/Invalid login credentials/i.test(m)) return 'Неверный логин или пароль.';
+    if(/User already registered/i.test(m)) return 'Аккаунт с таким email уже есть — войдите.';
+    if(/Password should be at least/i.test(m)) return 'Пароль слишком короткий (минимум 6 символов).';
+    if(/Email not confirmed/i.test(m)) return 'Email не подтверждён — проверьте почту.';
+    if(/Token has expired|Invalid token|otp_expired/i.test(m)) return 'Код неверный или устарел.';
+    if(/Failed to fetch|NetworkError|Load failed/i.test(m)) return 'Нет связи с сервером. Проверьте подключение.';
+    return m;
+  }
+
+  function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function fmtMoney(n){ return (parseInt(n,10)||0).toLocaleString('ru-RU')+' \u20bd'; }
+
+  function paintProfile(){
+    var nameEl=document.querySelector('#profile .mb-name');
+    var sinceEl=document.querySelector('#profile .mb-since');
+    if(SESSION && SESSION.user){
+      var u=SESSION.user, meta=u.user_metadata||{};
+      var nm=meta.full_name || (u.email ? u.email.split('@')[0] : 'Клиент');
+      if(nameEl) nameEl.textContent=nm;
+      if(sinceEl) sinceEl.textContent=(meta.phone || u.email || 'Клиент MAEL');
+    }
+  }
+
+  // ---- заглушка «текущий заказ» в шапке кабинета ----
+  function renderOrderSlot(order){
+    var slot=$('mbOrderSlot'); if(!slot) return;
+    if(order){
+      slot.innerHTML=''
+        +'<a class="mb-order" data-go="orders">'
+        +'<div class="mb-order-r"><span class="mb-order-k">Текущий заказ · '+esc(order.order_no||'')+'</span><span class="mb-order-st">'+esc(order.status_label||'В обработке')+'</span></div>'
+        +'<div class="mb-order-bar"><i style="width:'+(order.progress||10)+'%"></i></div>'
+        +'<div class="mb-order-d">'+(order.items_count||0)+' поз. '+(order.eta?('· '+esc(order.eta)):'')+'<em>\u203a</em></div>'
+        +'</a>';
+    } else {
+      slot.innerHTML='<div class="mb-order-empty"><div class="t">Активных заказов нет</div><div class="p">Выберите вещи в каталоге — статус заказа появится здесь.</div></div>';
+    }
+  }
+
+  function afterAuth(){ paintProfile(); Cab.loadAll(); if(window.goTo) window.goTo('profile'); }
+
+  // гость нажал на «кабинет»/раздел кабинета -> отправляем на вход
+  if(ready){
+    document.addEventListener('click', function(e){
+      var g=e.target.closest('[data-go="profile"],[data-go="orders"],[data-go="pdata"],[data-go="addresses"]');
+      if(g && !SESSION){ e.preventDefault(); e.stopPropagation(); if(window.goTo) window.goTo('login'); }
+    }, true);
+  }
+
+  // ---- регистрация ----
+  var regForm=$('regForm');
+  if(regForm && sb){
+    regForm.addEventListener('submit', async function(e){
+      e.preventDefault(); setErr('regErr','');
+      var name=($('regName').value||'').trim();
+      var email=($('regEmail').value||'').trim();
+      var phone=($('regPhone').value||'').trim();
+      var pass=$('regPass').value||'';
+      if(!isEmail(email)){ setErr('regErr','Укажите корректный email.'); return; }
+      if(phone.replace(/\D/g,'').length<10){ setErr('regErr','Укажите корректный номер телефона.'); return; }
+      if(pass.length<6){ setErr('regErr','Пароль минимум 6 символов.'); return; }
+      busy($('regBtn'),true);
+      try{
+        var r=await sb.auth.signUp({ email:email, password:pass, options:{ data:{ full_name:name, phone:phone } } });
+        if(r.error) throw r.error;
+        if(r.data && r.data.session){ SESSION=r.data.session; afterAuth(); }
+        else { pendingEmail=email; var ve=$('verifyEmail'); if(ve) ve.textContent=email; if(window.goTo) window.goTo('verify'); }
+      }catch(err){ setErr('regErr',friendly(err)); }
+      busy($('regBtn'),false);
+    });
+  }
+
+  // ---- подтверждение кода ----
+  var verifyForm=$('verifyForm');
+  if(verifyForm && sb){
+    verifyForm.addEventListener('submit', async function(e){
+      e.preventDefault(); setErr('verifyErr',''); hide($('verifyOk'));
+      var token=($('verifyCode').value||'').trim();
+      if(!pendingEmail){ setErr('verifyErr','Начните регистрацию заново.'); return; }
+      if(token.length<6){ setErr('verifyErr','Введите 6-значный код.'); return; }
+      busy($('verifyBtn'),true);
+      try{
+        var r=await sb.auth.verifyOtp({ email:pendingEmail, token:token, type:'signup' });
+        if(r.error) throw r.error;
+        SESSION=r.data.session; afterAuth();
+      }catch(err){ setErr('verifyErr',friendly(err)); }
+      busy($('verifyBtn'),false);
+    });
+    var rs=$('verifyResend');
+    if(rs) rs.addEventListener('click', async function(){
+      setErr('verifyErr',''); if(!pendingEmail) return;
+      try{ await sb.auth.resend({ type:'signup', email:pendingEmail }); var ok=$('verifyOk'); if(ok){ ok.textContent='Код отправлен повторно.'; show(ok); } }
+      catch(err){ setErr('verifyErr',friendly(err)); }
+    });
+  }
+
+  // ---- вход по email или телефону ----
+  var loginForm=$('loginForm');
+  if(loginForm && sb){
+    loginForm.addEventListener('submit', async function(e){
+      e.preventDefault(); setErr('loginErr','');
+      var idv=($('loginId').value||'').trim(); var pass=$('loginPass').value||'';
+      if(!idv || !pass){ setErr('loginErr','Введите логин и пароль.'); return; }
+      busy($('loginBtn'),true);
+      try{
+        var email=idv;
+        if(!isEmail(idv)){
+          var rp=await sb.rpc('email_by_phone',{ p_phone:idv });
+          if(rp.error) throw rp.error;
+          if(!rp.data) throw new Error('Аккаунт с таким телефоном не найден.');
+          email=rp.data;
+        }
+        var r=await sb.auth.signInWithPassword({ email:email, password:pass });
+        if(r.error) throw r.error;
+        SESSION=r.data.session; afterAuth();
+      }catch(err){ setErr('loginErr',friendly(err)); }
+      busy($('loginBtn'),false);
+    });
+  }
+
+  // ---- выход ----
+  var out=$('mbOut');
+  if(out && sb){
+    out.addEventListener('click', async function(){
+      try{ await sb.auth.signOut(); }catch(e){}
+      SESSION=null; Cab.clear(); if(window.goTo) window.goTo('home');
+    });
+  }
+
+  // =========================================================
+  //  КАБИНЕТ: избранное, заказы, адреса, профиль (Supabase)
+  // =========================================================
+  var Cab = (function(){
+    var uid = function(){ return SESSION && SESSION.user ? SESSION.user.id : null; };
+    var ADDR = [];       // кэш адресов
+    var loaded = { fav:false };
+
+    // ---------- ИЗБРАННОЕ ----------
+    async function loadFavorites(){
+      if(!sb || !uid()){ if(window.MAELFav) window.MAELFav.clear(); return; }
+      try{
+        var r=await sb.from('favorites').select('product_key,brand,name,price,ph');
+        if(r.error) throw r.error;
+        if(window.MAELFav) window.MAELFav.replaceAll(r.data||[]);
+        loaded.fav=true;
+      }catch(e){ /* тихо: избранное останется локальным */ }
+    }
+    if(window.MAELFav){
+      window.MAELFav.onToggle = async function(added, d){
+        if(!sb || !uid()) return;                 // гость — только локально
+        try{
+          if(added){
+            await sb.from('favorites').upsert({
+              user_id:uid(), product_key:d.key, brand:d.brand, name:d.name, price:d.price, ph:d.ph
+            }, { onConflict:'user_id,product_key' });
+          } else {
+            await sb.from('favorites').delete().eq('user_id',uid()).eq('product_key',d.key);
+          }
+        }catch(e){}
+      };
+    }
+
+    // ---------- ЗАКАЗЫ ----------
+    async function loadOrders(){
+      renderOrderSlot(null);
+      var cnt=document.querySelector('[data-orderscount]');
+      if(!sb || !uid()){ renderOrders([]); return; }
+      try{
+        var r=await sb.from('orders').select('*').order('created_at',{ascending:false});
+        if(r.error) throw r.error;
+        var rows=r.data||[];
+        renderOrders(rows);
+        var active=rows.filter(function(o){ return o.status!=='done' && o.status!=='cancelled'; })[0];
+        renderOrderSlot(active||null);
+        if(cnt){ if(rows.length){ cnt.textContent=rows.length; cnt.style.display=''; } else { cnt.style.display='none'; } }
+      }catch(e){ renderOrders([]); }
+    }
+    function renderOrders(rows){
+      var list=$('ordersList'), empty=$('ordersEmpty');
+      if(!list||!empty) return;
+      list.innerHTML='';
+      if(!rows.length){ list.style.display='none'; empty.style.display='flex'; return; }
+      list.style.display='block'; empty.style.display='none';
+      rows.forEach(function(o){
+        list.insertAdjacentHTML('beforeend',
+          '<div class="ord-card" data-order-open="'+o.id+'" style="cursor:pointer"><div class="ord-top"><span class="ord-no">'+esc(o.order_no||'Заказ')+'</span><span class="ord-st">'+esc(o.status_label||o.status||'')+'</span></div>'
+          +'<div class="ord-bar"><i style="width:'+(o.progress||10)+'%"></i></div>'
+          +'<div class="ord-meta">'+(o.items_count||0)+' поз. · '+fmtMoney(o.total)+(o.eta?(' · '+esc(o.eta)):'')+'</div></div>');
+      });
+    }
+
+    // ---------- АДРЕСА ----------
+    async function loadAddresses(){
+      if(!sb || !uid()){ ADDR=[]; renderAddresses(); return; }
+      try{
+        var r=await sb.from('addresses').select('*').order('is_default',{ascending:false}).order('created_at',{ascending:false});
+        if(r.error) throw r.error;
+        ADDR=r.data||[]; renderAddresses();
+        var co=document.getElementById('checkout'); if(co && co.classList.contains('is-active')) renderCoAddr();
+      }catch(e){ ADDR=[]; renderAddresses(); }
+    }
+    function renderAddresses(){
+      var list=$('addrList'), empty=$('addrEmpty');
+      if(!list||!empty) return;
+      list.innerHTML='';
+      if(!ADDR.length){ empty.style.display='flex'; return; }
+      empty.style.display='none';
+      ADDR.forEach(function(a){
+        var lines=[a.city,a.street,(a.apartment?('кв./офис '+a.apartment):''),a.postal_code].filter(Boolean).map(esc).join(', ');
+        list.insertAdjacentHTML('beforeend',
+          '<div class="addr-card'+(a.is_default?' is-default':'')+'">'
+          +(a.is_default?'<span class="addr-badge">Основной</span>':'')
+          +'<div class="addr-name">'+esc(a.recipient||'Получатель')+(a.phone?(' · '+esc(a.phone)):'')+'</div>'
+          +'<div class="addr-lines">'+lines+'</div>'
+          +'<div class="addr-acts"><a data-addr-edit="'+a.id+'">Изменить</a>'
+          +(a.is_default?'':'<a data-addr-default="'+a.id+'" class="mut">Сделать основным</a>')
+          +'<a data-addr-del="'+a.id+'" class="mut">Удалить</a></div></div>');
+      });
+    }
+    function openAddr(a){
+      $('addrErr').classList.remove('show');
+      $('addrSheetH').textContent = a ? 'Изменить адрес' : 'Новый адрес';
+      $('addrId').value       = a?a.id:'';
+      $('addrRecipient').value= a?(a.recipient||''):'';
+      $('addrPhone').value    = a?(a.phone||''):'';
+      $('addrCity').value     = a?(a.city||''):'';
+      $('addrStreet').value   = a?(a.street||''):'';
+      $('addrApt').value      = a?(a.apartment||''):'';
+      $('addrZip').value      = a?(a.postal_code||''):'';
+      $('addrDefault').checked= a?!!a.is_default:false;
+      $('addrSheet').classList.add('open');
+    }
+    function closeAddr(){ $('addrSheet').classList.remove('open'); }
+
+    // делегированные клики по кнопкам адресов
+    document.addEventListener('click', function(e){
+      var b;
+      if(e.target.closest('[data-addrclose]')){ closeAddr(); return; }
+      if((b=e.target.closest('#addrAddBtn'))){ openAddr(null); return; }
+      if((b=e.target.closest('[data-addr-edit]'))){ var id=b.getAttribute('data-addr-edit'); openAddr(ADDR.filter(function(x){return x.id===id;})[0]); return; }
+      if((b=e.target.closest('[data-addr-default]'))){ setDefault(b.getAttribute('data-addr-default')); return; }
+      if((b=e.target.closest('[data-addr-del]'))){ delAddr(b.getAttribute('data-addr-del')); return; }
+    });
+    async function setDefault(id){
+      if(!sb||!uid()) return;
+      try{ await sb.from('addresses').update({is_default:true}).eq('id',id).eq('user_id',uid()); await loadAddresses(); }catch(e){}
+    }
+    async function delAddr(id){
+      if(!sb||!uid()) return;
+      if(!window.confirm('Удалить этот адрес?')) return;
+      try{ await sb.from('addresses').delete().eq('id',id).eq('user_id',uid()); await loadAddresses(); }catch(e){}
+    }
+    var af=$('addrForm');
+    if(af && sb){
+      af.addEventListener('submit', async function(e){
+        e.preventDefault(); $('addrErr').classList.remove('show');
+        if(!uid()){ setErr('addrErr','Войдите в аккаунт.'); return; }
+        var rec=($('addrRecipient').value||'').trim();
+        var city=($('addrCity').value||'').trim();
+        var street=($('addrStreet').value||'').trim();
+        if(!rec || !city || !street){ setErr('addrErr','Заполните получателя, город и улицу.'); return; }
+        var row={
+          user_id:uid(), recipient:rec, phone:($('addrPhone').value||'').trim(),
+          city:city, street:street, apartment:($('addrApt').value||'').trim(),
+          postal_code:($('addrZip').value||'').trim(), is_default:$('addrDefault').checked
+        };
+        var id=$('addrId').value;
+        var btn=$('addrSaveBtn'); busy(btn,true);
+        try{
+          if(id){ var r1=await sb.from('addresses').update(row).eq('id',id).eq('user_id',uid()); if(r1.error) throw r1.error; }
+          else  { var r2=await sb.from('addresses').insert(row); if(r2.error) throw r2.error; }
+          closeAddr(); await loadAddresses();
+        }catch(err){ setErr('addrErr',friendly(err)); }
+        busy(btn,false);
+      });
+    }
+
+    // ---------- ДАННЫЕ ПРОФИЛЯ ----------
+    function fillProfileForm(){
+      if(!SESSION||!SESSION.user) return;
+      var u=SESSION.user, meta=u.user_metadata||{};
+      if($('pdName'))  $('pdName').value  = meta.full_name||'';
+      if($('pdPhone')) $('pdPhone').value = meta.phone||'';
+      if($('pdEmail')) $('pdEmail').value = u.email||'';
+    }
+    var pdf=$('pdForm');
+    if(pdf && sb){
+      pdf.addEventListener('submit', async function(e){
+        e.preventDefault(); setErr('pdErr',''); hide($('pdOk'));
+        if(!uid()){ setErr('pdErr','Войдите в аккаунт.'); return; }
+        var name=($('pdName').value||'').trim();
+        var phone=($('pdPhone').value||'').trim();
+        if(phone.replace(/\D/g,'').length<10){ setErr('pdErr','Укажите корректный номер телефона.'); return; }
+        var btn=$('pdBtn'); busy(btn,true);
+        try{
+          var r=await sb.auth.updateUser({ data:{ full_name:name, phone:phone } });
+          if(r.error) throw r.error;
+          var r2=await sb.from('profiles').update({ full_name:name, phone:phone }).eq('id',uid());
+          if(r2.error) throw r2.error;
+          if(r.data&&r.data.user&&SESSION) SESSION.user=r.data.user;
+          paintProfile();
+          $('pdOk').textContent='Данные сохранены.'; show($('pdOk'));
+        }catch(err){ setErr('pdErr',friendly(err)); }
+        busy(btn,false);
+      });
+    }
+    var pwf=$('pwForm');
+    if(pwf && sb){
+      pwf.addEventListener('submit', async function(e){
+        e.preventDefault(); setErr('pwErr',''); hide($('pwOk'));
+        var p1=$('pwNew').value||'', p2=$('pwNew2').value||'';
+        if(p1.length<6){ setErr('pwErr','Пароль минимум 6 символов.'); return; }
+        if(p1!==p2){ setErr('pwErr','Пароли не совпадают.'); return; }
+        var btn=$('pwBtn'); busy(btn,true);
+        try{
+          var r=await sb.auth.updateUser({ password:p1 });
+          if(r.error) throw r.error;
+          $('pwNew').value=''; $('pwNew2').value='';
+          $('pwOk').textContent='Пароль изменён.'; show($('pwOk'));
+        }catch(err){ setErr('pwErr',friendly(err)); }
+        busy(btn,false);
+      });
+    }
+
+    // ---------- ОФОРМЛЕНИЕ ЗАКАЗА ----------
+    function pnum(x){ return parseInt(String(x==null?'':x).replace(/[^0-9]/g,''),10)||0; }
+    var CO_ADDR_ID=null;   // выбранный адрес доставки
+    var CUR_ORDER=null;    // открытый заказ (для деталей/возврата)
+
+    async function startCheckout(){
+      if(!sb || !uid()){ if(window.goTo) window.goTo('login'); return; }
+      if(!(window.MAELCart) || window.MAELCart.count()===0){ if(window.goTo) window.goTo('cart'); return; }
+      if(!ADDR.length){ await loadAddresses(); }
+      renderCheckout();
+      if(window.goTo) window.goTo('checkout');
+    }
+    function renderCheckout(){ renderCoAddr(); renderCoItems(); var e=$('coErr'); if(e){ e.style.display='none'; } }
+    function renderCoAddr(){
+      var box=$('coAddrList'); if(!box) return; box.innerHTML='';
+      if(!ADDR.length){ box.innerHTML='<div class="co-opt-s" style="padding:4px 2px">Добавьте адрес доставки, чтобы продолжить.</div>'; CO_ADDR_ID=null; return; }
+      if(!CO_ADDR_ID || !ADDR.some(function(a){return a.id===CO_ADDR_ID;})){
+        var def=ADDR.filter(function(a){return a.is_default;})[0]||ADDR[0]; CO_ADDR_ID=def.id;
+      }
+      ADDR.forEach(function(a){
+        var lines=[a.city,a.street,(a.apartment?('кв./офис '+a.apartment):'')].filter(Boolean).map(esc).join(', ');
+        box.insertAdjacentHTML('beforeend',
+          '<label class="co-opt"><input type="radio" name="coAddr" value="'+a.id+'"'+(a.id===CO_ADDR_ID?' checked':'')+'>'
+          +'<span class="co-opt-b"><span class="co-opt-t">'+esc(a.recipient||'Получатель')+(a.phone?(' · '+esc(a.phone)):'')+'</span>'
+          +'<span class="co-opt-s">'+lines+'</span></span></label>');
+      });
+    }
+    function renderCoItems(){
+      var items=(window.MAELCart?window.MAELCart.snapshot():[]);
+      var box=$('coItems'); if(box){ box.innerHTML='';
+        items.forEach(function(it){
+          box.insertAdjacentHTML('beforeend',
+            '<div class="co-it"><div class="co-it-l">'+esc(it.name)+(it.size?(' · '+esc(it.size)):'')
+            +'<small>'+esc(it.brand)+' × '+it.qty+'</small></div>'
+            +'<div class="co-it-r">'+fmtMoney(pnum(it.price)*it.qty)+'</div></div>');
+        });
+      }
+      if($('coTotal')) $('coTotal').textContent=fmtMoney(window.MAELCart?window.MAELCart.total():0);
+    }
+    (function(){
+      var add=$('coAddrAdd'); if(add) add.addEventListener('click', function(){ openAddr(null); });
+      var box=$('coAddrList'); if(box) box.addEventListener('change', function(e){ var r=e.target.closest('input[name="coAddr"]'); if(r) CO_ADDR_ID=r.value; });
+      var place=$('coPlace');
+      if(place && sb) place.addEventListener('click', async function(){
+        var err=$('coErr'); if(err) err.style.display='none';
+        if(!uid()){ if(window.goTo) window.goTo('login'); return; }
+        if(!ADDR.length || !CO_ADDR_ID){ if(err){ err.textContent='Добавьте адрес доставки.'; err.style.display='block'; } return; }
+        var items=(window.MAELCart?window.MAELCart.snapshot():[]);
+        if(!items.length){ if(window.goTo) window.goTo('cart'); return; }
+        var ship=(document.querySelector('input[name="coShip"]:checked')||{}).value||'Курьер по Москве';
+        var total=window.MAELCart.total(), cnt=window.MAELCart.count();
+        busy(place,true);
+        try{
+          var no='M-'+String(Date.now()).slice(-6);
+          var ins=await sb.from('orders').insert({
+            user_id:uid(), order_no:no, status:'new', status_label:'Оформлен',
+            total:total, items_count:cnt, eta:'уточним при подтверждении', progress:10
+          }).select('id').single();
+          if(ins.error) throw ins.error;
+          var oid=ins.data.id;
+          var rows=items.map(function(it){ return { order_id:oid, name:it.name, brand:it.brand, size:it.size||'', price:pnum(it.price), qty:it.qty }; });
+          var ir=await sb.from('order_items').insert(rows);
+          if(ir.error) throw ir.error;
+          window.MAELCart.clear();
+          await loadOrders();
+          if(window.goTo) window.goTo('orders');
+        }catch(e2){ if(err){ err.textContent=friendly(e2); err.style.display='block'; } }
+        busy(place,false);
+      });
+    })();
+
+    // ---------- ДЕТАЛИ ЗАКАЗА ----------
+    async function openOrder(id){
+      if(!sb || !uid()) return;
+      var order=null, items=[];
+      try{
+        var ro=await sb.from('orders').select('*').eq('id',id).single();
+        if(ro.error) throw ro.error; order=ro.data;
+        var ri=await sb.from('order_items').select('*').eq('order_id',id);
+        items=(ri.data||[]);
+      }catch(e){ return; }
+      CUR_ORDER=order;
+      renderOrderDetail(order,items);
+      if(window.goTo) window.goTo('orderdetail');
+    }
+    function renderOrderDetail(o,items){
+      var body=$('odBody'); if(!body||!o) return;
+      var itHtml=items.map(function(it){
+        return '<div class="od-it"><div>'+esc(it.name)+(it.size?(' · '+esc(it.size)):'')+'<small>'+esc(it.brand||'')+' × '+(it.qty||1)+'</small></div>'
+          +'<div>'+fmtMoney((it.price||0)*(it.qty||1))+'</div></div>';
+      }).join('');
+      var canReturn = o.status!=='cancelled';
+      body.innerHTML=''
+        +'<div class="od-head"><div class="od-no">'+esc(o.order_no||'Заказ')+'</div>'
+        +'<span class="od-st">'+esc(o.status_label||o.status||'')+'</span>'
+        +'<div class="od-bar"><i style="width:'+(o.progress||10)+'%"></i></div>'
+        +'<div class="od-eta">'+(o.eta?esc(o.eta):'')+'</div></div>'
+        +'<div class="od-block"><div class="od-block-h">Состав заказа</div>'+(itHtml||'<div class="od-eta">Позиции не найдены</div>')
+        +'<div class="od-sum"><span>Итого</span><span>'+fmtMoney(o.total)+'</span></div></div>'
+        +'<div class="od-acts">'
+        +(canReturn?'<button class="au-btn au-btn-ghost" type="button" id="odReturn">Возврат или обмен</button>':'')
+        +'<button class="au-btn au-btn-ghost" type="button" data-go="catalog">В каталог</button></div>';
+      var rb=$('odReturn'); if(rb) rb.addEventListener('click', function(){ openReturn(o); });
+    }
+
+    // ---------- ВОЗВРАТ И ОБМЕН ----------
+    function openReturn(o){
+      CUR_ORDER=o||CUR_ORDER;
+      var t=$('rtOrderNo'); if(t) t.textContent='Заказ '+((CUR_ORDER&&CUR_ORDER.order_no)||'');
+      var rf=$('rtReason'); if(rf) rf.value='';
+      hide($('rtOk')); setErr('rtErr','');
+      if(window.goTo) window.goTo('returns');
+    }
+    var rtf=$('rtForm');
+    if(rtf){
+      rtf.addEventListener('submit', function(e){
+        e.preventDefault(); setErr('rtErr',''); hide($('rtOk'));
+        var reason=($('rtReason').value||'').trim();
+        if(reason.length<3){ setErr('rtErr','Опишите причину.'); return; }
+        // Заявку принимаем локально; менеджер свяжется. Позже — запись в базу/уведомление.
+        var btn=$('rtBtn'); busy(btn,true);
+        setTimeout(function(){ busy(btn,false); show($('rtOk')); }, 400);
+      });
+    }
+
+    // открытие заказа из списка / слота
+    document.addEventListener('click', function(e){
+      var b=e.target.closest('[data-order-open]');
+      if(b){ e.preventDefault(); openOrder(b.getAttribute('data-order-open')); }
+    });
+
+    return {
+      loadAll: function(){ loadFavorites(); loadOrders(); loadAddresses(); },
+      clear: function(){ ADDR=[]; CO_ADDR_ID=null; CUR_ORDER=null; renderAddresses(); renderOrders([]); renderOrderSlot(null); if(window.MAELFav) window.MAELFav.clear(); var c=document.querySelector('[data-orderscount]'); if(c)c.style.display='none'; },
+      startCheckout: startCheckout,
+      onScreen: function(id){
+        if(id==='addresses') loadAddresses();
+        else if(id==='orders') loadOrders();
+        else if(id==='checkout') renderCheckout();
+        else if(id==='pdata') fillProfileForm();
+        else if(id==='profile') loadOrders();
+      }
+    };
+  })();
+  window.MAELCab = Cab;
+
+  // ---- восстановление сессии ----
+  if(sb){
+    sb.auth.getSession().then(function(r){ SESSION=(r.data&&r.data.session)||null; paintProfile(); if(SESSION) Cab.loadAll(); else Cab.clear(); });
+    sb.auth.onAuthStateChange(function(_e,s){ SESSION=s||null; paintProfile(); if(SESSION) Cab.loadAll(); else Cab.clear(); });
+  } else {
+    // сайт без бэкенда (демо): показать пустой слот заказа
+    renderOrderSlot(null);
+  }
+})();
+</script>
 </body>
 </html>
