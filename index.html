@@ -2312,22 +2312,26 @@ body{
     if(window.MAELCab && window.MAELCab.onScreen) window.MAELCab.onScreen(id);
     currentScreen = id;
   }
+  var navStack = [currentScreen];
   function goTo(id){
     if(!id || id===currentScreen) return;
-    try{ history.pushState({screen:id}, '', '#'+id); }catch(e){}
+    navStack.push(id);
+    try{ history.pushState({screen:id, idx:navStack.length-1}, '', '#'+id); }catch(e){}
     showScreen(id);
   }
   function goBack(fallback){
-    var st = history.state;
-    if(st && st.root){
-      var t = (fallback && fallback!==currentScreen) ? fallback : 'home';
-      if(t!==currentScreen){ try{ history.pushState({screen:t}, '', '#'+t); }catch(e){} showScreen(t); }
+    if(navStack.length > 1){
+      history.back();   // popstate синхронизирует стек и покажет экран
       return;
     }
-    history.back();
+    // истории внутри приложения нет — идём на запасной экран (или домой)
+    var t = (fallback && fallback!==currentScreen) ? fallback : 'home';
+    if(t!==currentScreen) goTo(t);
   }
   window.addEventListener('popstate', function(e){
     var id = (e.state && e.state.screen) || 'home';
+    if(e.state && typeof e.state.idx==='number'){ navStack.length = e.state.idx+1; }
+    else { navStack = [id]; }
     showScreen(id);
   });
   (function(){
@@ -2600,6 +2604,8 @@ body{
 
   window.addEventListener('load',()=>setTimeout(refresh,60));
   window.addEventListener('resize',refresh);
+  // при возврате браузером (popstate) заново проявляем .reveal-контент — иначе экран пустой
+  window.addEventListener('popstate',()=>{ requestAnimationFrame(refresh); setTimeout(refresh,80); });
   setTimeout(refresh,60);
 
   /* ---------- favorites / избранное ---------- */
